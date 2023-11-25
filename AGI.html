@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通用人工智能简介</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "微软雅黑", Arial, sans-serif; line-height: 1.6; background-color: black; color: white; }
+  .wrapper { display: flex; padding: 20px; }
+  .left-side { width: 40%; }
+  .right-side { width: 60%; padding-left: 20px; }
+  img.main-image { max-width: 100%; height: auto; display: block; }
+  nav { background: #333; color: #fff; padding: 10px 0; }
+  nav ul { padding: 0; list-style: none; text-align: center; }
+  nav ul li { display: inline; margin-right: 20px; }
+  nav a { color: #fff; text-decoration: none; }
+  header, footer { background: #333; color: #fff; padding: 20px 0; text-align: center; }
+  .content { margin-bottom: 20px; }
+
+  /* Text rain effect */
+  @keyframes fall {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(100vh); }
+  }
+  .rain {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+  }
+  .rain span {
+    position: absolute;
+    opacity: 0.7;
+    animation: fall linear forwards;
+    transition: font-weight 0.3s, color 0.3s;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="#home">首页</a></li>
+    <li><a href="#about-agi">关于AGI</a></li>
+    <li><a href="#contact">联系方式</a></li>
+  </ul>
+</nav>
+
+<header>
+  <h1>通用人工智能简介</h1>
+</header>
+
+<div class="wrapper">
+  <div class="left-side">
+    <img src="C:\Users\Thinkpad\Downloads\f745fa77-1151-430b-b314-9c0d045c72cf.webp" alt="AGI Robot" class="main-image">
+  </div>
+  <div class="right-side">
+    <div class="content">
+      <h2 id="about-agi">什么是通用人工智能？</h2>
+      <p>
+        通用人工智能（AGI）是一种能力可以广泛应用于多个领域的人工智能形式，它能够理解、学习并像人类智能一样应用其智能。与专为特定任务设计的狭窄AI不同，AGI可以适应并处理广泛的任务和功能，模仿人类的认知能力。
+      </p>
+      <p>
+        AGI仍处于研究阶段，代表了一种未来，其中机器可能会执行任何人类可以做的智力任务。它涉及AI的多个子领域，包括机器学习、自然语言处理和机器人技术。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="rain" id="rainEffect"></div>
+
+<footer>
+  <h1>了解更多关于通用人工智能</h1>
+</footer>
+
+<script>
+  // 文本内容，您可以根据需要进行修改
+  const textContent = '人工通用智能（AGI）是一种能力可以广泛应用于多个领域的人工智能形式，它能够理解、学习并像人类智能一样应用其智能。与专为特定任务设计的狭窄AI不同，AGI可以适应并处理广泛的任务和功能，模仿人类的认知能力。';
+
+  function createRain() {
+    const rainEffect = document.getElementById('rainEffect');
+    const textArray = textContent.split('');
+    for (let i = 0; i < 50; i++) {
+      let span = document.createElement('span');
+      span.textContent = textArray[Math.floor(Math.random() * textArray.length)];
+      let fontSize = Math.random() * (30 - 10) + 10; // 字体大小在10px到30px之间随机
+      let animationDuration = Math.random() * (10 - 5) + 5; // 动画时间在5到10秒之间随机
+      let leftPosition = Math.random() * window.innerWidth;
+      
+      span.style.cssText = `
+        left: ${leftPosition}px;
+        font-size: ${fontSize}px;
+        color: rgba(255, 255, 255, ${Math.random().toFixed(2)});
+        animation-duration: ${animationDuration}s;
+        top: ${-Math.random() * 100}px;
+      `;
+      rainEffect.appendChild(span);
+
+      // 当动画完成后删除元素
+      span.addEventListener('animationend', function() {
+        rainEffect.removeChild(this);
+      });
+    }
+  }
+
+  // 每500毫秒生成一次“雨”
+  setInterval(createRain, 500);
+
+  // 检测鼠标移动事件来增加字体粗细和改变颜色，并应用引力效果
+  document.addEventListener('mousemove', function(e) {
+    const rainEffect = document.getElementById('rainEffect');
+    rainEffect.querySelectorAll('span').forEach(span => {
+      const spanBox = span.getBoundingClientRect();
+      const distance = Math.sqrt(Math.pow(e.clientX - (spanBox.left + spanBox.width / 2), 2) + Math.pow(e.clientY - (spanBox.top + spanBox.height / 2), 2));
+      const attractionRange = 200; // 20厘米大约是200像素
+      const maxDistance = 150; // 15厘米大约是150像素
+
+      // 根据距离计算颜色深浅
+      if (distance < maxDistance) {
+        const colorIntensity = 1 - distance / maxDistance;
+        span.style.color = `rgba(0, 255, 0, ${colorIntensity.toFixed(2)})`;
+        span.style.fontWeight = 'bold';
+      } else {
+        span.style.color = 'rgba(255, 255, 255, 0.7)';
+        span.style.fontWeight = 'normal';
+      }
+
+      // 如果文字在鼠标的引力范围内，则移动文字位置
+      if (distance < attractionRange) {
+        const attractionFactor = 0.5; // 引力因子，增强引力效果
+        const dx = (e.clientX - (spanBox.left + spanBox.width / 2)) * attractionFactor;
+        const dy = (e.clientY - (spanBox.top + spanBox.height / 2)) * attractionFactor;
+
+        span.style.transition = 'transform 0.1s'; // 增加平滑过渡效果
+        span.style.transform = `translate(${dx}px, ${dy}px)`;
+      } else {
+        span.style.transform = 'translate(0px, 0px)';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
