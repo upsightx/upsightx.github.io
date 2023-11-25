@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表情包动画</title>
+    <style>
+        /* 内联 CSS */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #emoji-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .emoji {
+            position: absolute;
+            will-change: transform;
+            animation-name: expand;
+            animation-timing-function: ease-out;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes expand {
+            0% {
+                transform: scale(0) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2) translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="emoji-container"></div>
+    <script>
+        // 内联 JavaScript
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("emoji-container");
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function addEmoji() {
+                const emoji = document.createElement("img");
+                emoji.src = "https://raw.githubusercontent.com/upsightx/upsightx.github.io/main/images.jfif";
+                emoji.classList.add("emoji");
+
+                // 随机位置
+                const x = (Math.random() - 0.5) * 100; // -50% 到 50%
+                const y = (Math.random() - 0.5) * 100; // -50% 到 50%
+                emoji.style.setProperty('--x', `${x}vw`);
+                emoji.style.setProperty('--y', `${y}vh`);
+
+                // 鼠标位置
+                emoji.style.left = mouseX + 'px';
+                emoji.style.top = mouseY + 'px';
+
+                container.appendChild(emoji);
+
+                // 移除表情包以避免DOM过载
+                setTimeout(() => {
+                    emoji.remove();
+                }, 2000); // 与动画时长相同
+            }
+
+            // 更频繁地添加表情包
+            setInterval(addEmoji, 100); // 每 0.2 秒添加一个
+        });
+    </script>
+</body>
+</html>
