@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>X</title>
+    <title>文字雨效果页面</title>
     <style>
         body {
             margin: 0;
@@ -30,11 +30,11 @@
 
         .main-image {
             background-image: url('https://raw.githubusercontent.com/upsightx/agixman.github.io/1ef7f27cba563477565831c941711ff8f3fa6e06/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231125031117.png');
-            background-size: 100% auto; /* 调整为100%宽度，高度自动 */
+            background-size: cover; /* 使用cover以保持图片比例 */
             background-repeat: no-repeat;
             background-position: center top;
             position: absolute;
-            top: 40px; /* 假设菜单栏高度为40px */
+            top: 40px;
             left: 0;
             width: 100%;
             height: calc(100vh - 40px); /* 减去菜单栏的高度 */
@@ -52,6 +52,20 @@
 
         @keyframes fall {
             to { top: 100%; }
+        }
+
+        /* 媒体查询，适应小屏幕设备 */
+        @media (max-width: 600px) {
+            .menu a {
+                padding: 5px 10px; /* 菜单项在小屏幕上的内边距 */
+                font-size: 14px; /* 菜单项的字体大小 */
+            }
+            .main-image {
+                top: 30px; /* 较小的菜单栏高度 */
+            }
+            .main-image, #rainEffect {
+                height: calc(100vh - 30px); /* 调整高度以适应较小的菜单栏 */
+            }
         }
     </style>
 </head>
