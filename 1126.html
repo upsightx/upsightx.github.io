@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文字雨效果页面</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            overflow: hidden;
+        }
+
+        .menu {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .menu a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .main-image {
+            background-image: url('https://raw.githubusercontent.com/upsightx/agixman.github.io/1ef7f27cba563477565831c941711ff8f3fa6e06/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231125031117.png');
+            background-size: 100% auto; /* 调整为100%宽度，高度自动 */
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: absolute;
+            top: 40px; /* 假设菜单栏高度为40px */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 40px); /* 减去菜单栏的高度 */
+        }
+
+        #rainEffect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="#home">Home</a>
+        <a href="#funny">滑稽</a>
+        <a href="#report">报告</a>
+        <a href="#contact">联系方式</a>
+    </div>
+    <div class="main-image">
+        <div id="rainEffect"></div>
+    </div>
+
+     <script>
+      // 文本内容，您可以根据需要进行修改
+      const textContent = '人工通用智能（AGI）是一种能力可以广泛应用于多个领域的人工智能形式，它能够理解、学习并像人类智能一样应用其智能。与专为特定任务设计的狭窄AI不同，AGI可以适应并处理广泛的任务和功能，模仿人类的认知能力。';
+
+      function createRain() {
+        const rainEffect = document.getElementById('rainEffect');
+        const textArray = textContent.split('');
+        for (let i = 0; i < 50; i++) {
+          let span = document.createElement('span');
+          span.textContent = textArray[Math.floor(Math.random() * textArray.length)];
+          let fontSize = Math.random() * (30 - 10) + 10; // 字体大小在10px到30px之间随机
+          let animationDuration = Math.random() * (10 - 5) + 5; // 动画时间在5到10秒之间随机
+          let leftPosition = Math.random() * window.innerWidth;
+
+          span.style.cssText = `
+            left: ${leftPosition}px;
+            font-size: ${fontSize}px;
+            color: rgba(255, 255, 255, ${Math.random().toFixed(2)});
+            animation-duration: ${animationDuration}s;
+            top: ${-Math.random() * 100}px;
+            position: fixed;
+            animation-name: fall;
+          `;
+          rainEffect.appendChild(span);
+
+          // 当动画完成后删除元素
+          span.addEventListener('animationend', function() {
+            rainEffect.removeChild(this);
+          });
+        }
+      }
+
+      // 每500毫秒生成一次“雨”
+      setInterval(createRain, 500);
+    </script>
+</body>
+</html>
