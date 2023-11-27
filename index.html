@@ -80,9 +80,9 @@
         <div id="rainEffect"></div>
     </div>
 
-     <script>
-      // 文本内容，您可以根据需要进行修改
-      const textContent = '人工通用智能（AGI）是一种能力可以广泛应用于多个领域的人工智能形式，它能够理解、学习并像人类智能一样应用其智能。与专为特定任务设计的狭窄AI不同，AGI可以适应并处理广泛的任务和功能，模仿人类的认知能力。';
+    <script>
+      // 文本内容
+      const textContent = '人工通用智能（AGI）是一种能力可以广泛应用于多个领域的人工智能形式...';
 
       function createRain() {
         const rainEffect = document.getElementById('rainEffect');
@@ -90,8 +90,8 @@
         for (let i = 0; i < 50; i++) {
           let span = document.createElement('span');
           span.textContent = textArray[Math.floor(Math.random() * textArray.length)];
-          let fontSize = Math.random() * (30 - 10) + 10; // 字体大小在10px到30px之间随机
-          let animationDuration = Math.random() * (10 - 5) + 5; // 动画时间在5到10秒之间随机
+          let fontSize = Math.random() * (30 - 10) + 10; // 字体大小
+          let animationDuration = Math.random() * (5 - 2) + 2; // 动画时间在2到5秒之间随机
           let leftPosition = Math.random() * window.innerWidth;
 
           span.style.cssText = `
@@ -102,18 +102,17 @@
             top: ${-Math.random() * 100}px;
             position: fixed;
             animation-name: fall;
+            animation-timing-function: linear; /* 确保匀速下落 */
           `;
           rainEffect.appendChild(span);
 
-          // 当动画完成后删除元素
-          span.addEventListener('animationend', function() {
-            rainEffect.removeChild(this);
-          });
+          setTimeout(() => {
+            rainEffect.removeChild(span);
+          }, animationDuration * 1000); // 在动画结束后立即移除元素
         }
       }
 
-      // 每1000毫秒生成一次“雨”
-      setInterval(createRain, 1000);
+      setInterval(createRain, 500);
     </script>
 </body>
 </html>
