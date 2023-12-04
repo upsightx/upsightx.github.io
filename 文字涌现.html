@@ -35,14 +35,14 @@
             const words = text.split(/(?=\S)/u);
 
             function createRandomText() {
-                for (let i = 0; i < 20; i++) { // 每次生成20个字
+                for (let i = 0; i < 25; i++) { // 每次生成25个字
                     const word = words[Math.floor(Math.random() * words.length)];
                     const dynamicText = document.createElement('span');
                     dynamicText.classList.add('dynamic-text');
                     dynamicText.textContent = word;
                     dynamicText.style.left = `${Math.random() * (window.innerWidth - 50)}px`; // 防止文字溢出
                     dynamicText.style.top = `${Math.random() * (window.innerHeight - 50)}px`; // 防止文字溢出
-                    dynamicText.style.fontSize = `${Math.random() * 5 + 1}em`;
+                    dynamicText.style.fontSize = `${Math.random() * 6 + 1}em`;
 
                     // 添加颜色变化
                     const color = Math.random() < 0.5 ? 'black' : 'green';
@@ -58,7 +58,7 @@
                 }
             }
 
-            setInterval(createRandomText, 50); // 每100毫秒刷新一次
+            setInterval(createRandomText, 50); // 每50毫秒刷新一次
         });
     </script>
 </body>
