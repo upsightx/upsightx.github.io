@@ -10,13 +10,13 @@
             overflow: hidden;
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         .dynamic-text {
             position: absolute;
-            color: rgba(0, 0, 0, 0.5);
             transform: scale(0);
             animation: emerge 3s ease forwards;
         }
@@ -31,25 +31,34 @@
 <body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const text = "通用人工智能AGI是具有一般人类智慧，可以执行人类能够执行的任何智力任务的机器智能。通用人工智能AGI是一些人工智能研究的主要目标，也是科幻小说和未来研究中的共同话题。一些研究人员将通用人工智能称为强AI或者完全AI，或称机器具有执行通用智能行为的能力。X君 微信biipii";
+            const text = "通用人工智能AGI是具有一般人类智慧，可以执行人类能够执行的任何智力任务的机器智能。通用人工智能是一些人工智能研究的主要目标，也是科幻小说和未来研究中的共同话题。一些研究人员将通用人工智能称为强AI或者完全AI，或称机器具有执行通用智能行为的能力。";
             const words = text.split(/(?=\S)/u);
 
             function createRandomText() {
-                const word = words[Math.floor(Math.random() * words.length)];
-                const dynamicText = document.createElement('span');
-                dynamicText.classList.add('dynamic-text');
-                dynamicText.textContent = word;
-                dynamicText.style.left = `${Math.random() * 100}%`;
-                dynamicText.style.top = `${Math.random() * 100}%`;
-                dynamicText.style.fontSize = `${Math.random() * 4 + 0.5}em`;
-                document.body.appendChild(dynamicText);
+                for (let i = 0; i < 50; i++) { // 每次生成50个字
+                    const word = words[Math.floor(Math.random() * words.length)];
+                    const dynamicText = document.createElement('span');
+                    dynamicText.classList.add('dynamic-text');
+                    dynamicText.textContent = word;
+                    dynamicText.style.left = `${Math.random() * (window.innerWidth - 50)}px`; // 防止文字溢出
+                    dynamicText.style.top = `${Math.random() * (window.innerHeight - 50)}px`; // 防止文字溢出
+                    dynamicText.style.fontSize = `${Math.random() * 5 + 0.5}em`;
 
-                setTimeout(() => {
-                    document.body.removeChild(dynamicText);
-                }, 1000); // 动画持续时间
+                    // 添加颜色变化
+                    const color = Math.random() < 0.5 ? 'black' : 'green';
+                    dynamicText.style.color = color;
+
+                    document.body.appendChild(dynamicText);
+
+                    setTimeout(() => {
+                        if (document.body.contains(dynamicText)) {
+                            document.body.removeChild(dynamicText);
+                        }
+                    }, 1000); // 动画持续时间
+                }
             }
 
-            setInterval(createRandomText, 10); // 每隔100毫秒产生一个新的字
+            setInterval(createRandomText, 100); // 每3000毫秒刷新一次
         });
     </script>
 </body>
