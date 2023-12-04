@@ -35,7 +35,7 @@
             const words = text.split(/(?=\S)/u);
 
             function createRandomText() {
-                for (let i = 0; i < 30; i++) { // 每次生成30个字
+                for (let i = 0; i < 20; i++) { // 每次生成20个字
                     const word = words[Math.floor(Math.random() * words.length)];
                     const dynamicText = document.createElement('span');
                     dynamicText.classList.add('dynamic-text');
