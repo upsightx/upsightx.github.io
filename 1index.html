@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摸鱼人日历</title>
+    <link rel="stylesheet" href="1styles.css">
+    <script defer src="1script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-bar">
+                <h1>摸鱼人日历</h1>
+                <p class="date" id="date"></p>
+            </div>
+            <p class="subtitle">工作不就是 劳劳劳劳劳劳劳逸结合</p>
+        </header>
+        <section class="status">
+            <h2>今日摸鱼状态</h2>
+            <div class="content">
+                <div class="yi">
+                    <h3>宜</h3>
+                    <div id="yi-list"></div>
+                </div>
+                <div class="ji">
+                    <h3>忌</h3>
+                    <div id="ji-list"></div>
+                </div>
+            </div>
+        </section>
+        <section class="knowledge">
+            <h2>摸鱼知识</h2>
+            <p id="fish-knowledge"></p>
+        </section>
+        <section class="tips">
+            <h2>摸鱼技巧</h2>
+            <p id="fish-tips"></p>
+        </section>
+        <section class="joke">
+            <h2>摸鱼笑话</h2>
+            <p id="fish-joke">加载中...</p>
+        </section>
+        <section class="countdown">
+            <h2>24-25年节日假期倒计时</h2>
+            <ul id="countdown-list">
+                <li>距离周末：休息还有<span id="weekend"></span>天</li>
+                <li>距离端午：假期还有<span id="duanwu"></span>天</li>
+                <li>距离中秋：假期还有<span id="zhongqiu"></span>天</li>
+                <li>距离国庆：假期还有<span id="guoqing"></span>天</li>
+                <li>距离元旦：假期还有<span id="yuandan"></span>天</li>
+                <li>距离除夕：假期还有<span id="chuxi"></span>天</li>
+            </ul>
+            <h2 id="workout-countdown-title">距离下班时间倒计时</h2>
+            <p id="workout-countdown"></p>
+        </section>
+        <footer>
+            <p>今天你摸鱼了吗？</p>
+        </footer>
+    </div>
+</body>
+</html>
