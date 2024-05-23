@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电子木鱼</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background-color: black; /* 设置背景颜色为黑色 */
+      position: relative; /* 确保木鱼图层和计数器的定位相对于整个页面 */
+    }
+    #woodfish-container {
+      position: relative;
+      text-align: center;
+      z-index: 2; /* 使木鱼图层在最上面 */
+    }
+    #woodfish {
+      cursor: pointer;
+      width: 200px;
+      height: 200px;
+      background-image: url('file:///C:/Users/Thinkpad/Music/muyu.png');
+      background-size: cover;
+    }
+    #merit {
+      position: absolute;
+      top: 10px; /* 放在屏幕顶部10像素处 */
+      left: 50%; /* 水平居中 */
+      transform: translateX(-50%); /* 水平居中 */
+      font-size: 36px;
+      color: white; /* 设置字体颜色为白色 */
+      z-index: 9999; /* 使计数器在最上面 */
+    }
+    .merit-text {
+      position: absolute;
+      color: white; /* 设置字体颜色为白色 */
+      font-size: 20px;
+      white-space: nowrap;
+      transform: translate(-50%, -50%);
+      z-index: 1; /* 功德+1效果在木鱼图层下面 */
+    }
+  </style>
+</head>
+<body>
+  <div id="woodfish-container">
+    <div id="woodfish" onclick="addMerit()"></div>
+  </div>
+  <div id="merit">已积累功德0</div>
+
+  <script>
+    let merit = localStorage.getItem("merit") || 0;
+    document.getElementById("merit").innerText = "已积累功德" + merit;
+
+    function addMerit() {
+      merit++;
+      document.getElementById("merit").innerText = "已积累功德" + merit;
+      localStorage.setItem("merit", merit);
+
+      // 添加功德+1效果
+      const meritText = document.createElement("div");
+      meritText.innerText = "功德+1";
+      meritText.classList.add("merit-text");
+      document.body.appendChild(meritText);
+
+      // 随机设置功德+1效果的位置
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      meritText.style.left = x + "px";
+      meritText.style.top = y + "px";
+
+      // 功德+1效果逐渐放大
+      let scale = 1;
+      const scaleInterval = setInterval(() => {
+        scale += 0.05;
+        meritText.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
+        
+        // 如果功德+1效果触碰到屏幕边缘，或者超过3秒，则清除定时器并移除效果
+        const rect = meritText.getBoundingClientRect();
+        if (rect.left <= 0 || rect.right >= window.innerWidth || rect.top <= 0 || rect.bottom >= window.innerHeight) {
+          clearInterval(scaleInterval);
+          meritText.remove();
+        }
+      }, 50);
+
+      setTimeout(() => {
+        clearInterval(scaleInterval);
+        meritText.remove();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
