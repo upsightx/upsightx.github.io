@@ -45,6 +45,20 @@
       transform: translate(-50%, -50%);
       z-index: 1; /* 功德+1效果在木鱼图层下面 */
     }
+
+    /* 媒体查询 */
+    @media screen and (max-width: 600px) {
+      #woodfish {
+        width: 80px;
+        height: 80px;
+      }
+      #merit {
+        font-size: 18px;
+      }
+      .merit-text {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -98,7 +112,7 @@
       setTimeout(() => {
         clearInterval(scaleInterval);
         meritText.remove();
-      }, 3000);
+      }, 2000); // 2秒后自动消失
     }
   </script>
 </body>
