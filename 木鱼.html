@@ -19,7 +19,6 @@
     #woodfish-container {
       position: relative;
       text-align: center;
-      z-index: 2; /* 使木鱼图层在最上面 */
     }
     #woodfish {
       cursor: pointer;
@@ -27,10 +26,11 @@
       height: 100px;
       background-image: url('muyu.png');
       background-size: cover;
-      transition: filter 0.3s; /* 添加过渡效果 */
-    }
-    #woodfish:hover {
-      filter: brightness(0.8); /* 鼠标悬停时降低亮度 */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1; /* 使木鱼图层在底层 */
     }
     #woodfish-virtual {
       position: absolute;
@@ -39,16 +39,16 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 3; /* 使虚拟层在最上面 */
+      z-index: 3; /* 使虚拟层在最上层 */
     }
     #merit {
       position: absolute;
-      top: 10px; /* 放在屏幕顶部10像素处 */
+      top: 20px; /* 放在屏幕顶部20像素处 */
       left: 50%; /* 水平居中 */
       transform: translateX(-50%); /* 水平居中 */
       font-size: 24px; /* 缩小字体大小20% */
       color: white; /* 设置字体颜色为白色 */
-      z-index: 9999; /* 使计数器在最上面 */
+      z-index: 2; /* 使计数器在中间层 */
     }
     .merit-text {
       position: absolute;
@@ -56,7 +56,7 @@
       font-size: 16px; /* 调整功德+1效果的字体大小 */
       white-space: nowrap;
       transform: translate(-50%, -50%);
-      z-index: 1; /* 功德+1效果在木鱼图层下面 */
+      z-index: 2; /* 功德+1效果在中间层 */
     }
 
     /* 媒体查询 */
