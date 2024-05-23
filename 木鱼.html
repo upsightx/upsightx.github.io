@@ -30,7 +30,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 1; /* 使木鱼图层在底层 */
+      z-index: 0; /* 使木鱼图层在最底层 */
     }
     #woodfish-virtual {
       position: absolute;
@@ -39,7 +39,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 3; /* 使虚拟层在最上层 */
+      z-index: 2; /* 使虚拟层在最上层 */
     }
     #merit {
       position: absolute;
@@ -48,7 +48,7 @@
       transform: translateX(-50%); /* 水平居中 */
       font-size: 24px; /* 缩小字体大小20% */
       color: white; /* 设置字体颜色为白色 */
-      z-index: 2; /* 使计数器在中间层 */
+      z-index: 1; /* 使计数器在中间层 */
     }
     .merit-text {
       position: absolute;
@@ -56,7 +56,7 @@
       font-size: 16px; /* 调整功德+1效果的字体大小 */
       white-space: nowrap;
       transform: translate(-50%, -50%);
-      z-index: 2; /* 功德+1效果在中间层 */
+      z-index: 1; /* 功德+1效果在中间层 */
     }
 
     /* 媒体查询 */
