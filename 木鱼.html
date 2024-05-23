@@ -27,6 +27,19 @@
       height: 100px;
       background-image: url('muyu.png');
       background-size: cover;
+      transition: filter 0.3s; /* 添加过渡效果 */
+    }
+    #woodfish:hover {
+      filter: brightness(0.8); /* 鼠标悬停时降低亮度 */
+    }
+    #woodfish-virtual {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3; /* 使虚拟层在最上面 */
     }
     #merit {
       position: absolute;
@@ -63,7 +76,8 @@
 </head>
 <body>
   <div id="woodfish-container">
-    <div id="woodfish" onclick="addMerit()"></div>
+    <div id="woodfish"></div>
+    <div id="woodfish-virtual" onclick="addMerit()"></div>
   </div>
   <div id="merit">已积累功德0</div>
 
@@ -86,33 +100,45 @@
       meritText.classList.add("merit-text");
       document.body.appendChild(meritText);
 
-      // 随机设置功德+1效果的位置
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
+      // 初始速度和方向
+      let vx = Math.random() * 4 - 2; // 水平速度
+      let vy = Math.random() * 4 - 2; // 垂直速度
+
+      // 随机设置功德+1效果的初始位置
+      let x = Math.random() * window.innerWidth;
+      let y = Math.random() * window.innerHeight;
       meritText.style.left = x + "px";
       meritText.style.top = y + "px";
 
-      // 功德+1效果逐渐放大
-      let scale = 1;
-      const scaleInterval = setInterval(() => {
-        scale += 0.1; // 提高速度
-        meritText.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
-        
-        // 如果功德+1效果触碰到图片或已积累功德这行字，则清除定时器并移除效果
-        const rect = meritText.getBoundingClientRect();
-        const woodfishRect = document.getElementById("woodfish").getBoundingClientRect();
-        const meritRect = document.getElementById("merit").getBoundingClientRect();
-        if (rect.left <= woodfishRect.right && rect.right >= woodfishRect.left && rect.top <= woodfishRect.bottom && rect.bottom >= woodfishRect.top ||
-            rect.left <= meritRect.right && rect.right >= meritRect.left && rect.top <= meritRect.bottom && rect.bottom >= meritRect.top) {
-          clearInterval(scaleInterval);
-          meritText.remove();
-        }
-      }, 25); // 提高速度
+      const animate = () => {
+        // 更新位置
+        x += vx;
+        y += vy;
 
-      setTimeout(() => {
-        clearInterval(scaleInterval);
-        meritText.remove();
-      }, 2000); // 2秒后自动消失
+        // 检查碰撞边界
+        const rect = meritText.getBoundingClientRect();
+        if (rect.left <= 0 || rect.right >= window.innerWidth) {
+          vx *= -1; // 水平方向反弹
+          x = rect.left <= 0 ? 0 : window.innerWidth - rect.width;
+        }
+        if (rect.top <= 0 || rect.bottom >= window.innerHeight) {
+          vy *= -1; // 垂直方向反弹
+          y = rect.top <= 0 ? 0 : window.innerHeight - rect.height;
+        }
+
+        // 更新位置
+        meritText.style.left = x + "px";
+        meritText.style.top = y + "px";
+
+        // 如果功德+1效果超过5秒，则移除效果
+        setTimeout(() => {
+          clearInterval(intervalId);
+          meritText.remove();
+        }, 5000);
+      };
+
+      // 功德+1效果每帧动画
+      const intervalId = setInterval(animate, 16);
     }
   </script>
 </body>
