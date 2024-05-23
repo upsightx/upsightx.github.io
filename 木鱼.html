@@ -23,7 +23,7 @@
     }
     #woodfish {
       cursor: pointer;
-      width: 100px;
+      width: 100px; /* 调整木鱼大小为100x100像素 */
       height: 100px;
       background-image: url('muyu.png');
       background-size: cover;
@@ -33,14 +33,14 @@
       top: 10px; /* 放在屏幕顶部10像素处 */
       left: 50%; /* 水平居中 */
       transform: translateX(-50%); /* 水平居中 */
-      font-size: 28px; /* 缩小字体大小20% */
+      font-size: 24px; /* 调整字体大小 */
       color: white; /* 设置字体颜色为白色 */
       z-index: 9999; /* 使计数器在最上面 */
     }
     .merit-text {
       position: absolute;
       color: white; /* 设置字体颜色为白色 */
-      font-size: 20px;
+      font-size: 16px; /* 调整功德+1效果的字体大小 */
       white-space: nowrap;
       transform: translate(-50%, -50%);
       z-index: 1; /* 功德+1效果在木鱼图层下面 */
@@ -80,13 +80,12 @@
         scale += 0.1; // 提高速度
         meritText.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
         
-        // 如果功德+1效果触碰到图片或已积累功德这行字，或者超过3秒，则清除定时器并移除效果
+        // 如果功德+1效果触碰到图片或已积累功德这行字，则清除定时器并移除效果
         const rect = meritText.getBoundingClientRect();
         const woodfishRect = document.getElementById("woodfish").getBoundingClientRect();
         const meritRect = document.getElementById("merit").getBoundingClientRect();
         if (rect.left <= woodfishRect.right && rect.right >= woodfishRect.left && rect.top <= woodfishRect.bottom && rect.bottom >= woodfishRect.top ||
-            rect.left <= meritRect.right && rect.right >= meritRect.left && rect.top <= meritRect.bottom && rect.bottom >= meritRect.top ||
-            rect.left <= 0 || rect.right >= window.innerWidth || rect.top <= 0 || rect.bottom >= window.innerHeight) {
+            rect.left <= meritRect.right && rect.right >= meritRect.left && rect.top <= meritRect.bottom && rect.bottom >= meritRect.top) {
           clearInterval(scaleInterval);
           meritText.remove();
         }
