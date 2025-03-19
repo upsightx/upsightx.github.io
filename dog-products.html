@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetLife - Premium Pet Accessories</title>
+    <title>Dog Products - PetLife</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,8 +12,8 @@
     <nav class="navbar">
         <div class="logo">PetLife</div>
         <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="dog-products.html">Dog Products</a>
+            <a href="index.html">Home</a>
+            <a href="dog-products.html" class="active">Dog Products</a>
             <a href="cat-products.html">Cat Products</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
@@ -23,82 +23,25 @@
         </div>
     </nav>
 
-    <!-- 主横幅 -->
-    <header class="hero" id="home">
+    <!-- 狗狗用品横幅 -->
+    <header class="category-hero">
         <div class="hero-content">
-            <h1>Premium Pet Accessories</h1>
-            <p>Quality products for your beloved pets</p>
-            <a href="#categories" class="btn">Explore Products</a>
+            <h1>Dog Products</h1>
+            <p>High-quality accessories for your beloved dogs</p>
         </div>
     </header>
 
     <!-- 产品分类 -->
-    <section class="categories">
-        <div class="category-container">
-            <div class="category-card">
-                <img src="images/dog-products.jpg" alt="Dog Products">
-                <h2>Dog Products</h2>
-                <p>High-quality accessories for your beloved dogs</p>
-                <a href="dog-products.html" class="btn">View Products</a>
-            </div>
-            <div class="category-card">
-                <img src="images/cat-products.jpg" alt="Cat Products">
-                <h2>Cat Products</h2>
-                <p>Exciting toys for your feline friends</p>
-                <a href="cat-products.html" class="btn">View Products</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 特色产品 -->
-    <section class="featured-products">
-        <h2 class="section-title">Featured Products</h2>
-        <div class="product-grid" id="featured-products">
+    <section class="product-categories">
+        <!-- 添加id属性 -->
+        <div class="category-grid" id="product-grid">
             <div class="loading">加载中...</div>
         </div>
     </section>
 
-    <!-- 关于我们 -->
-    <section class="about" id="about">
-        <h2 class="section-title">About Us</h2>
-        <div class="about-content">
-            <div class="about-image">
-                <img src="images/about-us.jpg" alt="About PetLife">
-            </div>
-            <div class="about-text">
-                <h3>Why Choose PetLife?</h3>
-                <p>At PetLife, we are dedicated to providing high-quality pet accessories that enhance the bond between pets and their owners. With over 10 years of experience in the industry, we understand what pets need and what pet owners value.</p>
-                <p>Our products are designed with both functionality and aesthetics in mind, ensuring that they not only serve their purpose effectively but also look great while doing so.</p>
-                <a href="#contact" class="btn">Contact Us</a>
-            </div>
-        </div>
-    </section>
+    <!-- 联系表单部分 -->
 
-    <!-- 品牌优势 -->
-    <section class="features">
-        <div class="feature">
-            <i class="fas fa-shipping-fast"></i>
-            <h3>Global Shipping</h3>
-            <p>We ship to over 100 countries</p>
-        </div>
-        <div class="feature">
-            <i class="fas fa-certificate"></i>
-            <h3>Quality Guarantee</h3>
-            <p>100% satisfaction guaranteed</p>
-        </div>
-        <div class="feature">
-            <i class="fas fa-headset"></i>
-            <h3>24/7 Support</h3>
-            <p>Always here to help</p>
-        </div>
-        <div class="feature">
-            <i class="fas fa-box"></i>
-            <h3>Bulk Orders</h3>
-            <p>Special discounts available</p>
-        </div>
-    </section>
-
-    <!-- 联系表单 -->
+    <!-- 页脚部分 -->
     <section class="contact" id="contact">
         <h2 class="section-title">Contact Us</h2>
         <div class="contact-container">
@@ -126,7 +69,6 @@
         </div>
     </section>
 
-    <!-- 页脚 -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -136,10 +78,9 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#dog-leashes">Dog Leashes</a></li>
-                    <li><a href="#dog-toys">Dog Toys</a></li>
-                    <li><a href="#cat-toys">Cat Toys</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dog-products.html">Dog Products</a></li>
+                    <li><a href="cat-products.html">Cat Products</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -159,27 +100,27 @@
     </footer>
 
     <script>
-        // 加载特色产品数据
+        // 加载产品数据
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('开始加载产品数据...');
             fetch('products.json')
                 .then(response => {
+                    console.log('获取到响应:', response.status);
                     if (!response.ok) {
-                        throw new Error('网络响应不正常');
+                        throw new Error('网络响应不正常: ' + response.status);
                     }
                     return response.json();
                 })
                 .then(data => {
-                    const dogProducts = data['dog-products'].slice(0, 2); // 取前两个狗狗产品
-                    const catProducts = data['cat-products'].slice(0, 2); // 取前两个猫咪产品
-                    const featuredProducts = [...dogProducts, ...catProducts]; // 合并为特色产品
-                    
-                    const productGrid = document.getElementById('featured-products');
+                    console.log('成功解析JSON数据:', Object.keys(data));
+                    const dogProducts = data['dog-products'];
+                    const productGrid = document.getElementById('product-grid');
                     
                     // 清空现有内容
                     productGrid.innerHTML = '';
                     
-                    // 添加特色产品
-                    featuredProducts.forEach(product => {
+                    // 添加所有狗狗产品
+                    dogProducts.forEach(product => {
                         productGrid.innerHTML += `
                             <div class="product-card">
                                 <img src="${product.image}" alt="${product.name}">
@@ -192,8 +133,8 @@
                 })
                 .catch(error => {
                     console.error('加载产品数据失败:', error);
-                    const productGrid = document.getElementById('featured-products');
-                    productGrid.innerHTML = `<div class="error">加载产品失败，请刷新页面重试</div>`;
+                    const productGrid = document.getElementById('product-grid');
+                    productGrid.innerHTML = `<div class="error">加载产品失败: ${error.message}</div>`;
                 });
         });
     </script>

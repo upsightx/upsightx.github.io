@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品详情 - PetLife</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">PetLife</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dog-products.html">Dog Products</a>
+            <a href="cat-products.html">Cat Products</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="contact-icon">
+            <a href="#contact"><i class="fas fa-envelope"></i></a>
+        </div>
+    </nav>
+
+    <!-- 产品详情部分 -->
+    <section class="product-detail">
+        <div class="product-container" id="product-container">
+            <!-- 产品详情将通过JavaScript动态加载 -->
+            <div class="loading">加载中...</div>
+        </div>
+    </section>
+
+    <!-- 相关产品 -->
+    <section class="related-products">
+        <h2 class="section-title">相关产品</h2>
+        <div class="product-grid" id="related-products">
+            <!-- 相关产品将通过JavaScript动态加载 -->
+        </div>
+    </section>
+
+    <!-- 联系表单部分 -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p><i class="fas fa-envelope"></i> Email: info@petlife.com</p>
+                <p><i class="fas fa-phone"></i> Phone: +1 234 567 890</p>
+                <p><i class="fas fa-map-marker-alt"></i> Address: 123 Pet Street, Animal City</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PetLife</h3>
+                <p>Premium pet accessories for your beloved companions</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dog-products.html">Dog Products</a></li>
+                    <li><a href="cat-products.html">Cat Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for updates</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email">
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 PetLife. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 获取URL参数
+        function getUrlParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // 加载产品详情
+        const productId = getUrlParam('id');
+        if (productId) {
+            fetch('products.json')
+                .then(response => response.json())
+                .then(data => {
+                    // 查找产品
+                    let product = null;
+                    let category = '';
+                    
+                    // 在狗狗产品中查找
+                    const dogProducts = data['dog-products'];
+                    for (let i = 0; i < dogProducts.length; i++) {
+                        if (dogProducts[i].id === productId) {
+                            product = dogProducts[i];
+                            category = 'dog-products';
+                            break;
+                        }
+                    }
+                    
+                    // 如果没找到，在猫咪产品中查找
+                    if (!product) {
+                        const catProducts = data['cat-products'];
+                        for (let i = 0; i < catProducts.length; i++) {
+                            if (catProducts[i].id === productId) {
+                                product = catProducts[i];
+                                category = 'cat-products';
+                                break;
+                            }
+                        }
+                    }
+                    
+                    // 显示产品详情
+                    if (product) {
+                        document.title = product.name + ' - PetLife';
+                        
+                        const productContainer = document.getElementById('product-container');
+                        productContainer.innerHTML = `
+                            <div class="product-detail-content">
+                                <div class="product-image">
+                                    <img src="${product.image}" alt="${product.name}">
+                                </div>
+                                <div class="product-info">
+                                    <h1>${product.name}</h1>
+                                    <p class="product-category">${product.category}</p>
+                                    <div class="product-description">
+                                        <h3>产品描述</h3>
+                                        <p>${product.description}</p>
+                                    </div>
+                                    <div class="product-features">
+                                        <h3>产品特点</h3>
+                                        <ul>
+                                            <li>高品质材料</li>
+                                            <li>耐用设计</li>
+                                            <li>适合各种宠物</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#contact" class="btn">立即咨询</a>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // 加载相关产品
+                        const relatedProducts = data[category].filter(p => p.id !== productId);
+                        const relatedContainer = document.getElementById('related-products');
+                        
+                        // 最多显示4个相关产品
+                        const maxRelated = Math.min(4, relatedProducts.length);
+                        for (let i = 0; i < maxRelated; i++) {
+                            const related = relatedProducts[i];
+                            relatedContainer.innerHTML += `
+                                <div class="product-card">
+                                    <img src="${related.image}" alt="${related.name}">
+                                    <h3>${related.name}</h3>
+                                    <p>${related.description}</p>
+                                    <a href="product-detail.html?id=${related.id}" class="btn">查看详情</a>
+                                </div>
+                            `;
+                        }
+                    } else {
+                        // 产品未找到
+                        const productContainer = document.getElementById('product-container');
+                        productContainer.innerHTML = `
+                            <div class="product-not-found">
+                                <h2>产品未找到</h2>
+                                <p>抱歉，未提供产品ID。</p>
+                                <a href="index.html" class="btn">返回首页</a>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('加载产品数据失败:', error);
+                });
+        } else {
+            // 未提供产品ID
+            const productContainer = document.getElementById('product-container');
+            productContainer.innerHTML = `
+                <div class="product-not-found">
+                    <h2>产品未找到</h2>
+                    <p>抱歉，未提供产品ID。</p>
+                    <a href="index.html" class="btn">返回首页</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

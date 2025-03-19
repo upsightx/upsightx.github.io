@@ -1,0 +1,186 @@
+{
+  "dog-products": [
+    {
+      "id": "dog1",
+      "name": "Premium Leash",
+      "description": "Durable nylon material with comfortable grip",
+      "image": "images/leash-1.jpg",
+      "category": "leash"
+    },
+    {
+      "id": "dog2",
+      "name": "Retractable Leash",
+      "description": "Adjustable length for different scenarios",
+      "image": "images/leash-2.jpg",
+      "category": "leash"
+    },
+    {
+      "id": "dog3",
+      "name": "Interactive Ball",
+      "description": "Durable rubber toy for active play",
+      "image": "images/toy-1.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "dog4",
+      "name": "Rope Toy",
+      "description": "Perfect for tug-of-war games",
+      "image": "images/toy-2.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "dog5",
+      "name": "Chew Toy",
+      "description": "Dental health and entertainment",
+      "image": "images/toy-3.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "dog6",
+      "name": "Training Toy",
+      "description": "Perfect for mental stimulation",
+      "image": "images/toy-4.jpg",
+      "category": "toy"
+    }
+  ],
+  "cat-products": [
+    {
+      "id": "cat1",
+      "name": "Interactive Wand",
+      "description": "Feathers and bells for endless fun",
+      "image": "images/cat-toy-1.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "cat2",
+      "name": "Laser Pointer",
+      "description": "Safe and entertaining exercise toy",
+      "image": "images/cat-toy-2.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "cat3",
+      "name": "Catnip Mouse",
+      "description": "Filled with premium catnip",
+      "image": "images/cat-toy-3.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "cat4",
+      "name": "Scratching Post",
+      "description": "Natural sisal material",
+      "image": "images/cat-toy-4.jpg",
+      "category": "accessory"
+    },
+    {
+      "id": "cat5",
+      "name": "Ball Tower",
+      "description": "Multi-level interactive play",
+      "image": "images/cat-toy-5.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "cat6",
+      "name": "Tunnel Toy",
+      "description": "Crinkle material for extra fun",
+      "image": "images/cat-toy-6.jpg",
+      "category": "toy"
+    }
+  ]
+}
+
+然后，通过浏览器访问 http://localhost:8000 或 http://127.0.0.1:8000 来查看您的网站。
+
+另外，让我们检查一下products.json文件，确保它的格式正确：
+```json
+{
+  "dog-products": [
+    {
+      "id": "dog1",
+      "name": "Premium Leash",
+      "description": "Durable nylon material with comfortable grip",
+      "image": "images/leash-1.jpg",
+      "category": "leash"
+    },
+    {
+      "id": "dog2",
+      "name": "Retractable Leash",
+      "description": "Adjustable length for different scenarios",
+      "image": "images/leash-2.jpg",
+      "category": "leash"
+    },
+    {
+      "id": "dog3",
+      "name": "Interactive Ball",
+      "description": "Durable rubber toy for active play",
+      "image": "images/toy-1.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "dog4",
+      "name": "Rope Toy",
+      "description": "Perfect for tug-of-war games",
+      "image": "images/toy-2.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "dog5",
+      "name": "Chew Toy",
+      "description": "Dental health and entertainment",
+      "image": "images/toy-3.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "dog6",
+      "name": "Training Toy",
+      "description": "Perfect for mental stimulation",
+      "image": "images/toy-4.jpg",
+      "category": "toy"
+    }
+  ],
+  "cat-products": [
+    {
+      "id": "cat1",
+      "name": "Interactive Wand",
+      "description": "Feathers and bells for endless fun",
+      "image": "images/cat-toy-1.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "cat2",
+      "name": "Laser Pointer",
+      "description": "Safe and entertaining exercise toy",
+      "image": "images/cat-toy-2.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "cat3",
+      "name": "Catnip Mouse",
+      "description": "Filled with premium catnip",
+      "image": "images/cat-toy-3.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "cat4",
+      "name": "Scratching Post",
+      "description": "Natural sisal material",
+      "image": "images/cat-toy-4.jpg",
+      "category": "accessory"
+    },
+    {
+      "id": "cat5",
+      "name": "Ball Tower",
+      "description": "Multi-level interactive play",
+      "image": "images/cat-toy-5.jpg",
+      "category": "toy"
+    },
+    {
+      "id": "cat6",
+      "name": "Tunnel Toy",
+      "description": "Crinkle material for extra fun",
+      "image": "images/cat-toy-6.jpg",
+      "category": "toy"
+    }
+  ]
+}
+```
