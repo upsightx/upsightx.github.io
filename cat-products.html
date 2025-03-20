@@ -6,11 +6,75 @@
     <title>Cat Products - PetLife</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- 移除内联样式，将其放入styles.css文件中 -->
+    <style>
+        .cat-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('cat-banner.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .product-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .product-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .product-card .btn {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        
+        .product-card .btn:hover {
+            background-color: #333;
+        }
+    </style>
 </head>
 <body>
-    <!-- 导航栏保持不变 -->
-    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">PetLife</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dog-products.html">Dog Products</a>
+            <a href="cat-products.html" class="active">Cat Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="contact-icon">
+            <a href="contact.html"><i class="fas fa-envelope"></i></a>
+        </div>
+    </nav>
+
     <!-- 猫咪用品横幅 -->
     <header class="category-hero cat-hero">
         <div class="hero-content">
@@ -19,19 +83,44 @@
         </div>
     </header>
 
-    <!-- 产品分类 - 添加筛选功能 -->
+    <!-- 产品分类 -->
     <section class="product-categories">
-        <div class="filter-container">
-            <button class="filter-btn active" data-category="all">All Products</button>
-            <button class="filter-btn" data-category="toy">Toys</button>
-            <button class="filter-btn" data-category="accessory">Accessories</button>
-        </div>
         <div class="category-grid" id="product-grid">
             <div class="loading">加载中...</div>
         </div>
     </section>
 
-    <!-- 页脚保持不变 -->
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PetLife</h3>
+                <p>Premium pet accessories for your beloved companions</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dog-products.html">Dog Products</a></li>
+                    <li><a href="cat-products.html">Cat Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 PetLife. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         // 加载产品数据
@@ -40,7 +129,94 @@
             
             // 直接嵌入产品数据，避免加载JSON文件
             const productsData = {
-                // 产品数据保持不变
+                "dog-products": [
+                    {
+                        "id": "dog1",
+                        "name": "Premium Leash",
+                        "description": "Durable nylon material with comfortable grip",
+                        "image": "leash-1.jpg",
+                        "category": "leash"
+                    },
+                    {
+                        "id": "dog2",
+                        "name": "Retractable Leash",
+                        "description": "Adjustable length for different scenarios",
+                        "image": "leash-2.jpg",
+                        "category": "leash"
+                    },
+                    {
+                        "id": "dog3",
+                        "name": "Interactive Ball",
+                        "description": "Durable rubber toy for active play",
+                        "image": "toy-1.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "dog4",
+                        "name": "Rope Toy",
+                        "description": "Perfect for tug-of-war games",
+                        "image": "toy-2.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "dog5",
+                        "name": "Chew Toy",
+                        "description": "Dental health and entertainment",
+                        "image": "toy-3.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "dog6",
+                        "name": "Training Toy",
+                        "description": "Perfect for mental stimulation",
+                        "image": "toy-4.jpg",
+                        "category": "toy"
+                    }
+                ],
+                "cat-products": [
+                    {
+                        "id": "cat1",
+                        "name": "Interactive Wand",
+                        "description": "Feathers and bells for endless fun",
+                        "image": "cat-toy-1.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "cat2",
+                        "name": "Laser Pointer",
+                        "description": "Safe and entertaining exercise toy",
+                        "image": "cat-toy-2.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "cat3",
+                        "name": "Catnip Mouse",
+                        "description": "Filled with premium catnip",
+                        "image": "cat-toy-3.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "cat4",
+                        "name": "Scratching Post",
+                        "description": "Natural sisal material",
+                        "image": "cat-toy-4.jpg",
+                        "category": "accessory"
+                    },
+                    {
+                        "id": "cat5",
+                        "name": "Ball Tower",
+                        "description": "Multi-level interactive play",
+                        "image": "cat-toy-5.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "cat6",
+                        "name": "Tunnel Toy",
+                        "description": "Crinkle material for extra fun",
+                        "image": "cat-toy-6.jpg",
+                        "category": "toy"
+                    }
+                ]
             };
             
             try {
@@ -54,37 +230,14 @@
                 // 添加所有猫咪产品
                 catProducts.forEach(product => {
                     productGrid.innerHTML += `
-                        <div class="product-card" data-category="${product.category}">
-                            <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        <div class="product-card">
+                            <img src="${product.image}" alt="${product.name}">
                             <h3>${product.name}</h3>
                             <p>${product.description}</p>
                             <a href="product-detail.html?id=${product.id}" class="btn">查看详情</a>
                         </div>
                     `;
                 });
-                
-                // 添加筛选功能
-                const filterBtns = document.querySelectorAll('.filter-btn');
-                filterBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        // 移除所有按钮的active类
-                        filterBtns.forEach(b => b.classList.remove('active'));
-                        // 为当前按钮添加active类
-                        this.classList.add('active');
-                        
-                        const category = this.getAttribute('data-category');
-                        const productCards = document.querySelectorAll('.product-card');
-                        
-                        productCards.forEach(card => {
-                            if (category === 'all' || card.getAttribute('data-category') === category) {
-                                card.style.display = 'block';
-                            } else {
-                                card.style.display = 'none';
-                            }
-                        });
-                    });
-                });
-                
             } catch (error) {
                 console.error('处理产品数据失败:', error);
                 const productGrid = document.getElementById('product-grid');
