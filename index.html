@@ -28,32 +28,16 @@
         <div class="hero-content">
             <h1>Premium Pet Accessories</h1>
             <p>Quality products for your beloved pets</p>
-            <a href="#categories" class="btn">Explore Products</a>
+            <a href="#featured-products" class="btn">Explore Products</a>
         </div>
     </header>
 
-    <!-- 产品分类 -->
-    <section class="categories" id="categories">
-        <div class="category-container">
-            <div class="category-card">
-                <img src="dog-products.jpg" alt="Dog Products">
-                <h2>Dog Products</h2>
-                <p>High-quality accessories for your beloved dogs</p>
-                <a href="dog-products.html" class="btn">View Products</a>
-            </div>
-            <div class="category-card">
-                <img src="cat-products.jpg" alt="Cat Products">
-                <h2>Cat Products</h2>
-                <p>Exciting toys for your feline friends</p>
-                <a href="cat-products.html" class="btn">View Products</a>
-            </div>
-        </div>
-    </section>
+    <!-- 产品分类部分已删除 -->
 
     <!-- 特色产品 -->
-    <section class="featured-products">
+    <section class="featured-products" id="featured-products">
         <h2 class="section-title">Featured Products</h2>
-        <div class="product-grid" id="featured-products">
+        <div class="product-grid" id="featured-products-grid">
             <div class="loading">加载中...</div>
         </div>
     </section>
@@ -234,7 +218,7 @@
                 const catProducts = productsData['cat-products'].slice(0, 2); // 取前两个猫咪产品
                 const featuredProducts = [...dogProducts, ...catProducts]; // 合并为特色产品
                 
-                const productGrid = document.getElementById('featured-products');
+                const productGrid = document.getElementById('featured-products-grid');
                 
                 // 清空现有内容
                 productGrid.innerHTML = '';
@@ -252,7 +236,7 @@
                 });
             } catch (error) {
                 console.error('处理产品数据失败:', error);
-                const productGrid = document.getElementById('featured-products');
+                const productGrid = document.getElementById('featured-products-grid');
                 productGrid.innerHTML = `<div class="error">处理产品数据失败: ${error.message}</div>`;
             }
         });
