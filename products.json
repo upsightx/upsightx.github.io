@@ -88,11 +88,6 @@
     }
   ]
 }
-
-然后，通过浏览器访问 http://localhost:8000 或 http://127.0.0.1:8000 来查看您的网站。
-
-另外，让我们检查一下products.json文件，确保它的格式正确：
-```json
 {
   "dog-products": [
     {
