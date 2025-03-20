@@ -536,3 +536,55 @@ footer {
     text-align: center;
     margin-top: 30px;
 }
+
+/* 产品筛选按钮样式 */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+/* 猫咪产品页面特定样式 */
+.cat-hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('cat-banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* 狗狗产品页面特定样式 */
+.dog-hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('dog-banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* 关于我们页面特定样式 */
+.about-hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('about-banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* 联系我们页面特定样式 */
+.contact-hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('contact-banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
