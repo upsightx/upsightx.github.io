@@ -26,7 +26,6 @@
     <!-- 产品详情部分 -->
     <section class="product-detail">
         <div class="product-container" id="product-container">
-            <!-- 产品详情将通过JavaScript动态加载 -->
             <div class="loading">加载中...</div>
         </div>
     </section>
@@ -106,110 +105,213 @@
         }
 
         // 加载产品详情
-        const productId = getUrlParam('id');
-        if (productId) {
-            fetch('products.json')
-                .then(response => response.json())
-                .then(data => {
-                    // 查找产品
-                    let product = null;
-                    let category = '';
-                    
-                    // 在狗狗产品中查找
-                    const dogProducts = data['dog-products'];
-                    for (let i = 0; i < dogProducts.length; i++) {
-                        if (dogProducts[i].id === productId) {
-                            product = dogProducts[i];
-                            category = 'dog-products';
-                            break;
-                        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const productId = getUrlParam('id');
+            console.log('加载产品详情，ID:', productId);
+            
+            // 直接嵌入产品数据，避免加载JSON文件
+            const productsData = {
+                "dog-products": [
+                    {
+                        "id": "dog1",
+                        "name": "Premium Leash",
+                        "description": "Durable nylon material with comfortable grip",
+                        "image": "leash-1.jpg",
+                        "category": "leash"
+                    },
+                    {
+                        "id": "dog2",
+                        "name": "Retractable Leash",
+                        "description": "Adjustable length for different scenarios",
+                        "image": "leash-2.jpg",
+                        "category": "leash"
+                    },
+                    {
+                        "id": "dog3",
+                        "name": "Interactive Ball",
+                        "description": "Durable rubber toy for active play",
+                        "image": "toy-1.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "dog4",
+                        "name": "Rope Toy",
+                        "description": "Perfect for tug-of-war games",
+                        "image": "toy-2.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "dog5",
+                        "name": "Chew Toy",
+                        "description": "Dental health and entertainment",
+                        "image": "toy-3.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "dog6",
+                        "name": "Training Toy",
+                        "description": "Perfect for mental stimulation",
+                        "image": "toy-4.jpg",
+                        "category": "toy"
                     }
-                    
-                    // 如果没找到，在猫咪产品中查找
-                    if (!product) {
-                        const catProducts = data['cat-products'];
-                        for (let i = 0; i < catProducts.length; i++) {
-                            if (catProducts[i].id === productId) {
-                                product = catProducts[i];
-                                category = 'cat-products';
-                                break;
-                            }
-                        }
+                ],
+                "cat-products": [
+                    {
+                        "id": "cat1",
+                        "name": "Interactive Wand",
+                        "description": "Feathers and bells for endless fun",
+                        "image": "cat-toy-1.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "cat2",
+                        "name": "Laser Pointer",
+                        "description": "Safe and entertaining exercise toy",
+                        "image": "cat-toy-2.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "cat3",
+                        "name": "Catnip Mouse",
+                        "description": "Filled with premium catnip",
+                        "image": "cat-toy-3.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "cat4",
+                        "name": "Scratching Post",
+                        "description": "Natural sisal material",
+                        "image": "cat-toy-4.jpg",
+                        "category": "accessory"
+                    },
+                    {
+                        "id": "cat5",
+                        "name": "Ball Tower",
+                        "description": "Multi-level interactive play",
+                        "image": "cat-toy-5.jpg",
+                        "category": "toy"
+                    },
+                    {
+                        "id": "cat6",
+                        "name": "Tunnel Toy",
+                        "description": "Crinkle material for extra fun",
+                        "image": "cat-toy-6.jpg",
+                        "category": "toy"
                     }
+                ]
+            };
+            
+            if (productId) {
+                console.log('查找产品ID:', productId);
+                
+                // 在所有产品中查找匹配的ID
+                let foundProduct = null;
+                let productCategory = '';
+                
+                // 查找狗狗产品
+                const dogProduct = productsData['dog-products'].find(product => product.id === productId);
+                if (dogProduct) {
+                    foundProduct = dogProduct;
+                    productCategory = 'dog-products';
+                }
+                
+                // 查找猫咪产品
+                if (!foundProduct) {
+                    const catProduct = productsData['cat-products'].find(product => product.id === productId);
+                    if (catProduct) {
+                        foundProduct = catProduct;
+                        productCategory = 'cat-products';
+                    }
+                }
+                
+                if (foundProduct) {
+                    console.log('找到产品:', foundProduct.name);
+                    
+                    // 更新页面标题
+                    document.title = `${foundProduct.name} - PetLife`;
                     
                     // 显示产品详情
-                    if (product) {
-                        document.title = product.name + ' - PetLife';
-                        
-                        const productContainer = document.getElementById('product-container');
-                        productContainer.innerHTML = `
-                            <div class="product-detail-content">
-                                <div class="product-image">
-                                    <img src="${product.image}" alt="${product.name}">
-                                </div>
-                                <div class="product-info">
-                                    <h1>${product.name}</h1>
-                                    <p class="product-category">${product.category}</p>
-                                    <div class="product-description">
-                                        <h3>产品描述</h3>
-                                        <p>${product.description}</p>
-                                    </div>
-                                    <div class="product-features">
-                                        <h3>产品特点</h3>
-                                        <ul>
-                                            <li>高品质材料</li>
-                                            <li>耐用设计</li>
-                                            <li>适合各种宠物</li>
-                                        </ul>
-                                    </div>
-                                    <a href="#contact" class="btn">立即咨询</a>
-                                </div>
+                    const productContainer = document.getElementById('product-container');
+                    productContainer.innerHTML = `
+                        <div class="product-detail-content">
+                            <div class="product-image">
+                                <img src="${foundProduct.image}" alt="${foundProduct.name}">
                             </div>
-                        `;
+                            <div class="product-info">
+                                <h1>${foundProduct.name}</h1>
+                                <span class="product-category">${foundProduct.category}</span>
+                                <div class="product-description">
+                                    <h3>描述</h3>
+                                    <p>${foundProduct.description}</p>
+                                </div>
+                                <div class="product-features">
+                                    <h3>特点</h3>
+                                    <ul>
+                                        <li>高品质材料</li>
+                                        <li>耐用设计</li>
+                                        <li>适合各种宠物</li>
+                                        <li>安全无毒</li>
+                                    </ul>
+                                </div>
+                                <a href="${productCategory === 'dog-products' ? 'dog-products.html' : 'cat-products.html'}" class="btn">返回列表</a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // 加载相关产品
+                    const relatedProductsContainer = document.getElementById('related-products');
+                    
+                    // 获取同类别的其他产品（最多4个）
+                    const relatedProducts = productsData[productCategory]
+                        .filter(product => product.id !== productId && product.category === foundProduct.category)
+                        .slice(0, 4);
+                    
+                    if (relatedProducts.length > 0) {
+                        relatedProductsContainer.innerHTML = '';
                         
-                        // 加载相关产品
-                        const relatedProducts = data[category].filter(p => p.id !== productId);
-                        const relatedContainer = document.getElementById('related-products');
-                        
-                        // 最多显示4个相关产品
-                        const maxRelated = Math.min(4, relatedProducts.length);
-                        for (let i = 0; i < maxRelated; i++) {
-                            const related = relatedProducts[i];
-                            relatedContainer.innerHTML += `
+                        relatedProducts.forEach(product => {
+                            relatedProductsContainer.innerHTML += `
                                 <div class="product-card">
-                                    <img src="${related.image}" alt="${related.name}">
-                                    <h3>${related.name}</h3>
-                                    <p>${related.description}</p>
-                                    <a href="product-detail.html?id=${related.id}" class="btn">查看详情</a>
+                                    <img src="${product.image}" alt="${product.name}">
+                                    <h3>${product.name}</h3>
+                                    <p>${product.description}</p>
+                                    <a href="product-detail.html?id=${product.id}" class="btn">查看详情</a>
                                 </div>
                             `;
-                        }
+                        });
                     } else {
-                        // 产品未找到
-                        const productContainer = document.getElementById('product-container');
-                        productContainer.innerHTML = `
-                            <div class="product-not-found">
-                                <h2>产品未找到</h2>
-                                <p>抱歉，未提供产品ID。</p>
-                                <a href="index.html" class="btn">返回首页</a>
-                            </div>
-                        `;
+                        // 如果没有相关产品，隐藏相关产品部分
+                        document.querySelector('.related-products').style.display = 'none';
                     }
-                })
-                .catch(error => {
-                    console.error('加载产品数据失败:', error);
-                });
-        } else {
-            // 未提供产品ID
-            const productContainer = document.getElementById('product-container');
-            productContainer.innerHTML = `
-                <div class="product-not-found">
-                    <h2>产品未找到</h2>
-                    <p>抱歉，未提供产品ID。</p>
-                    <a href="index.html" class="btn">返回首页</a>
-                </div>
-            `;
-        }
+                } else {
+                    console.error('未找到产品:', productId);
+                    const productContainer = document.getElementById('product-container');
+                    productContainer.innerHTML = `
+                        <div class="product-not-found">
+                            <h2>产品未找到</h2>
+                            <p>抱歉，未找到ID为 "${productId}" 的产品。</p>
+                            <a href="index.html" class="btn">返回首页</a>
+                        </div>
+                    `;
+                    
+                    // 隐藏相关产品部分
+                    document.querySelector('.related-products').style.display = 'none';
+                }
+            } else {
+                console.error('未提供产品ID');
+                const productContainer = document.getElementById('product-container');
+                productContainer.innerHTML = `
+                    <div class="product-not-found">
+                        <h2>产品未找到</h2>
+                        <p>抱歉，未提供产品ID。</p>
+                        <a href="index.html" class="btn">返回首页</a>
+                    </div>
+                `;
+                
+                // 隐藏相关产品部分
+                document.querySelector('.related-products').style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
