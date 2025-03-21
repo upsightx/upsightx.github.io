@@ -66,7 +66,7 @@
         <div class="nav-links" id="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="dog-products.html">Dog Products</a>
-            <a href="cat-products.html">Cat Products</a>
+            <!-- 已删除 Cat Products 导航项 -->
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
@@ -142,7 +142,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="dog-products.html">Dog Products</a></li>
-                    <li><a href="cat-products.html">Cat Products</a></li>
+                    <!-- 已删除 Cat Products 链接 -->
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -190,29 +190,29 @@
                 "dog-products": [
                     {
                         "id": "dog1",
-                        "name": "Premium Leash",
-                        "description": "Durable nylon material with comfortable grip",
+                        "name": "LED Dog Leash",
+                        "description": "Nighttime Safety, Durable & Colorful for Secure Pet Walks",
                         "image": "leash-1.jpg",
                         "category": "leash"
                     },
                     {
                         "id": "dog2",
-                        "name": "Retractable Leash",
-                        "description": "Adjustable length for different scenarios",
+                        "name": "LED Dog Leash",
+                        "description": "Highlights glow visibility, safety, durability, and visual appeal",
                         "image": "leash-2.jpg",
                         "category": "leash"
                     },
                     {
                         "id": "dog3",
-                        "name": "Interactive Ball",
-                        "description": "Durable rubber toy for active play",
+                        "name": "LED Dog Collar",
+                        "description": "Nighttime Safety & Durability, Stylish & Cute for Pets On-the-Go",
                         "image": "toy-1.jpg",
                         "category": "toy"
                     },
                     {
                         "id": "dog4",
-                        "name": "Rope Toy",
-                        "description": "Perfect for tug-of-war games",
+                        "name": "LED Pet Travel Cup",
+                        "description": "Night Glow, Portable & Durable, Hydrate Pets Outdoors with Style",
                         "image": "toy-2.jpg",
                         "category": "toy"
                     },
@@ -230,58 +230,15 @@
                         "image": "toy-4.jpg",
                         "category": "toy"
                     }
-                ],
-                "cat-products": [
-                    {
-                        "id": "cat1",
-                        "name": "Interactive Wand",
-                        "description": "Feathers and bells for endless fun",
-                        "image": "cat-toy-1.jpg",
-                        "category": "toy"
-                    },
-                    {
-                        "id": "cat2",
-                        "name": "Laser Pointer",
-                        "description": "Safe and entertaining exercise toy",
-                        "image": "cat-toy-2.jpg",
-                        "category": "toy"
-                    },
-                    {
-                        "id": "cat3",
-                        "name": "Catnip Mouse",
-                        "description": "Filled with premium catnip",
-                        "image": "cat-toy-3.jpg",
-                        "category": "toy"
-                    },
-                    {
-                        "id": "cat4",
-                        "name": "Scratching Post",
-                        "description": "Natural sisal material",
-                        "image": "cat-toy-4.jpg",
-                        "category": "accessory"
-                    },
-                    {
-                        "id": "cat5",
-                        "name": "Ball Tower",
-                        "description": "Multi-level interactive play",
-                        "image": "cat-toy-5.jpg",
-                        "category": "toy"
-                    },
-                    {
-                        "id": "cat6",
-                        "name": "Tunnel Toy",
-                        "description": "Crinkle material for extra fun",
-                        "image": "cat-toy-6.jpg",
-                        "category": "toy"
-                    }
                 ]
+                // 已删除 cat-products 数据
             };
             
             try {
                 console.log('使用内嵌数据');
-                const dogProducts = productsData['dog-products'].slice(0, 2); // 取前两个狗狗产品
-                const catProducts = productsData['cat-products'].slice(0, 2); // 取前两个猫咪产品
-                const featuredProducts = [...dogProducts, ...catProducts]; // 合并为特色产品
+                const dogProducts = productsData['dog-products']; // 使用所有狗狗产品
+                // 移除了猫产品相关代码
+                const featuredProducts = [...dogProducts]; // 只使用狗狗产品作为特色产品
                 
                 const productGrid = document.getElementById('featured-products-grid');
                 
