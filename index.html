@@ -6,20 +6,69 @@
     <title>PetProGear - Premium Pet Accessories</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 响应式导航菜单样式 */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                z-index: 999;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                padding-top: 60px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 998;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 15px 20px;
+                margin: 5px 0;
+                text-align: left;
+            }
+            
+            .navbar {
+                padding: 15px;
+                position: relative;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="logo">PetProGear</div>
-        <div class="nav-links">
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="dog-products.html">Dog Products</a>
             <a href="cat-products.html">Cat Products</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
-        </div>
-        <div class="contact-icon">
-            <a href="contact.html"><i class="fas fa-envelope"></i></a>
         </div>
     </nav>
 
@@ -114,6 +163,24 @@
     </footer>
 
     <script>
+        // 移动端导航菜单控制
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            
+            mobileMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // 点击导航链接后自动关闭菜单
+            const navItems = navLinks.querySelectorAll('a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+        
         // 加载特色产品数据
         document.addEventListener('DOMContentLoaded', function() {
             console.log('开始加载特色产品数据...');
