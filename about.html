@@ -3,10 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - PetLife</title>
+    <title>About Us - PetProGear</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* 响应式导航菜单样式 */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                z-index: 999;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                padding-top: 60px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 998;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 15px 20px;
+                margin: 5px 0;
+                text-align: left;
+            }
+            
+            .navbar {
+                padding: 15px;
+                position: relative;
+            }
+            
+            /* 删除以下联系图标样式 */
+            /* .contact-icon {
+                position: absolute;
+                right: 70px;
+                top: 20px;
+            } */
+        }
+        
         .about-hero {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('about-banner.jpg');
             background-size: cover;
@@ -16,6 +71,7 @@
             text-align: center;
         }
         
+        /* 其他样式保持不变 */
         .about-container {
             display: flex;
             flex-wrap: wrap;
@@ -90,24 +146,28 @@
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <div class="logo">PetLife</div>
-        <div class="nav-links">
+        <div class="logo">PetProGear</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="nav-links">
             <a href="index.html">Home</a>
             <a href="dog-products.html">Dog Products</a>
             <a href="cat-products.html">Cat Products</a>
             <a href="about.html" class="active">About</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="contact-icon">
+        <!-- 删除了下面的联系图标 -->
+        <!-- <div class="contact-icon">
             <a href="contact.html"><i class="fas fa-envelope"></i></a>
-        </div>
+        </div> -->
     </nav>
 
     <!-- 关于我们横幅 -->
     <header class="category-hero about-hero">
         <div class="hero-content">
             <h1>About Us</h1>
-            <p>Learn more about PetLife and our mission</p>
+            <p>Learn more about PetProGear and our mission</p>
         </div>
     </header>
 
@@ -115,15 +175,15 @@
     <section class="about-content-section">
         <div class="about-container">
             <div class="about-image">
-                <img src="about-us.jpg" alt="About PetLife">
+                <img src="about-us.jpg" alt="About PetProGear">
             </div>
             <div class="about-text">
                 <h2>Our Story</h2>
-                <p>PetLife was founded in 2020 by a group of passionate pet lovers who wanted to create high-quality, durable, and fun products for pets around the world.</p>
+                <p>PetProGear was founded in 2020 by a group of passionate pet lovers who wanted to create high-quality, durable, and fun products for pets around the world.</p>
                 <p>What started as a small operation has grown into a beloved brand trusted by pet owners everywhere. We believe that pets deserve the very best, and we're committed to creating products that enhance the bond between pets and their owners.</p>
                 
                 <h2>Our Mission</h2>
-                <p>At PetLife, our mission is simple: to improve the lives of pets and their owners through innovative, high-quality products. We're dedicated to creating accessories that are not only functional but also safe, durable, and fun.</p>
+                <p>At PetProGear, our mission is simple: to improve the lives of pets and their owners through innovative, high-quality products. We're dedicated to creating accessories that are not only functional but also safe, durable, and fun.</p>
                 
                 <h2>Our Values</h2>
                 <ul class="values-list">
@@ -140,7 +200,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>PetLife</h3>
+                <h3>PetProGear</h3>
                 <p>Premium pet accessories for your beloved companions</p>
             </div>
             <div class="footer-section">
@@ -164,8 +224,28 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 PetLife. All rights reserved.</p>
+            <p>&copy; 2024 PetProGear. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // 移动端导航菜单控制
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            
+            mobileMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // 点击导航链接后自动关闭菜单
+            const navItems = navLinks.querySelectorAll('a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
