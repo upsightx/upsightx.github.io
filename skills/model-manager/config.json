@@ -1,0 +1,81 @@
+{
+  "models": {
+    "ark/glm-4.7": {
+      "provider": "ark",
+      "contextWindow": 200000,
+      "cost": {
+        "input": 0,
+        "output": 0
+      },
+      "strength": "中文理解、长文本、免费",
+      "available": true
+    },
+    "openrouter/z-ai/glm-4.7": {
+      "provider": "openrouter",
+      "contextWindow": 200000,
+      "cost": {
+        "input": 0.001,
+        "output": 0.002
+      },
+      "strength": "中文理解、长文本",
+      "available": true
+    },
+    "openrouter/pony-alpha": {
+      "provider": "openrouter",
+      "contextWindow": 128000,
+      "cost": {
+        "input": 0.003,
+        "output": 0.006
+      },
+      "strength": "复杂推理、编程",
+      "available": true
+    },
+    "openrouter/auto": {
+      "provider": "openrouter",
+      "contextWindow": 200000,
+      "cost": {
+        "input": 0.002,
+        "output": 0.004
+      },
+      "strength": "自动选择最优模型",
+      "available": true
+    }
+  },
+  "taskRouting": {
+    "simple": {
+      "tasks": ["搜索", "简单问答", "翻译", "摘要"],
+      "model": "ark/glm-4.7",
+      "reason": "免费，适合简单任务"
+    },
+    "coding": {
+      "tasks": ["代码编写", "代码审查", "调试", "项目创建"],
+      "model": "openrouter/pony-alpha",
+      "reason": "编程能力强"
+    },
+    "complex": {
+      "tasks": ["深度分析", "任务规划", "多步骤推理", "决策"],
+      "model": "openrouter/pony-alpha",
+      "reason": "推理能力强"
+    },
+    "chinese": {
+      "tasks": ["中文写作", "文档处理", "翻译", "本地化"],
+      "model": "openrouter/z-ai/glm-4.7",
+      "reason": "中文理解能力强"
+    },
+    "long-context": {
+      "tasks": ["长文档分析", "代码库分析", "大文件处理"],
+      "model": "openrouter/z-ai/glm-4.7",
+      "reason": "200K 上下文"
+    }
+  },
+  "fallbackChain": {
+    "primary": "openrouter/z-ai/glm-4.7",
+    "fallback1": "ark/glm-4.7",
+    "fallback2": "openrouter/auto",
+    "fallback3": "openrouter/pony-alpha"
+  },
+  "usage": {
+    "lastUpdated": "2026-02-12T00:00:00Z",
+    "weeklyCalls": {}
+  }
+}
