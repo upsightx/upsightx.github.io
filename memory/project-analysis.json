@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-02-11T23:47:56+08:00",
+  "workspace": "/root/.openclaw/workspace",
+  "structure": {
+    "totalFiles": 75,
+    "totalDirs": 48,
+    "codeLines": 1147
+  },
+  "issues": {
+    "todos": 10,
+    "uncommittedFiles": 14,
+    "largeFiles": 1
+  },
+  "improvements": []
+}
