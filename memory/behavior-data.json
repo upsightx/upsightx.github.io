@@ -1,0 +1,32 @@
+{
+  "activeHours": {
+    "Mon": [2, 4],
+    "Tue": [2, 4],
+    "Wed": []
+  },
+  "commandStats": {
+    "web_search": 3,
+    "feishu_doc": 2,
+    "sessions_spawn": 1,
+    "exec": 8,
+    "read": 5
+  },
+  "interactions": [
+    {
+      "timestamp": "2026-02-12T01:35:00Z",
+      "command": "web_search",
+      "context": "搜索 AI 技术动态"
+    },
+    {
+      "timestamp": "2026-02-12T02:39:00Z",
+      "command": "exec",
+      "context": "执行空闲检测"
+    },
+    {
+      "timestamp": "2026-02-12T04:24:00Z",
+      "command": "sessions_spawn",
+      "context": "启动子任务"
+    }
+  ],
+  "lastUpdated": "2026-02-12T04:24:00Z"
+}
