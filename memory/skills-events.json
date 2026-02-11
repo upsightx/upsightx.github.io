@@ -1,0 +1,20 @@
+{
+  "events": [
+    {
+      "id": "event-1770835049910810395",
+      "type": "topic-picked",
+      "payload": {
+        "topics": [
+          "topic-1",
+          "topic-3"
+        ],
+        "selected": [
+          "topic-1",
+          "topic-3"
+        ]
+      },
+      "source": "topic-picker",
+      "timestamp": "2026-02-12T02:37:29+08:00"
+    }
+  ]
+}

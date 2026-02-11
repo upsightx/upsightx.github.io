@@ -1,0 +1,14 @@
+{
+  "skills": [
+    {
+      "id": "topic-picker",
+      "name": "\u667a\u80fd\u9009\u9898",
+      "path": "/root/.openclaw/workspace/skills/topic-picker",
+      "events": [
+        "topic-picked"
+      ],
+      "registeredAt": "2026-02-12T02:38:18+08:00",
+      "status": "active"
+    }
+  ]
+}
