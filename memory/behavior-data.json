@@ -2,14 +2,16 @@
   "activeHours": {
     "Mon": [2, 4],
     "Tue": [2, 4],
-    "Wed": []
+    "Wed": [],
+    "Thu": [4]
   },
   "commandStats": {
     "web_search": 3,
     "feishu_doc": 2,
     "sessions_spawn": 1,
     "exec": 8,
-    "read": 5
+    "read": 5,
+    "heartbeat": 1
   },
   "interactions": [
     {
@@ -26,7 +28,12 @@
       "timestamp": "2026-02-12T04:24:00Z",
       "command": "sessions_spawn",
       "context": "启动子任务"
+    },
+    {
+      "timestamp": "2026-02-12T04:26:00Z",
+      "command": "heartbeat",
+      "context": "执行空闲触发，创建 behavior-learner 技能"
     }
   ],
-  "lastUpdated": "2026-02-12T04:24:00Z"
+  "lastUpdated": "2026-02-12T04:26:00Z"
 }
