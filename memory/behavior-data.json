@@ -3,7 +3,7 @@
     "Mon": [2, 4],
     "Tue": [2, 4],
     "Wed": [],
-    "Thu": [4]
+    "Thu": [4, 5]
   },
   "commandStats": {
     "web_search": 3,
@@ -11,7 +11,7 @@
     "sessions_spawn": 1,
     "exec": 8,
     "read": 5,
-    "heartbeat": 1
+    "heartbeat": 3
   },
   "interactions": [
     {
@@ -33,7 +33,12 @@
       "timestamp": "2026-02-12T04:26:00Z",
       "command": "heartbeat",
       "context": "执行空闲触发，创建 behavior-learner 技能"
+    },
+    {
+      "timestamp": "2026-02-12T05:25:00Z",
+      "command": "heartbeat",
+      "context": "执行空闲触发，创建 model-manager 技能"
     }
   ],
-  "lastUpdated": "2026-02-12T04:26:00Z"
+  "lastUpdated": "2026-02-12T05:25:00Z"
 }
