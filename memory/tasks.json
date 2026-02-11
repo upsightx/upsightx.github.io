@@ -1,0 +1,35 @@
+[
+  {
+    "id": "task-1",
+    "name": "AI信息搜索",
+    "priority": "high",
+    "description": "每小时搜索最新AI信息",
+    "interval": 1,
+    "createdAt": "2026-02-12T02:31:13+08:00",
+    "status": "pending",
+    "completedAt": null,
+    "waitingHours": 0
+  },
+  {
+    "id": "task-2",
+    "name": "服务器健康检查",
+    "priority": "high",
+    "description": "检查磁盘、内存、负载",
+    "interval": 24,
+    "createdAt": "2026-02-12T02:31:26+08:00",
+    "status": "pending",
+    "completedAt": null,
+    "waitingHours": 0
+  },
+  {
+    "id": "task-3",
+    "name": "整理记忆文件",
+    "priority": "medium",
+    "description": "整理 memory 目录，更新 MEMORY.md",
+    "interval": 168,
+    "createdAt": "2026-02-12T02:31:26+08:00",
+    "status": "pending",
+    "completedAt": null,
+    "waitingHours": 0
+  }
+]

@@ -1,0 +1,116 @@
+{
+  "timestamp": "2026-02-12T01:13:39+08:00",
+  "searched": 10,
+  "topics": [
+    {
+      "id": "topic-1",
+      "name": "智能 CLI 助手框架",
+      "description": "一个可扩展的命令行助手框架，支持自然语言命令",
+      "source": "GitHub AI Automation",
+      "feasibility": 9,
+      "value": 8,
+      "fit": 9,
+      "uniqueness": 7,
+      "score": 8.3
+    },
+    {
+      "id": "topic-2",
+      "name": "知识图谱构建工具",
+      "description": "自动从文档和代码中构建知识图谱",
+      "source": "Knowledge Graph RAG",
+      "feasibility": 7,
+      "value": 9,
+      "fit": 8,
+      "uniqueness": 8,
+      "score": 8.1
+    },
+    {
+      "id": "topic-3",
+      "name": "代码分析 AI 引擎",
+      "description": "深度分析代码质量、问题、改进建议",
+      "source": "Code Analysis AI Tools",
+      "feasibility": 8,
+      "value": 9,
+      "fit": 9,
+      "uniqueness": 6,
+      "score": 8.2
+    },
+    {
+      "id": "topic-4",
+      "name": "智能通知路由系统",
+      "description": "根据用户行为模式智能路由通知",
+      "source": "Intelligent Notification",
+      "feasibility": 9,
+      "value": 7,
+      "fit": 8,
+      "uniqueness": 8,
+      "score": 7.9
+    },
+    {
+      "id": "topic-5",
+      "name": "自主软件 Agent",
+      "description": "完全自主的软件开发助手",
+      "source": "Autonomous Software Agent",
+      "feasibility": 5,
+      "value": 10,
+      "fit": 10,
+      "uniqueness": 9,
+      "score": 7.9
+    },
+    {
+      "id": "topic-6",
+      "name": "模块化 AI 架构库",
+      "description": "可组合的AI功能模块",
+      "source": "Modular AI Architecture",
+      "feasibility": 9,
+      "value": 7,
+      "fit": 9,
+      "uniqueness": 6,
+      "score": 7.7
+    },
+    {
+      "id": "topic-7",
+      "name": "RAG 向量数据库集成",
+      "description": "OpenClaw 与 RAG 系统的深度集成",
+      "source": "Knowledge Graph RAG",
+      "feasibility": 8,
+      "value": 8,
+      "fit": 10,
+      "uniqueness": 7,
+      "score": 8.2
+    },
+    {
+      "id": "topic-8",
+      "name": "自动化工作流引擎",
+      "description": "可视化的任务编排和执行",
+      "source": "Task Automation JS",
+      "feasibility": 8,
+      "value": 8,
+      "fit": 9,
+      "uniqueness": 7,
+      "score": 8.0
+    },
+    {
+      "id": "topic-9",
+      "name": "AI 插件市场",
+      "description": "AI agent 插件的共享平台",
+      "source": "Open Source AI Assistant",
+      "feasibility": 7,
+      "value": 9,
+      "fit": 8,
+      "uniqueness": 9,
+      "score": 8.1
+    },
+    {
+      "id": "topic-10",
+      "name": "智能配置管理器",
+      "description": "AI 辅助的配置优化和迁移",
+      "source": "AI CLI Tool Development",
+      "feasibility": 9,
+      "value": 7,
+      "fit": 8,
+      "uniqueness": 5,
+      "score": 7.5
+    }
+  ]
+}
