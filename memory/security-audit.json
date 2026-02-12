@@ -1,0 +1,25 @@
+{
+  "scanTime": "2026-02-13T04:34:39+08:00",
+  "scanDirectory": "/root/.openclaw/workspace",
+  "scanMode": "deep",
+  "totalFiles": 73,
+  "summary": {
+    "totalIssues": 1,
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 0,
+    "info": 0
+  },
+  "findings": [
+  {
+    "severity": "HIGH",
+    "type": "sensitive_data",
+    "file": ".env",
+    "line": "1",
+    "description": ".env 文件存在",
+    "suggestion": "确保 .env 在 .gitignore 中",
+    "timestamp": "2026-02-13T04:34:39+08:00"
+  }
+  ]
+}

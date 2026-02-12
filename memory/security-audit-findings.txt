@@ -1,0 +1,1 @@
+HIGH	sensitive_data	.env	1	.env 文件存在	确保 .env 在 .gitignore 中
