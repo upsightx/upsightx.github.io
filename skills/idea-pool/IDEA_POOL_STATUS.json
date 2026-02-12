@@ -1,33 +1,38 @@
 {
-  "lastSearch": "2026-02-13T06:56:35+08:00",
-  "lastExtraction": "2026-02-13T06:56:35+08:00",
+  "lastSearch": "2026-02-13T07:56:40+08:00",
+  "lastExtraction": "2026-02-13T07:56:40+08:00",
   "searchResults": [
     {
-      "title": "Introducing GPT-5",
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "snippet": "GPT‑5 performs better than o3 with 50-80% less output tokens across capabilities including visual reasoning, agentic coding, and graduate-level scientific problem solving."
+      "title": "Gemini 3 Pro",
+      "url": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-pro",
+      "snippet": "Gemini 3 Pro introduces several new features to improve performance, control, and multimodal fidelity."
     },
     {
-      "title": "Introducing GPT-5.2",
-      "url": "https://openai.com/index/introducing-gpt-5-2/",
-      "snippet": "GPT‑5.2 Pro is first model to cross 90% threshold on ARC-AGI-1, improving from 87% by o3-preview while reducing cost by roughly 390×."
+      "title": "Gemini 3 Developer Guide",
+      "url": "https://ai.google.dev/gemini-api/docs/gemini-3",
+      "snippet": "Gemini 3 introduces new parameters designed to give developers more control over latency, cost, and multimodal fidelity."
     },
     {
-      "title": "Model Release Notes",
-      "url": "https://help.openai.com/en/articles/9624314-model-release-notes",
-      "snippet": "GPT-5 combines Codex + GPT-5 training stacks -- bringing together best-in-class code generation, reasoning, and general-purpose intelligence in one unified model."
+      "title": "Gemini 3 Deep Think",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/",
+      "snippet": "Gemini 3 Deep Think has a major upgrade to help solve science, research and engineering challenges."
     },
     {
-      "title": "GPT-5 is here",
-      "url": "https://openai.com/gpt-5/",
-      "snippet": "GPT‑5 produces high-quality code, generates front-end UI with minimal prompting, and shows improvements to personality, steerability, and executing long chains of tool calls."
+      "title": "Gemini 3 Flash",
+      "url": "https://blog.google/products/gemini/gemini-3-flash/",
+      "snippet": "Gemini 3 Flash is fast and cost-effective model built for speed."
     },
     {
-      "title": "GPT-5 and new era of work",
-      "url": "https://openai.com/index/gpt-5-new-era-of-work/",
-      "snippet": "GPT-5 does a better job navigating ambiguity where context matters. Deploying GPT-5 across workflows at Amgen increased accuracy, reliability, higher quality outputs and faster speeds."
+      "title": "Visual layout and dynamic view",
+      "url": "https://gemini.google/release-notes/",
+      "snippet": "Gemini app introduces visual layout and dynamic view features powered by Gemini 3."
+    },
+    {
+      "title": "Thinking level control",
+      "url": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-flash",
+      "snippet": "Use thinking_level parameter to control the amount of internal reasoning (minimal, low, medium, or high)."
     }
   ],
-  "currentSearchIndex": 5,
+  "currentSearchIndex": 6,
   "ideasExtracted": 0
 }
