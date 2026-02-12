@@ -36,13 +36,15 @@
       "priority": "high",
       "feasibility": "high",
       "estimatedEffort": "medium",
-      "status": "pending",
-      "notes": "Can use Pinecone, Weaviate, or local vector stores like Chroma"
+      "status": "in-progress",
+      "notes": "Implement RAG using SQLite + FAISS for local vector storage. Sub-agent started implementation.",
+      "implementationStarted": "2026-02-13T05:56:00+08:00",
+      "skillPath": "skills/rag-memory"
     },
     {
       "id": "idea-2026021304",
       "title": "Automated Security Audit Tool",
-      "sourceUrl": "https://www.axios.com/2026/02/05/anthropic-claude-opus-46-software-hunting",
+          "sourceUrl": "https://www.axios.com/2026/02/05/anthropic-claude-opus-46-software-hunting",
       "extractedAt": "2026-02-13T04:26:21+08:00",
       "description": "Claude Opus 4.6 uncovered 500 zero-day flaws in open-source code. Create a security audit skill for OpenClaw that scans codebases for vulnerabilities, buffer overflows, and common security issues.",
       "tags": ["security", "code-audit", "vulnerability-scanner"],
@@ -89,7 +91,7 @@
       "id": "idea-2026021305",
       "title": "Adaptive Reasoning Control",
       "sourceUrl": "https://azure.microsoft.com/en-us/blog/claude-opus-4-6-anthropics-powerful-model-for-coding",
-      "extractedAt": "2026-02-13T04:26:21+08:00",
+      "extractedAt": "2026-02-13:04:26:21+08:00",
       "description": "Claude Opus 4.6 has adaptive thinking that allows the model to dynamically decide when and how much to reason. Implement adaptive reasoning in OpenClaw's task execution - adjust thinking level, model selection, and retries based on task complexity.",
       "tags": ["adaptive-reasoning", "task-complexity", "optimization"],
       "priority": "medium",
@@ -99,5 +101,5 @@
       "notes": "Enhance existing priority-manager and model-manager skills"
     }
   ],
-  "lastUpdated": "2026-02-13T04:35:00+08:00"
+  "lastUpdated": "2026-02-13T05:56:00+08:00"
 }
