@@ -1,0 +1,124 @@
+{
+  "skills": [
+    {
+      "name": "project-analyzer",
+      "type": "coding",
+      "description": "Codebase analysis and metrics",
+      "capabilities": [
+        "code-metrics",
+        "complexity-analysis",
+        "dependency-tracking",
+        "code-structure"
+      ],
+      "keywords": [
+        "analyze",
+        "metrics",
+        "complexity",
+        "dependencies",
+        "structure"
+      ],
+      "available": true,
+      "priority": 10
+    },
+    {
+      "name": "security-auditor",
+      "type": "coding",
+      "description": "Security vulnerability scanning",
+      "capabilities": [
+        "vulnerability-scan",
+        "security-audit",
+        "code-review",
+        "threat-detection"
+      ],
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "scan",
+        "threat",
+        "safety"
+      ],
+      "available": true,
+      "priority": 9
+    },
+    {
+      "name": "rag-memory",
+      "type": "general",
+      "description": "Knowledge retrieval with RAG",
+      "capabilities": [
+        "semantic-search",
+        "memory-retrieval",
+        "context-aware",
+        "vector-search"
+      ],
+      "keywords": [
+        "search",
+        "remember",
+        "retrieve",
+        "find",
+        "memory"
+      ],
+      "available": true,
+      "priority": 10
+    },
+    {
+      "name": "knowledge-manager",
+      "type": "general",
+      "description": "Information management",
+      "capabilities": [
+        "organize",
+        "categorize",
+        "summarize",
+        "extract"
+      ],
+      "keywords": [
+        "organize",
+        "categorize",
+        "summarize",
+        "extract",
+        "document"
+      ],
+      "available": true,
+      "priority": 8
+    },
+    {
+      "name": "smart-reminder",
+      "type": "general",
+      "description": "Reminder and scheduling",
+      "capabilities": [
+        "schedule",
+        "remind",
+        "notify",
+        "alarm"
+      ],
+      "keywords": [
+        "remind",
+        "schedule",
+        "notify",
+        "alarm",
+        "timer"
+      ],
+      "available": true,
+      "priority": 7
+    },
+    {
+      "name": "agent-teams",
+      "type": "general",
+      "description": "Multi-agent coordination",
+      "capabilities": [
+        "parallel-execution",
+        "task-splitting",
+        "collaboration"
+      ],
+      "keywords": [
+        "team",
+        "collaborate",
+        "parallel",
+        "coordinate"
+      ],
+      "available": true,
+      "priority": 6
+    }
+  ],
+  "version": "1.0.0"
+}
