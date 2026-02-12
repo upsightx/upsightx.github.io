@@ -144,7 +144,72 @@
       "estimatedEffort": "medium",
       "status": "pending",
       "notes": "Enhance existing priority-manager and model-manager skills"
+    },
+    {
+      "id": "idea-2026021306",
+      "title": "Unified Code + General Intelligence Model",
+      "sourceUrl": "https://help.openai.com/en/articles/9624314-model-release-notes",
+      "extractedAt": "2026-02-13T06:56:35+08:00",
+      "description": "GPT-5 combines Codex + GPT-5 training stacks -- bringing together best-in-class code generation, reasoning, and general-purpose intelligence in one unified model. Apply this concept to OpenClaw by creating a unified skill manager that can handle both coding and general tasks seamlessly.",
+      "tags": ["unified-model", "code-generation", "general-intelligence", "integration"],
+      "priority": "high",
+      "feasibility": "medium",
+      "estimatedEffort": "medium",
+      "status": "pending",
+      "notes": "Create a unified skill router that can intelligently route between coding skills and general skills based on task type."
+    },
+    {
+      "id": "idea-2026021307",
+      "title": "Efficient Token Usage Optimization",
+      "sourceUrl": "https://openai.com/index/introducing-gpt-5/",
+      "extractedAt": "2026-02-13T06:56:35+08:00",
+      "description": "GPT-5 performs better than o3 with 50-80% less output tokens. Implement token optimization for OpenClaw by using concise responses, summarization, and avoiding redundant outputs.",
+      "tags": ["optimization", "token-efficiency", "cost-reduction"],
+      "priority": "medium",
+      "feasibility": "high",
+      "estimatedEffort": "low",
+      "status": "pending",
+      "notes": "Add response compression, intelligent summarization, and token-aware prompt engineering."
+    },
+    {
+      "id": "idea-2026021308",
+      "title": "Front-End UI Generation Skill",
+      "sourceUrl": "https://openai.com/gpt-5/",
+      "extractedAt": "2026-02-13T06:56:35+08:00",
+      "description": "GPT-5 generates front-end UI with minimal prompting. Create a UI generation skill for OpenClaw that can create HTML/CSS/React components from natural language descriptions.",
+      "tags": ["ui-generation", "frontend", "web-development"],
+      "priority": "medium",
+      "feasibility": "high",
+      "estimatedEffort": "medium",
+      "status": "pending",
+      "notes": "Support multiple frameworks (vanilla HTML, React, Vue, Tailwind CSS)."
+    },
+    {
+      "id": "idea-2026021309",
+      "title": "Long Tool Chain Execution",
+      "sourceUrl": "https://openai.com/gpt-5/",
+      "extractedAt": "2026-02-13T06:56:35+08:00",
+      "description": "GPT-5 shows improvements in executing long chains of tool calls. Enhance OpenClaw's tool orchestration to better handle complex multi-step workflows with many tool invocations.",
+      "tags": ["tool-orchestration", "workflow", "automation"],
+      "priority": "high",
+      "feasibility": "high",
+      "estimatedEffort": "medium",
+      "status": "pending",
+      "notes": "Implement tool chain planning, dependency tracking, and parallel tool execution where possible."
+    },
+    {
+      "id": "idea-2026021310",
+      "title": "Ambiguity Navigation Enhancement",
+      "sourceUrl": "https://openai.com/index/gpt-5-new-era-of-work/",
+      "extractedAt": "2026-02-13T06:56:35+08:00",
+      "description": "GPT-5 does a better job navigating ambiguity where context matters. Implement better context-aware disambiguation in OpenClaw by using RAG retrieval and asking clarifying questions when needed.",
+      "tags": ["context-awareness", "disambiguation", "clarification"],
+      "priority": "medium",
+      "feasibility": "high",
+      "estimatedEffort": "low",
+      "status": "pending",
+      "notes": "Integrate with RAG memory for context retrieval, add smart clarification prompts."
     }
   ],
-  "lastUpdated": "2026-02-13T06:38:00+08:00"
+  "lastUpdated": "2026-02-13T06:56:35+08:00"
 }
