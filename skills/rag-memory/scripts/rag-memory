@@ -1,0 +1,83 @@
+#!/bin/bash
+# RAG Memory CLI - Main entry point
+# Part of the rag-memory skill
+
+set -e
+
+# Configuration
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SKILL_DIR="$(dirname "$SCRIPT_DIR")"
+WORKSPACE="$(dirname "$(dirname "$SKILL_DIR")")"
+LIB_PATH="$SKILL_DIR/lib"
+
+# Add lib to Python path
+export PYTHONPATH="$LIB_PATH:$PYTHONPATH"
+
+# Color output
+color_info() { echo -e "\e[34mℹ $1\e[0m"; }
+color_success() { echo -e "\e[32m✅ $1\e[0m"; }
+color_warn() { echo -e "\e[33m⚠️  $1\e[0m"; }
+color_error() { echo -e "\e[31m❌ $1\e[0m"; }
+
+# Show help
+show_help() {
+    cat << 'EOF'
+RAG Memory - Vector-based memory for OpenClaw
+
+USAGE:
+    rag-memory <command> [options]
+
+COMMANDS:
+    init        Initialize the vector memory store
+    ingest      Ingest documents into the vector store
+    search      Perform semantic search
+    retrieve    Retrieve context formatted for LLM
+    stats       Show statistics about the vector store
+    clear       Clear the vector store
+
+OPTIONS:
+    --help, -h  Show this help message
+
+EXAMPLES:
+    # Initialize
+    rag-memory init
+
+    # Ingest memory files
+    rag-memory ingest --source memory/
+
+    # Search for context
+    rag-memory search "security vulnerabilities" --top-k 5
+
+    # Retrieve context for LLM
+    rag-memory retrieve "What did the user ask about yesterday?"
+
+For detailed help on each command, use:
+    rag-memory <command> --help
+
+See SKILL.md for full documentation.
+EOF
+}
+
+# Check Python availability
+check_python() {
+    if ! command -v python3 &> /dev/null; then
+        color_error "Python 3 is required but not installed"
+        exit 1
+    fi
+}
+
+# Main function
+main() {
+    check_python
+
+    if [[ $# -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+        show_help
+        exit 0
+    fi
+
+    # Run the Python CLI
+    python3 "$LIB_PATH/__init__.py" "$@"
+}
+
+# Run main
+main "$@"
