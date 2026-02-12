@@ -1,0 +1,42 @@
+# Example General Tasks for Testing Unified Router
+
+# Knowledge Questions
+what is machine learning
+how does recursion work
+explain the difference between HTTP and HTTPS
+what is the time complexity of quicksort
+how do I center a div in CSS
+why do we need to use version control
+
+# How-To Questions
+how do I install Python on Linux
+how to create a virtual environment
+how can I connect to a PostgreSQL database
+how do I deploy a web application
+how to write unit tests in JavaScript
+
+# Writing & Analysis
+write an article about the benefits of open source
+summarize this document
+analyze the market trends in cloud computing
+compose an email to my team about the project deadline
+create a report on the quarterly results
+
+# Reminders & Scheduling
+remind me to call Alice at 3pm
+schedule a meeting for tomorrow at 10am
+notify me when the build is complete
+set an alarm for the code review
+don't forget to push the changes to production
+
+# Information Retrieval
+search for information about Kubernetes best practices
+find what I know about microservices architecture
+lookup the documentation for React hooks
+retrieve my notes on the API design
+
+# Conversational
+tell me a joke
+what's the weather like today
+how are you doing
+what can you help me with

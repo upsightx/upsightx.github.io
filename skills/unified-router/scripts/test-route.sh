@@ -3,7 +3,21 @@
 # Analyzes a query and shows which skill would handle it (without executing)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source config without colors for JSON
+export COLOR_OK=''
+export COLOR_WARN=''
+export COLOR_ERROR=''
+export COLOR_INFO=''
+export COLOR_RESET=''
 source "$SCRIPT_DIR/config.sh"
+
+# Re-enable colors for output
+COLOR_OK='\033[0;32m'
+COLOR_WARN='\033[0;33m'
+COLOR_ERROR='\033[0;31m'
+COLOR_INFO='\033[0;36m'
+COLOR_RESET='\033[0m'
 
 # Color output helpers
 print_header() {
@@ -29,18 +43,60 @@ print_error() {
     echo -e "  ${COLOR_ERROR}✗${COLOR_RESET} $1"
 }
 
+# Parse JSON - extract value by key (works with both strings and numbers)
+parse_json() {
+    local json="$1"
+    local key="$2"
+    local value
+
+    # Check for boolean true first
+    if echo "$json" | grep -q "\"$key\":\s*true"; then
+        echo "true"
+        return
+    fi
+
+    # Check for boolean false
+    if echo "$json" | grep -q "\"$key\":\s*false"; then
+        echo "false"
+        return
+    fi
+
+    # Check for string value
+    value=$(echo "$json" | grep -o "\"$key\":\s*\"[^\"]*\"" | head -1 | cut -d'"' -f4)
+    if [[ -n "$value" ]]; then
+        echo "$value"
+        return
+    fi
+
+    # Check for number value
+    value=$(echo "$json" | grep -o "\"$key\":\s*[0-9.]*" | head -1 | grep -o "[0-9.]*" | head -1)
+    if [[ -n "$value" ]]; then
+        echo "$value"
+        return
+    fi
+
+    echo ""
+}
+
 # Display routing result
 display_routing() {
     local query="$1"
     local detection_result="$2"
     local routing_result="$3"
 
-    # Parse JSON (simplified)
-    local task_type=$(echo "$detection_result" | grep -o '"task_type":"[^"]*"' | cut -d'"' -f4)
-    local confidence=$(echo "$detection_result" | grep -o '"confidence":[0-9.]*' | cut -d':' -f2)
-    local recommended_skill=$(echo "$routing_result" | grep -o '"recommended_skill":"[^"]*"' | cut -d'"' -f4)
-    local fallback=$(echo "$routing_result" | grep -o '"fallback":"[^"]*"' | cut -d'"' -f4)
-    local skill_available=$(echo "$routing_result" | grep -o '"skill_available":[^,}]*' | cut -d':' -f2)
+    # Parse JSON
+    local task_type=$(parse_json "$detection_result" "task_type")
+    local confidence=$(parse_json "$detection_result" "confidence")
+    local recommended_skill=$(parse_json "$routing_result" "recommended_skill")
+    local fallback=$(parse_json "$routing_result" "fallback")
+    local skill_available=$(parse_json "$routing_result" "skill_available")
+
+    # Set defaults if parsing failed
+    task_type=${task_type:-"unknown"}
+    confidence=${confidence:-"0.0"}
+    recommended_skill=${recommended_skill:-"none"}
+    fallback=${fallback:-"default"}
+    skill_available=${skill_available:-"false"}
 
     print_header
 
@@ -52,11 +108,14 @@ display_routing() {
     echo "  Type: ${COLOR_INFO}$task_type${COLOR_RESET}"
     echo "  Confidence: ${COLOR_INFO}$confidence${COLOR_RESET}"
 
-    if (( $(echo "$confidence >= 0.8" | bc -l) )); then
+    # Confidence checks (using awk for)
+    local conf_num=$(echo "$confidence" | awk '{printf "%.2f", $1}')
+
+    if awk "BEGIN {exit !($conf_num >= 0.8)}"; then
         print_ok "High confidence - task type clearly identified"
-    elif (( $(echo "$confidence >= $MIN_CONFIDENCE" | bc -l) )); then
+    elif awk "BEGIN {exit !($conf_num >= $MIN_CONFIDENCE)}"; then
         print_ok "Good confidence - task type detected"
-    elif (( $(echo "$confidence >= $CONFIRM_THRESHOLD" | bc -l) )); then
+    elif awk "BEGIN {exit !($conf_num >= $CONFIRM_THRESHOLD)}"; then
         print_warn "Medium confidence - task type probable but uncertain"
     else
         print_error "Low confidence - task type unclear, may need clarification"
@@ -77,15 +136,15 @@ display_routing() {
         local skill_details=$($SCRIPT_DIR/get-skill-details.sh "$recommended_skill" 2>/dev/null)
         if [[ -n "$skill_details" ]]; then
             print_section "Skill Details"
-            local description=$(echo "$skill_details" | grep -o '"description":"[^"]*"' | cut -d'"' -f4)
-            local type=$(echo "$skill_details" | grep -o '"type":"[^"]*"' | cut -d'"' -f4)
+            local description=$(parse_json "$skill_details" "description")
+            local type=$(parse_json "$skill_details" "type")
             echo "  Description: $description"
             echo "  Category: $type"
         fi
     fi
 
     print_section "Recommendation"
-    if (( $(echo "$confidence >= $MIN_CONFIDENCE" | bc -l) )) && [[ "$skill_available" == "true" ]]; then
+    if awk "BEGIN {exit !($conf_num >= $MIN_CONFIDENCE)}" && [[ "$skill_available" == "true" ]]; then
         print_ok "Auto-route to $recommended_skill"
         echo "  The task would be automatically sent to the recommended skill."
     elif [[ "$skill_available" == "true" ]]; then
@@ -118,8 +177,8 @@ main() {
     local detection_result=$($SCRIPT_DIR/detect.sh "$query")
 
     # Parse task type and confidence
-    local task_type=$(echo "$detection_result" | grep -o '"task_type":"[^"]*"' | cut -d'"' -f4)
-    local confidence=$(echo "$detection_result" | grep -o '"confidence":[0-9.]*' | cut -d':' -f2)
+    local task_type=$(parse_json "$detection_result" "task_type")
+    local confidence=$(parse_json "$detection_result" "confidence")
 
     # Run routing
     local routing_result=$($SCRIPT_DIR/route.sh "$query" "$task_type" "$confidence")
@@ -129,12 +188,5 @@ main() {
 
     log "TEST-ROUTE" "Query: $query → $task_type ($confidence) → $recommended_skill"
 }
-
-# Check for bc (required for floating point comparison)
-if ! command -v bc &>/dev/null; then
-    echo "Error: 'bc' is required for confidence comparisons"
-    echo "Install with: apt-get install bc"
-    exit 1
-fi
 
 main "$@"

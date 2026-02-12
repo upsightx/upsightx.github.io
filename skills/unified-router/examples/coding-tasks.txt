@@ -1,0 +1,38 @@
+# Example Coding Tasks for Testing Unified Router
+
+# Code Generation
+create a Python function that sorts a list of integers
+write a JavaScript function to validate email addresses
+implement a REST API endpoint in Node.js
+create a class that represents a user account
+write a script to backup files
+generate code for a binary search algorithm
+
+# Debugging
+fix the bug in my authentication code
+debug why the database connection is failing
+troubleshoot this error message
+resolve the issue with the login form
+what's wrong with this loop
+why isn't my function returning the expected value
+
+# Code Review
+review this codebase for quality issues
+analyze this function for potential bugs
+check my code for security vulnerabilities
+audit the authentication module
+review the API endpoints
+
+# Refactoring
+refactor this function to be more efficient
+optimize this database query
+clean up this messy code
+restructure the project for better maintainability
+improve the performance of this loop
+
+# Framework-Specific
+create a React component for a user profile
+build a Django view for listing products
+write a Spring Boot REST controller
+implement a Vue.js form with validation
+create an Express middleware for logging

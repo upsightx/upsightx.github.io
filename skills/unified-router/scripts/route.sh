@@ -4,6 +4,11 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/config.sh"
 
+# Convert string to lowercase
+to_lower() {
+    echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
 # Check if a skill exists and is available
 skill_exists() {
     local skill_name="$1"

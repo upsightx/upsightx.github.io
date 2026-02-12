@@ -1,0 +1,49 @@
+[2026-02-13 07:30:35] [DETECT] Query: create a Python function that sorts a list → Type: coding, Confidence: 0.95
+[2026-02-13 07:30:35] [ROUTE] Best skill not available, using fallback: default
+[2026-02-13 07:30:35] [ROUTE] Routed to: default (type: , confidence: )
+[2026-02-13 07:30:35] [TEST-ROUTE] Query: create a Python function that sorts a list →  () → 
+[2026-02-13 07:31:14] [DETECT] Query: create a Python function that sorts a list → Type: coding, Confidence: 0.95
+[2026-02-13 07:31:14] [ROUTE] Best skill not available, using fallback: default
+[2026-02-13 07:31:14] [ROUTE] Routed to: default (type: , confidence: )
+[2026-02-13 07:31:14] [TEST-ROUTE] Query: create a Python function that sorts a list →  () → 
+[2026-02-13 07:31:19] [DETECT] Query: create a Python function that sorts a list → Type: coding, Confidence: 0.95
+[2026-02-13 07:31:44] [DETECT] Query: create a Python function that sorts a list → Type: coding, Confidence: 0.95
+[2026-02-13 07:31:44] [ROUTE] Best skill not available, using fallback: default
+[2026-02-13 07:31:44] [ROUTE] Routed to: default (type: , confidence: )
+[2026-02-13 07:31:44] [TEST-ROUTE] Query: create a Python function that sorts a list →  () → 
+[2026-02-13 07:31:48] [DETECT] Query: create a Python function → Type: coding, Confidence: 0.95
+[2026-02-13 07:31:51] [DETECT] Query: create a Python function → Type: coding, Confidence: 0.95
+[2026-02-13 07:32:13] [DETECT] Query: create a Python function that sorts a list → Type: coding, Confidence: 0.95
+[2026-02-13 07:32:13] [ROUTE] Using default skill for coding: project-analyzer
+[2026-02-13 07:32:13] [ROUTE] Routed to: project-analyzer (type: coding, confidence: 0.95)
+[2026-02-13 07:32:13] [TEST-ROUTE] Query: create a Python function that sorts a list → coding (0.95) → 
+[2026-02-13 07:32:26] [DETECT] Query: create a Python function that sorts a list → Type: coding, Confidence: 0.95
+[2026-02-13 07:32:26] [ROUTE] Using default skill for coding: project-analyzer
+[2026-02-13 07:32:26] [ROUTE] Routed to: project-analyzer (type: coding, confidence: 0.95)
+[2026-02-13 07:32:26] [TEST-ROUTE] Query: create a Python function that sorts a list → coding (0.95) → 
+[2026-02-13 07:33:18] [ROUTE] Using default skill for coding: project-analyzer
+[2026-02-13 07:33:18] [ROUTE] Routed to: project-analyzer (type: coding, confidence: 0.95)
+[2026-02-13 07:34:13] [DETECT] Query: create a Python function that sorts a list → Type: coding, Confidence: 0.95
+[2026-02-13 07:34:13] [ROUTE] Using default skill for coding: project-analyzer
+[2026-02-13 07:34:13] [ROUTE] Routed to: project-analyzer (type: coding, confidence: 0.95)
+[2026-02-13 07:34:13] [TEST-ROUTE] Query: create a Python function that sorts a list → coding (0.95) → 
+[2026-02-13 07:34:20] [DETECT] Query: explain how recursion works → Type: general, Confidence: 0.90
+[2026-02-13 07:34:20] [ROUTE] Using default skill for general: rag-memory
+[2026-02-13 07:34:20] [ROUTE] Routed to: rag-memory (type: general, confidence: 0.90)
+[2026-02-13 07:34:21] [TEST-ROUTE] Query: explain how recursion works → general (0.90) → 
+[2026-02-13 07:34:26] [DETECT] Query: review this codebase for security vulnerabilities → Type: coding, Confidence: 0.88
+[2026-02-13 07:34:26] [ROUTE] Matched keyword 'security' → security-auditor
+[2026-02-13 07:34:26] [ROUTE] Routed to: security-auditor (type: coding, confidence: 0.88)
+[2026-02-13 07:34:26] [TEST-ROUTE] Query: review this codebase for security vulnerabilities → coding (0.88) → 
+[2026-02-13 07:36:40] [DETECT] Query: create a Python function that sorts a list → Type: coding, Confidence: 0.95
+[2026-02-13 07:36:40] [ROUTE] Using default skill for coding: project-analyzer
+[2026-02-13 07:36:40] [ROUTE] Routed to: project-analyzer (type: coding, confidence: 0.95)
+[2026-02-13 07:36:44] [DETECT] Query: explain how machine learning works → Type: general, Confidence: 0.90
+[2026-02-13 07:36:44] [ROUTE] Using default skill for general: rag-memory
+[2026-02-13 07:36:44] [ROUTE] Routed to: rag-memory (type: general, confidence: 0.90)
+[2026-02-13 07:36:51] [DETECT] Query: remind me to call Alice at 3pm → Type: general, Confidence: 0.92
+[2026-02-13 07:36:51] [ROUTE] Matched keyword 'remind' → smart-reminder
+[2026-02-13 07:36:51] [ROUTE] Routed to: smart-reminder (type: general, confidence: 0.92)
+[2026-02-13 07:36:56] [DETECT] Query: review code for security vulnerabilities → Type: coding, Confidence: 0.88
+[2026-02-13 07:36:56] [ROUTE] Matched keyword 'security' → security-auditor
+[2026-02-13 07:36:56] [ROUTE] Routed to: security-auditor (type: coding, confidence: 0.88)
