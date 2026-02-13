@@ -1,0 +1,119 @@
+{
+  "id": "example-complex",
+  "name": "Complex Multi-Stage Workflow",
+  "description": "A complex workflow with multiple stages, parallel execution, and data aggregation",
+  "created_at": "2026-02-13T09:00:00+08:00",
+  "tools": [
+    {
+      "id": "tool-search",
+      "name": "web_search",
+      "params": {
+        "query": "AI tool orchestration best practices",
+        "count": 5
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-fetch-1",
+      "name": "web_fetch",
+      "params": {
+        "url": "{{tool-search.results[0].url}}"
+      },
+      "depends_on": ["tool-search"]
+    },
+    {
+      "id": "tool-fetch-2",
+      "name": "web_fetch",
+      "params": {
+        "url": "{{tool-search.results[1].url}}"
+      },
+      "depends_on": ["tool-search"]
+    },
+    {
+      "id": "tool-fetch-3",
+      "name": "web_fetch",
+      "params": {
+        "url": "{{tool-search.results[2].url}}"
+      },
+      "depends_on": ["tool-search"]
+    },
+    {
+      "id": "tool-extract-1",
+      "name": "extract_content",
+      "params": {
+        "source": "{{tool-fetch-1}}",
+        "format": "markdown"
+      },
+      "depends_on": ["tool-fetch-1"]
+    },
+    {
+      "id": "tool-extract-2",
+      "name": "extract_content",
+      "params": {
+        "source": "{{tool-fetch-2}}",
+        "format": "markdown"
+      },
+      "depends_on": ["tool-fetch-2"]
+    },
+    {
+      "id": "tool-extract-3",
+      "name": "extract_content",
+      "params": {
+        "source": "{{tool-fetch-3}}",
+        "format": "markdown"
+      },
+      "depends_on": ["tool-fetch-3"]
+    },
+    {
+      "id": "tool-summarize-1",
+      "name": "summarize",
+      "params": {
+        "text": "{{tool-extract-1}}",
+        "length": "short"
+      },
+      "depends_on": ["tool-extract-1"]
+    },
+    {
+      "id": "tool-summarize-2",
+      "name": "summarize",
+      "params": {
+        "text": "{{tool-extract-2}}",
+        "length": "short"
+      },
+      "depends_on": ["tool-extract-2"]
+    },
+    {
+      "id": "tool-summarize-3",
+      "name": "summarize",
+      "params": {
+        "text": "{{tool-extract-3}}",
+        "length": "short"
+      },
+      "depends_on": ["tool-extract-3"]
+    },
+    {
+      "id": "tool-combine",
+      "name": "combine_summaries",
+      "params": {
+        "summaries": ["{{tool-summarize-1}}", "{{tool-summarize-2}}", "{{tool-summarize-3}}"],
+        "format": "bulleted"
+      },
+      "depends_on": ["tool-summarize-1", "tool-summarize-2", "tool-summarize-3"]
+    },
+    {
+      "id": "tool-final-save",
+      "name": "write_file",
+      "params": {
+        "path": "/tmp/final-summary.txt",
+        "content": "{{tool-combine}}"
+      },
+      "depends_on": ["tool-combine"]
+    }
+  ],
+  "config": {
+    "max_parallel": 3,
+    "retry_count": 3,
+    "timeout": 120,
+    "on_error": "continue"
+  }
+}

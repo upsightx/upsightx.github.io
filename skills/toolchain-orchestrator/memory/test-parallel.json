@@ -1,0 +1,47 @@
+{
+  "id": "exec-1770944900",
+  "chain_id": "test-parallel",
+  "chain_name": "Parallel Execution Chain",
+  "status": "completed",
+  "started": "2026-02-13T09:08:20+08:00",
+  "ended": "2026-02-13T09:08:20+08:00",
+  "dry_run": false,
+  "config": {
+    "max_parallel": 3,
+    "retry_count": 2,
+    "timeout": 60,
+    "on_error": "continue"
+  },
+  "results": {
+    "tool-fetch-3": {
+      "status": "success",
+      "output": "Executed web_fetch successfully",
+      "started": "2026-02-13T09:08:20+08:00",
+      "ended": "2026-02-13T09:08:20+08:00"
+    },
+    "tool-fetch-2": {
+      "status": "success",
+      "output": "Executed web_fetch successfully",
+      "started": "2026-02-13T09:08:20+08:00",
+      "ended": "2026-02-13T09:08:20+08:00"
+    },
+    "tool-fetch-1": {
+      "status": "success",
+      "output": "Executed web_fetch successfully",
+      "started": "2026-02-13T09:08:20+08:00",
+      "ended": "2026-02-13T09:08:20+08:00"
+    },
+    "tool-merge": {
+      "status": "success",
+      "output": "Executed merge_results successfully",
+      "started": "2026-02-13T09:08:20+08:00",
+      "ended": "2026-02-13T09:08:20+08:00"
+    },
+    "tool-save": {
+      "status": "success",
+      "output": "Executed write_file successfully",
+      "started": "2026-02-13T09:08:20+08:00",
+      "ended": "2026-02-13T09:08:20+08:00"
+    }
+  }
+}

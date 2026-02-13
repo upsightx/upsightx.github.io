@@ -1,0 +1,40 @@
+{
+  "id": "example-simple",
+  "name": "Simple Sequential Chain",
+  "description": "A simple chain with sequential tool execution - read file, process it, write result",
+  "created_at": "2026-02-13T09:00:00+08:00",
+  "tools": [
+    {
+      "id": "tool-read",
+      "name": "read_file",
+      "params": {
+        "path": "/tmp/input.txt"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-process",
+      "name": "process_data",
+      "params": {
+        "input": "{{tool-read}}",
+        "operation": "transform"
+      },
+      "depends_on": ["tool-read"]
+    },
+    {
+      "id": "tool-write",
+      "name": "write_file",
+      "params": {
+        "path": "/tmp/output.txt",
+        "content": "{{tool-process}}"
+      },
+      "depends_on": ["tool-process"]
+    }
+  ],
+  "config": {
+    "max_parallel": 1,
+    "retry_count": 2,
+    "timeout": 30,
+    "on_error": "stop"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "example-parallel",
+  "name": "Parallel Execution Chain",
+  "description": "Demonstrates parallel execution of independent tools",
+  "created_at": "2026-02-13T09:00:00+08:00",
+  "tools": [
+    {
+      "id": "tool-fetch-1",
+      "name": "web_fetch",
+      "params": {
+        "url": "https://example.com/page1"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-fetch-2",
+      "name": "web_fetch",
+      "params": {
+        "url": "https://example.com/page2"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-fetch-3",
+      "name": "web_fetch",
+      "params": {
+        "url": "https://example.com/page3"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-merge",
+      "name": "merge_results",
+      "params": {
+        "sources": ["{{tool-fetch-1}}", "{{tool-fetch-2}}", "{{tool-fetch-3}}"]
+      },
+      "depends_on": ["tool-fetch-1", "tool-fetch-2", "tool-fetch-3"]
+    },
+    {
+      "id": "tool-save",
+      "name": "write_file",
+      "params": {
+        "path": "/tmp/merged.txt",
+        "content": "{{tool-merge}}"
+      },
+      "depends_on": ["tool-merge"]
+    }
+  ],
+  "config": {
+    "max_parallel": 3,
+    "retry_count": 2,
+    "timeout": 60,
+    "on_error": "continue"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "exec-1770944930",
+  "chain_id": "test-errors",
+  "chain_name": "Error Handling Demo",
+  "status": "failed",
+  "started": "2026-02-13T09:08:50+08:00",
+  "ended": "2026-02-13T09:08:50+08:00",
+  "dry_run": false,
+  "config": {
+    "max_parallel": 2,
+    "retry_count": 2,
+    "timeout": 30,
+    "on_error": "continue"
+  },
+  "results": {
+    "tool-after-fail": {
+      "status": "failed",
+      "output": "Simulated failure for demo purposes",
+      "started": "2026-02-13T09:08:50+08:00",
+      "ended": "2026-02-13T09:08:50+08:00"
+    },
+    "tool-fallback": {
+      "status": "success",
+      "output": "Executed fallback_operation successfully",
+      "started": "2026-02-13T09:08:50+08:00",
+      "ended": "2026-02-13T09:08:50+08:00"
+    },
+    "tool-flaky": {
+      "status": "success",
+      "output": "Executed simulate_failure successfully",
+      "started": "2026-02-13T09:08:50+08:00",
+      "ended": "2026-02-13T09:08:50+08:00"
+    },
+    "tool-reliable": {
+      "status": "success",
+      "output": "Executed read_file successfully",
+      "started": "2026-02-13T09:08:50+08:00",
+      "ended": "2026-02-13T09:08:50+08:00"
+    },
+    "tool-always-fail": {
+      "status": "failed",
+      "output": "Simulated failure for demo purposes",
+      "started": "2026-02-13T09:08:50+08:00",
+      "ended": "2026-02-13T09:08:50+08:00"
+    },
+    "tool-process": {
+      "status": "success",
+      "output": "Executed process_data successfully",
+      "started": "2026-02-13T09:08:50+08:00",
+      "ended": "2026-02-13T09:08:50+08:00"
+    },
+    "tool-final": {
+      "status": "skipped",
+      "output": "Dependency failed",
+      "started": "2026-02-13T09:08:50+08:00",
+      "ended": "2026-02-13T09:08:50+08:00"
+    }
+  }
+}

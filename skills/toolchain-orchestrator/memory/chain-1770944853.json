@@ -1,0 +1,35 @@
+{
+  "id": "exec-1770944874",
+  "chain_id": "chain-1770944853",
+  "chain_name": "Planned Chain",
+  "status": "completed",
+  "started": "2026-02-13T09:07:54+08:00",
+  "ended": "2026-02-13T09:07:54+08:00",
+  "dry_run": true,
+  "config": {
+    "max_parallel": 3,
+    "retry_count": 2,
+    "timeout": 30,
+    "on_error": "continue"
+  },
+  "results": {
+    "tool-0": {
+      "status": "skipped",
+      "output": "Dry run mode",
+      "started": "2026-02-13T09:07:54+08:00",
+      "ended": "2026-02-13T09:07:54+08:00"
+    },
+    "tool-1": {
+      "status": "skipped",
+      "output": "Dry run mode",
+      "started": "2026-02-13T09:07:54+08:00",
+      "ended": "2026-02-13T09:07:54+08:00"
+    },
+    "tool-2": {
+      "status": "skipped",
+      "output": "Dry run mode",
+      "started": "2026-02-13T09:07:54+08:00",
+      "ended": "2026-02-13T09:07:54+08:00"
+    }
+  }
+}

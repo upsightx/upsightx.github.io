@@ -1,0 +1,76 @@
+{
+  "id": "example-errors",
+  "name": "Error Handling Demo",
+  "description": "Demonstrates error recovery with retries and fallback",
+  "created_at": "2026-02-13T09:00:00+08:00",
+  "tools": [
+    {
+      "id": "tool-reliable",
+      "name": "read_file",
+      "params": {
+        "path": "/tmp/existing-file.txt"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-flaky",
+      "name": "simulate_failure",
+      "params": {
+        "fail_rate": "0.5"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-fallback",
+      "name": "fallback_operation",
+      "params": {
+        "message": "Using fallback data"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-process",
+      "name": "process_data",
+      "params": {
+        "primary": "{{tool-flaky}}",
+        "fallback": "{{tool-fallback}}",
+        "fallback_on_error": true
+      },
+      "depends_on": ["tool-flaky", "tool-fallback"]
+    },
+    {
+      "id": "tool-always-fail",
+      "name": "always_fail",
+      "params": {
+        "reason": "Demonstration of on_error=continue"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-after-fail",
+      "name": "should_still_run",
+      "params": {
+        "message": "This runs despite previous failure"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "tool-final",
+      "name": "combine_results",
+      "params": {
+        "data": [
+          "{{tool-reliable}}",
+          "{{tool-process}}",
+          "{{tool-after-fail}}"
+        ]
+      },
+      "depends_on": ["tool-reliable", "tool-process", "tool-after-fail"]
+    }
+  ],
+  "config": {
+    "max_parallel": 2,
+    "retry_count": 2,
+    "timeout": 30,
+    "on_error": "continue"
+  }
+}
