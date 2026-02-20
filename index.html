@@ -3,529 +3,677 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JARVIS AI Framework - 贾维斯式AI架构设计</title>
+    <title>Horizon AI Framework - 无限资源下的下一代Agent架构</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #00d4ff;
-            --secondary: #0099cc;
-            --accent: #ff6b35;
-            --bg-dark: #0a0e17;
-            --bg-card: #111827;
-            --text: #e5e7eb;
-            --text-muted: #9ca3af;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0c4a6e 100%);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(99, 102, 241, 0.2);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --glow: 0 0 20px rgba(99, 102, 241, 0.3);
         }
+        
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg-dark);
             color: var(--text);
             line-height: 1.8;
+            overflow-x: hidden;
         }
+        
+        /* 英雄区域 */
         .hero {
-            background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 50%, #0d1520 100%);
-            padding: 80px 40px;
+            background: var(--bg-gradient);
+            padding: 100px 40px;
             text-align: center;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
         }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
         .hero h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
-        .hero .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .container { max-width: 1400px; margin: 0 auto; padding: 60px 40px; }
         
-        h2 {
-            font-size: 2rem;
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
             color: var(--primary);
-            margin: 60px 0 30px;
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* 主要容器 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+        
+        /* 标题样式 */
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 80px 0 40px;
             padding-bottom: 15px;
             border-bottom: 2px solid var(--primary);
+            position: relative;
         }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+        
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--accent);
             margin: 30px 0 15px;
         }
-        h4 { color: var(--secondary); margin: 20px 0 10px; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        h4 {
+            color: var(--secondary);
+            margin: 20px 0 10px;
+            font-size: 1.1rem;
+        }
         
+        /* 网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        /* 卡片样式 */
         .card {
             background: var(--bg-card);
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 30px;
-            border: 1px solid rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--border);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
         .card:hover {
             border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow), var(--glow);
         }
-        .card h3 { margin-top: 0; }
         
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        /* 架构图示 */
         .architecture {
-            background: linear-gradient(180deg, #0f1419 0%, #1a1f2e 100%);
+            background: linear-gradient(135deg, var(--bg-card), #1e293b);
             border-radius: 20px;
             padding: 50px;
-            margin: 40px 0;
-            border: 1px solid rgba(0, 212, 255, 0.15);
+            margin: 60px 0;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        
+        .architecture::before {
+            content: '架构设计';
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            background: var(--bg-dark);
+            padding: 5px 20px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
         }
         
         .layer {
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 15px;
             padding: 25px;
             margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .layer:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
+        }
+        
+        /* 特性列表 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(99, 102, 241, 0.05);
+        }
+        
+        .feature-icon {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+        
+        /* 代码块 */
+        .code-block {
+            background: #0d1117;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #30363d;
+            overflow-x: auto;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .code-comment { color: #8b949e; }
+        .code-keyword { color: #ff7b72; }
+        .code-string { color: #a5d6ff; }
+        .code-function { color: #d2a8ff; }
+        
+        /* 时间线 */
+        .timeline {
+            margin: 40px 0;
             position: relative;
         }
-        .layer::before {
-            content: attr(data-layer);
+        
+        .timeline::before {
+            content: '';
             position: absolute;
-            top: -12px;
             left: 20px;
-            background: var(--bg-dark);
-            padding: 0 15px;
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 0.9rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
         }
         
-        .component {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 107, 53, 0.1));
-            border: 1px solid var(--primary);
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin: 8px;
-            font-size: 0.95rem;
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 40px;
         }
         
-        ul { padding-left: 25px; }
-        li { margin: 10px 0; }
-        
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .tech-tag {
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+        .timeline-dot {
+            position: absolute;
+            left: 12px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--bg-dark);
         }
         
-        .highlight { color: var(--primary); }
-        .accent { color: var(--accent); }
-        
-        code {
-            background: rgba(0, 212, 255, 0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-family: 'SF Mono', Monaco, monospace;
-            color: var(--primary);
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .container { padding: 40px 20px; }
+            .grid { grid-template-columns: 1fr; }
+            .architecture { padding: 30px 20px; }
+            .hero-stats { gap: 20px; }
+            .stat-number { font-size: 2rem; }
         }
         
-        .roadmap-item {
-            display: flex;
-            gap: 20px;
-            margin: 20px 0;
-            padding: 20px;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-        }
-        .roadmap-item .phase {
-            min-width: 120px;
-            font-weight: bold;
-            color: var(--primary);
+        /* 动画 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.1);
+        .floating {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="hero">
-        <h1>🤖 JARVIS AI Framework</h1>
-        <p class="subtitle">一个基于 OpenRouter 的贾维斯式个人AI助手架构设计<br>
-        集成多模态、记忆系统、工具调用与主动服务能力</p>
-    </div>
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Horizon AI Framework</h1>
+            <p class="subtitle">
+                在拥有<strong>无限API资源</strong>和<strong>高性能服务器</strong>的假设下，
+                这是我会设计的下一代多智能体协同框架
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">API资源</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">智能体类型</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">0ms</span>
+                    <span class="stat-label">延迟预算</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">持续进化</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- 核心理念 -->
     <div class="container">
-        <!-- 核心理念 -->
-        <h2>🎯 核心理念</h2>
-        <div class="card">
-            <p>贾维斯（J.A.R.V.I.S.）代表着AI助手的终极形态：<span class="highlight">主动、智能、可靠</span>。本框架旨在构建一个真正理解用户、能主动服务、持续进化的个人AI系统。</p>
-            <br>
-            <h4>三大支柱</h4>
-            <ul>
-                <li><strong>感知层</strong> — 多渠道消息接入、环境感知、上下文理解</li>
-                <li><strong>认知层</strong> — 长短期记忆、知识图谱、意图推理、规划执行</li>
-                <li><strong>行动层</strong> — 工具调用、自动化任务、主动推送、自我进化</li>
-            </ul>
-        </div>
-
-        <!-- 架构图 -->
-        <h2>🏗️ 系统架构</h2>
-        <div class="architecture">
-            <div class="layer" data-layer="L5 - 用户交互层">
-                <div class="component">💬 飞书私聊</div>
-                <div class="component">📱 微信</div>
-                <div class="component">🖥️ Web Chat</div>
-                <div class="component">🎙️ 语音接口</div>
-                <div class="component">📧 邮件</div>
-            </div>
-            
-            <div class="layer" data-layer="L4 - AI 网关层 (OpenClaw)">
-                <div class="component">🔐 身份认证</div>
-                <div class="component">🔄 会话管理</div>
-                <div class="component">📋 意图路由</div>
-                <div class="component">⚡ 流式响应</div>
-                <div class="component">📊 Token 计费</div>
-            </div>
-            
-            <div class="layer" data-layer="L3 - 认知核心层">
-                <div class="component">🧠 大模型引擎 (OpenRouter)</div>
-                <div class="component">💾 向量数据库</div>
-                <div class="component">📝 长期记忆</div>
-                <div class="component">🔍 RAG 检索增强</div>
-                <div class="component">🎯 规划器</div>
-            </div>
-            
-            <div class="layer" data-layer="L2 - 工具与执行层">
-                <div class="component">🌐 Web 搜索</div>
-                <div class="component">📁 文件操作</div>
-                <div class="component">📆 日历管理</div>
-                <div class="component">📧 邮件处理</div>
-                <div class="component">🔧 代码执行</div>
-                <div class="component">📊 数据分析</div>
-            </div>
-            
-            <div class="layer" data-layer="L1 - 基础设施层">
-                <div class="component">☁️ Linux 云服务器</div>
-                <div class="component">🗄️ PostgreSQL</div>
-                <div class="component">📡 Redis</div>
-                <div class="component">🐳 Docker</div>
-                <div class="component">📈 Prometheus + Grafana</div>
-            </div>
-        </div>
-
-        <!-- 模块详解 -->
-        <h2>📦 核心模块设计</h2>
+        <h2>🎯 核心理念与设计哲学</h2>
+        
         <div class="grid">
             <div class="card">
-                <h3>🧠 记忆系统</h3>
-                <h4>短期记忆 (会话级)</h4>
-                <ul>
-                    <li>当前对话上下文</li>
-                    <li>临时任务状态</li>
-                    <li>工作集缓存</li>
-                </ul>
-                <h4>长期记忆 (持久化)</h4>
-                <ul>
-                    <li>用户画像与偏好</li>
-                    <li>重要事件与决策</li>
-                    <li>知识图谱节点</li>
-                </ul>
-                <h4>向量检索 (RAG)</h4>
-                <ul>
-                    <li>语义相似度搜索</li>
-                    <li>时间衰减权重</li>
-                    <li>重要性排序</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h3>🎯 规划与执行引擎</h3>
-                <h4>任务分解</h4>
-                <ul>
-                    <li>复杂目标 → 子任务树</li>
-                    <li>依赖关系解析</li>
-                    <li>并行/串行调度</li>
-                </ul>
-                <h4>执行监控</h4>
-                <ul>
-                    <li>进度追踪</li>
-                    <li>错误恢复</li>
-                    <li>超时处理</li>
-                </ul>
-                <h4>反思优化</h4>
-                <ul>
-                    <li>执行结果评估</li>
-                    <li>策略自改进</li>
-                    <li>经验沉淀</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h3>🔊 多模态能力</h3>
-                <h4>视觉</h4>
-                <ul>
-                    <li>图片理解与分析</li>
-                    <li>OCR 文字提取</li>
-                    <li>截图解读</li>
-                </ul>
-                <h4>语音</h4>
-                <ul>
-                    <li>语音识别 (STT)</li>
-                    <li>语音合成 (TTS)</li>
-                    <li>实时对话</li>
-                </ul>
-                <h4>文档</h4>
-                <ul>
-                    <li>PDF/Word 解析</li>
-                    <li>Excel 数据提取</li>
-                    <li>代码文件理解</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h3>⚡ 主动服务</h3>
-                <h4>定时任务</h4>
-                <ul>
-                    <li>日程提醒</li>
-                    <li>信息汇总推送</li>
-                    <li>健康检查报告</li>
-                </ul>
-                <h4>事件触发</h4>
-                <ul>
-                    <li>邮件到达通知</li>
-                    <li>系统异常告警</li>
-                    <li>新闻/股价监控</li>
-                </ul>
-                <h4>智能建议</h4>
-                <ul>
-                    <li>基于习惯的推荐</li>
-                    <li>效率优化建议</li>
-                    <li>学习路径规划</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 技术栈 -->
-        <h2>🛠️ 推荐技术栈</h2>
-        <div class="card">
-            <h3>核心框架</h3>
-            <div class="tech-stack">
-                <span class="tech-tag">OpenClaw</span>
-                <span class="tech-tag">OpenRouter API</span>
-                <span class="tech-tag">Node.js / TypeScript</span>
-                <span class="tech-tag">Python (可选)</span>
-            </div>
-            
-            <h3>数据存储</h3>
-            <div class="tech-stack">
-                <span class="tech-tag">PostgreSQL</span>
-                <span class="tech-tag">Redis</span>
-                <span class="tech-tag">Qdrant / Milvus (向量)</span>
-                <span class="tech-tag">SQLite (轻量)</span>
-            </div>
-            
-            <h3>部署运维</h3>
-            <div class="tech-stack">
-                <span class="tech-tag">Docker + Compose</span>
-                <span class="tech-tag">Nginx</span>
-                <span class="tech-tag">PM2</span>
-                <span class="tech-tag">GitHub Actions</span>
-            </div>
-            
-            <h3>消息通道</h3>
-            <div class="tech-stack">
-                <span class="tech-tag">飞书 (已配置)</span>
-                <span class="tech-tag">Web Chat</span>
-                <span class="tech-tag">Telegram</span>
-                <span class="tech-tag">企业微信</span>
-            </div>
-        </div>
-
-        <!-- 模型选择策略 -->
-        <h2>🤖 模型选择策略</h2>
-        <div class="card">
-            <p>利用 OpenRouter 的多模型能力，根据任务类型智能路由：</p>
-            <br>
-            <div class="grid">
-                <div>
-                    <h4>🧠 复杂推理</h4>
-                    <ul>
-                        <li><code>Claude 4 Opus</code> — 深度分析、代码架构</li>
-                        <li><code>GPT-4o</code> — 通用复杂任务</li>
-                        <li><code>o1/o3</code> — 数学、逻辑推理</li>
-                    </ul>
+                <div class="card-icon">
+                    <i class="fas fa-infinity"></i>
                 </div>
-                <div>
-                    <h4>⚡ 快速响应</h4>
-                    <ul>
-                        <li><code>Claude 3.5 Sonnet</code> — 日常对话</li>
-                        <li><code>GPT-4o-mini</code> — 简单查询</li>
-                        <li><code>Gemini Flash</code> — 高并发场景</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>👁️ 多模态</h4>
-                    <ul>
-                        <li><code>GPT-4o Vision</code> — 图片理解</li>
-                        <li><code>Claude 3.5 Sonnet</code> — 图文混合</li>
-                        <li><code>Gemini Pro Vision</code> — 视频帧</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>💰 成本优化</h4>
-                    <ul>
-                        <li><code>DeepSeek V3</code> — 中文任务</li>
-                        <li><code>Llama 3.1</code> — 本地/敏感数据</li>
-                        <li><code>Mistral</code> — 欧洲合规</li>
-                    </ul>
-                </div>
+                <h3>资源无限假设</h3>
+                <p>当我们拥有无限API调用和无限计算资源时，设计范式完全改变：
+                    - 不再需要复杂的缓存和优化
+                    - 可以实时并行调用多个模型
+                    - 允许大规模冗余计算
+                    - 实现真正的实时学习与进化</p>
             </div>
-        </div>
-
-        <!-- 数据流 -->
-        <h2>🔄 核心数据流</h2>
-        <div class="card">
-            <pre style="background:#0d1117;padding:25px;border-radius:12px;overflow-x:auto;line-height:1.6;">
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  用户消息   │───▶│  通道适配   │───▶│  会话管理   │───▶│  意图识别   │
-│ (飞书/Web)  │    │  (OpenClaw) │    │  (Redis)    │    │  (LLM)      │
-└─────────────┘    └─────────────┘    └─────────────┘    └──────┬──────┘
-                                                                │
-                    ┌──────────────────────────────────────────┘
-                    ▼
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  记忆检索   │───▶│  上下文构建 │───▶│  模型推理   │───▶│  工具调用   │
-│  (RAG)      │    │  (Prompt)   │    │(OpenRouter) │    │  (Skills)   │
-└─────────────┘    └─────────────┘    └─────────────┘    └──────┬──────┘
-                                                                │
-                    ┌──────────────────────────────────────────┘
-                    ▼
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  响应生成   │───▶│  记忆存储   │───▶│  消息回复   │
-│  (流式)     │    │  (持久化)   │    │  (多通道)   │
-└─────────────┘    └─────────────┘    └─────────────┘
-            </pre>
-        </div>
-
-        <!-- 开发路线图 -->
-        <h2>📅 开发路线图</h2>
-        
-        <div class="roadmap-item">
-            <div class="phase">Phase 1<br><small>1-2 周</small></div>
-            <div>
-                <h4>基础设施搭建</h4>
-                <ul>
-                    <li>服务器环境配置 (Docker + 基础服务)</li>
-                    <li>OpenClaw 生产部署</li>
-                    <li>飞书机器人完善 (事件订阅、权限配置)</li>
-                    <li>基础记忆系统 (文件存储 → MEMORY.md)</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="roadmap-item">
-            <div class="phase">Phase 2<br><small>2-3 周</small></div>
-            <div>
-                <h4>核心能力开发</h4>
-                <ul>
-                    <li>向量数据库集成 (Qdrant/SQLite-vec)</li>
-                    <li>RAG 记忆检索系统</li>
-                    <li>Web 搜索 + 网页抓取</li>
-                    <li>文件操作工具 (读写、搜索、分析)</li>
-                    <li>代码执行沙箱</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="roadmap-item">
-            <div class="phase">Phase 3<br><small>2-3 周</small></div>
-            <div>
-                <h4>智能增强</h4>
-                <ul>
-                    <li>任务规划与分解引擎</li>
-                    <li>定时任务系统 (Cron + Heartbeat)</li>
-                    <li>多模型路由策略</li>
-                    <li>用户画像学习</li>
-                    <li>主动提醒与推送</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="roadmap-item">
-            <div class="phase">Phase 4<br><small>3-4 周</small></div>
-            <div>
-                <h4>高级特性</h4>
-                <ul>
-                    <li>语音输入输出 (STT/TTS)</li>
-                    <li>多通道统一 (飞书 + Web + Telegram)</li>
-                    <li>知识库管理 (文档索引)</li>
-                    <li>自动化工作流 (Zapier 风格)</li>
-                    <li>自我进化机制 (反思、学习)</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="roadmap-item">
-            <div class="phase">Phase 5<br><small>持续迭代</small></div>
-            <div>
-                <h4>体验优化</h4>
-                <ul>
-                    <li>Web Dashboard (状态监控、配置管理)</li>
-                    <li>性能优化 (缓存、并发)</li>
-                    <li>安全加固 (权限、审计)</li>
-                    <li>多用户支持 (团队版)</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 立即可用 -->
-        <h2>✅ 已具备能力</h2>
-        <div class="grid">
+            
             <div class="card">
-                <h3>🎉 当前已就绪</h3>
-                <ul>
-                    <li>✅ OpenClaw 框架运行中</li>
-                    <li>✅ OpenRouter API 接入</li>
-                    <li>✅ 飞书机器人已配置</li>
-                    <li>✅ 基础记忆系统 (MEMORY.md)</li>
-                    <li>✅ Web 搜索能力</li>
-                    <li>✅ 文件操作工具</li>
-                    <li>✅ 定时任务 (Cron)</li>
-                    <li>✅ 代码执行环境</li>
-                </ul>
+                <div class="card-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>集体智能涌现</h3>
+                <p>设计目标不是单个超级AI，而是由数百个专业化智能体组成的"蜂群"：
+                    - 每个智能体高度专业化
+                    - 实时协同与知识共享
+                    - 通过竞争进化出最佳策略
+                    - 集体智能超越任何单体</p>
             </div>
+            
             <div class="card">
-                <h3>🔧 待完善</h3>
-                <ul>
-                    <li>⏳ 飞书事件订阅 (需控制台配置)</li>
-                    <li>⏳ 向量数据库部署</li>
-                    <li>⏳ 语音能力集成</li>
-                    <li>⏳ 多通道扩展</li>
-                    <li>⏳ Web Dashboard</li>
-                </ul>
+                <div class="card-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>实时进化系统</h3>
+                <p>框架具备自我迭代能力：
+                    - 每24小时生成新智能体版本
+                    - A/B测试不同架构策略
+                    - 基于反馈自动调整权重
+                    - 永不停止的性能优化</p>
             </div>
         </div>
-
     </div>
 
-    <footer>
-        <p>JARVIS AI Framework Design | Powered by OpenClaw + OpenRouter</p>
-        <p style="margin-top:10px;color:#666;">构建属于你自己的贾维斯 🚀</p>
-    </footer>
+    <!-- 系统架构 -->
+    <div class="container">
+        <h2>🏗️ 系统架构设计</h2>
+        
+        <div class="architecture">
+            <div class="layer" data-layer="接口层 Interface Layer">
+                <h3>🌐 多模态输入/输出</h3>
+                <p>支持文本、语音、图像、视频、传感器数据、实时流等所有输入形式</p>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon"><i class="fas fa-comment-alt"></i></span>
+                        <div>
+                            <h4>实时语音对话</h4>
+                            <p>支持100+语言，延迟<50ms</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon"><i class="fas fa-camera"></i></span>
+                        <div>
+                            <h4>视觉理解</h4>
+                            <p>实时视频分析，物体识别，场景理解</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon"><i class="fas fa-satellite-dish"></i></span>
+                        <div>
+                            <h4>传感器融合</h4>
+                            <p>整合IoT设备，环境感知，物理世界交互</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="layer" data-layer="协调层 Orchestration Layer">
+                <h3>🧭 智能路由与协调</h3>
+                <p>实时分析请求，动态分配任务给最适合的智能体集群</p>
+                <div class="code-block">
+                    <pre><span class="code-comment">// 智能路由算法伪代码</span>
+<span class="code-keyword">async function</span> <span class="code-function">orchestrateRequest</span>(request) {
+    <span class="code-comment">// 1. 实时分析请求类型和复杂度</span>
+    <span class="code-keyword">const</span> analysis = <span class="code-keyword">await</span> analyzeWithAllModels(request);
+    
+    <span class="code-comment">// 2. 并行寻找最佳智能体组合</span>
+    <span class="code-keyword">const</span> candidates = <span class="code-keyword">await</span> findTopAgents(analysis);
+    
+    <span class="code-comment">// 3. 同时启动多个版本比较</span>
+    <span class="code-keyword">const</span> results = <span class="code-keyword">await</span> Promise.all(
+        candidates.map(agent => agent.process(request))
+    );
+    
+    <span class="code-comment">// 4. 实时投票选择最佳结果</span>
+    <span class="code-keyword">return</span> voteAndMerge(results);
+}</pre>
+                </div>
+            </div>
+            
+            <div class="layer" data-layer="执行层 Execution Layer">
+                <h3>⚡ 大规模并行执行</h3>
+                <p>每个请求都会被多个智能体同时处理，比较结果选择最优</p>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon"><i class="fas fa-bolt"></i></span>
+                        <div>
+                            <h4>模型并行</h4>
+                            <p>同时调用GPT-5、Claude-4、Gemini-3等所有顶级模型</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon"><i class="fas fa-people-arrows"></i></span>
+                        <div>
+                            <h4>智能体集群</h4>
+                            <p>100+专业化智能体同时工作，分工协作</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon"><i class="fas fa-exchange-alt"></i></span>
+                        <div>
+                            <h4>实时辩论</h4>
+                            <p>不同智能体就答案进行实时"辩论"，选择最合理方案</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="layer" data-layer="进化层 Evolution Layer">
+                <h3>🔄 持续学习与进化</h3>
+                <p>系统每天自动生成新智能体，通过A/B测试不断优化</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4>00:00 - 数据收集</h4>
+                        <p>收集24小时内所有交互数据，分析成功与失败案例</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4>02:00 - 智能体生成</h4>
+                        <p>使用LLM生成新的智能体变体，尝试不同策略</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4>06:00 - A/B测试</h4>
+                        <p>新智能体与旧版本并行运行，实时比较性能</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4>18:00 - 版本迭代</h4>
+                        <p>根据测试结果，淘汰低效智能体，推广优秀版本</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心技术栈 -->
+    <div class="container">
+        <h2>🛠️ 核心技术栈</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>🤖 模型基础设施</h3>
+                <ul>
+                    <li><strong>所有主流LLM</strong>: GPT-5, Claude-4, Gemini-3, Llama-4等</li>
+                    <li><strong>模型融合</strong>: 实时比较+投票机制</li>
+                    <li><strong>多模态模型</strong>: 视觉、语音、代码全能</li>
+                    <li><strong>小型化部署</strong>: 边缘设备适配版本</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>⚙️ 计算架构</h3>
+                <ul>
+                    <li><strong>分布式调度</strong>: Kubernetes + 自定义调度器</li>
+                    <li><strong>内存数据库</strong>: Redis集群 + 向量数据库</li>
+                    <li><strong>实时流处理</strong>: Apache Flink / Kafka Streams</li>
+                    <li><strong>GPU虚拟化</strong>: 动态分配计算资源</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🔧 开发工具链</h3>
+                <ul>
+                    <li><strong>智能体DSL</strong>: 声明式智能体定义语言</li>
+                    <li><strong>可视化编排</strong>: 拖拽式工作流设计</li>
+                    <li><strong>实时监控</strong>: 每个智能体性能仪表盘</li>
+                    <li><strong>自动测试</strong>: 智能体行为验证框架</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 应用场景 -->
+    <div class="container">
+        <h2>🚀 应用场景与案例</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>💼 企业级应用</h3>
+                <ul>
+                    <li><strong>智能客服</strong>: 多智能体协作，理解复杂问题</li>
+                    <li><strong>数据分析</strong>: 实时洞察，预测性分析</li>
+                    <li><strong>代码生成</strong>: 全栈开发，架构设计</li>
+                    <li><strong>文档处理</strong>: 理解、总结、生成全流程</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🔬 科学研究</h3>
+                <ul>
+                    <li><strong>文献综述</strong>: 快速阅读和分析科学论文</li>
+                    <li><strong>实验设计</strong>: 提出假设，设计实验方案</li>
+                    <li><strong>数据分析</strong>: 复杂统计，可视化呈现</li>
+                    <li><strong>论文写作</strong>: 协助撰写科研论文</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>🎮 个人助手</h3>
+                <ul>
+                    <li><strong>学习伙伴</strong>: 个性化教育，实时答疑</li>
+                    <li><strong>创意协作</strong>: 写作、绘画、音乐创作</li>
+                    <li><strong>健康管理</strong>: 饮食、运动、医疗建议</li>
+                    <li><strong>生活规划</strong>: 日程、财务、旅行规划</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 未来展望 -->
+    <div class="container">
+        <h2>🔭 未来发展与愿景</h2>
+        
+        <div class="card">
+            <h3>📈 短期目标 (1-2年)</h3>
+            <p>建立完整的智能体生态系统，实现：
+                - 1000+专业化智能体
+                - 支持所有主流API服务
+                - 实时多模态交互
+                - 自动化智能体生成</p>
+            
+            <h3>🚀 中期目标 (3-5年)</h3>
+            <p>实现真正的集体智能：
+                - 智能体间形成复杂社会网络
+                - 自主发现和解决问题
+                - 跨领域知识迁移
+                - 创造性思维涌现</p>
+            
+            <h3>🌌 长期愿景 (5-10年)</h3>
+            <p>构建通用人工智能基础设施：
+                - 成为AI时代的"操作系统"
+                - 支持任何AI应用的快速构建
+                - 实现人类与AI的深度协作
+                - 推动科学发现和技术创新</p>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="container" style="text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid var(--border);">
+        <p>Horizon AI Framework - 一个思想实验：如果资源无限，AI系统可以如何设计</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            这是一个概念设计，展示了在理想条件下的AI框架可能性
+        </p>
+        <p style="margin-top: 20px;">
+            <i class="fas fa-code" style="margin-right: 10px;"></i>
+            设计理念：集体智能 > 单体智能 | 实时进化 > 静态优化
+        </p>
+    </div>
+
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 卡片悬停效果增强
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+            
+            // 滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察所有卡片和层
+            document.querySelectorAll('.card, .layer').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
+            });
+            
+            // 更新实时数据
+            function updateRealTimeData() {
+                const stats = document.querySelectorAll('.stat-number');
+                if (stats[0]) {
+                    // 模拟实时数据变化
+                    const requests = Math.floor(Math.random() * 10000) + 50000;
+                    stats[0].textContent = requests.toLocaleString();
+                }
+            }
+            
+            // 每10秒更新一次数据
+            setInterval(updateRealTimeData, 10000);
+        });
+    </script>
 </body>
 </html>
