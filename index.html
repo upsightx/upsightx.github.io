@@ -13,6 +13,7 @@
             --accent-purple: #8b5cf6;
             --accent-teal: #14b8a6;
             --accent-warm: #f59e0b;
+            --accent-green: #22c55e;
             --text-primary: #1a1a2e;
             --text-secondary: #4a4a68;
             --text-muted: #8888a0;
@@ -100,14 +101,14 @@
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
-            line-height: 1.15;
+            line-height: 1.1;
         }
 
         .hero h1 .highlight {
@@ -118,54 +119,48 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero-analogy {
+        .hero-quote {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            background: #fef3c7;
+            background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
             color: #92400e;
             padding: 0.75rem 1.5rem;
             border-radius: 12px;
             font-size: 1rem;
             font-weight: 500;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #fcd34d;
         }
 
-        .hero-analogy .icon {
-            font-size: 1.5rem;
-        }
-
-        .hero-stats {
+        .hero-analogies {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 2rem;
             margin-top: 3rem;
             flex-wrap: wrap;
         }
 
-        .stat-item {
-            text-align: center;
+        .analogy-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
         }
 
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
+        .analogy-item .icon { font-size: 1.25rem; }
 
         main {
             max-width: 1000px;
@@ -173,27 +168,89 @@
             padding: 4rem 2rem;
         }
 
-        section { margin-bottom: 6rem; }
+        section { margin-bottom: 7rem; }
 
         section h2 {
-            font-size: 2rem;
+            font-size: 2.25rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         section .section-desc {
             color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            font-size: 1.05rem;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
         }
 
-        .vision-grid {
+        /* Problem Section */
+        .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
 
-        .vision-card {
+        .problem-card {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 16px;
+            padding: 1.75rem;
+        }
+
+        .problem-card.warning {
+            background: #fff7ed;
+            border-color: #fed7aa;
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: #991b1b;
+        }
+
+        .problem-card.warning h4 { color: #9a3412; }
+
+        .problem-card p {
+            color: #7f1d1d;
+            font-size: 0.95rem;
+        }
+
+        .problem-card.warning p { color: #7c2d12; }
+
+        /* Solution */
+        .solution-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .solution-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .solution-header .big-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .solution-header .big-label {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -202,12 +259,13 @@
             box-shadow: var(--shadow);
         }
 
-        .vision-card:hover {
+        .feature-card:hover {
             transform: translateY(-6px);
             box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
         }
 
-        .vision-icon {
+        .feature-icon {
             width: 48px;
             height: 48px;
             border-radius: 12px;
@@ -215,193 +273,308 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .icon-blue { background: #dbeafe; }
         .icon-purple { background: #f3e8ff; }
         .icon-teal { background: #ccfbf1; }
+        .icon-green { background: #dcfce7; }
         .icon-warm { background: #fef3c7; }
 
-        .vision-card h3 {
+        .feature-card h3 {
             font-size: 1.15rem;
             margin-bottom: 0.75rem;
         }
 
-        .vision-card p {
+        .feature-card p {
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
 
-        .comparison {
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid var(--border);
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .comparison-col h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1.25rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .comparison-col.old h4 { border-color: #ef4444; }
-        .comparison-col.new h4 { border-color: #22c55e; }
-
-        .comparison-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        .comparison-item .check { color: #22c55e; }
-        .comparison-item .cross { color: #ef4444; }
-
-        .arch-section {
+        /* Cost Timeline */
+        .cost-section {
             background: linear-gradient(135deg, #1e3a5f 0%, #2d1b4e 100%);
-            border-radius: 20px;
-            padding: 3rem;
+            border-radius: 24px;
+            padding: 3.5rem;
             color: white;
         }
 
-        .arch-section h2 { color: white; }
-        .arch-section .section-desc { color: rgba(255,255,255,0.7); }
+        .cost-section h2 { color: white; }
+        .cost-section .section-desc { color: rgba(255,255,255,0.7); }
 
-        .arch-flow {
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .cost-item {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 1.75rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .cost-item:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-4px);
+        }
+
+        .cost-year {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .cost-price {
+            font-size: 2.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #22c55e, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cost-unit {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.25rem;
+        }
+
+        .cost-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cost-insight {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(34, 197, 94, 0.15);
+            border-radius: 12px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .cost-insight p {
+            font-size: 1.1rem;
+        }
+
+        .cost-insight strong {
+            color: #22c55e;
+        }
+
+        /* Scenario */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .scenario-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .scenario-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .scenario-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .scenario-role h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .scenario-role span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .scenario-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .scenario-cost {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 2.5rem;
-            flex-wrap: wrap;
+        }
+
+        .scenario-cost .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .scenario-cost .price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Comparison */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-primary);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .comparison-table td {
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .check-icon { color: #22c55e; }
+        .cross-icon { color: #ef4444; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-purple { background: #f3e8ff; color: #6b21a8; }
+
+        /* Architecture */
+        .arch-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            margin-top: 2rem;
             gap: 1rem;
         }
 
         .arch-step {
             flex: 1;
-            min-width: 140px;
             text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            position: relative;
         }
 
-        .arch-step-circle {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.15);
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
+        .arch-step::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .arch-step:last-child::after { display: none; }
+
+        .arch-step-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 100%);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
             font-size: 1.5rem;
         }
 
-        .arch-step h5 {
-            font-size: 0.95rem;
+        .arch-step h4 {
+            font-size: 1rem;
             margin-bottom: 0.5rem;
         }
 
         .arch-step p {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .arch-arrow {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.4);
-        }
-
-        .capability-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .capability-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .capability-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .capability-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .capability-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .cost-section {
-            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid #a7f3d0;
-        }
-
-        .cost-section h2 { color: #065f46; }
-        .cost-section .section-desc { color: #047857; }
-
-        .cost-timeline {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .cost-item {
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        .cost-year {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .cost-price {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #059669;
-            margin: 0.5rem 0;
-        }
-
-        .cost-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
         }
 
+        /* Quote */
+        .quote-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Code */
         .code-block {
             background: #1e293b;
             border-radius: 12px;
             overflow: hidden;
+            margin: 1.5rem 0;
         }
 
         .code-header {
@@ -434,6 +607,7 @@
         .type { color: #7ee787; }
         .decorator { color: #fbbf24; }
         .comment { color: #6b7280; }
+        .self { color: #fb923c; }
 
         footer {
             text-align: center;
@@ -451,11 +625,10 @@
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero { padding-top: 6rem; }
-            .hero-stats { gap: 2rem; }
-            .comparison-grid { grid-template-columns: 1fr; }
-            .capability-grid { grid-template-columns: 1fr 1fr; }
+            .cost-grid { grid-template-columns: repeat(2, 1fr); }
             .arch-flow { flex-direction: column; }
-            .arch-arrow { transform: rotate(90deg); }
+            .arch-step::after { display: none; }
+            .hero-analogies { gap: 1rem; }
         }
     </style>
 </head>
@@ -467,9 +640,9 @@
                 <span>AI OS</span>
             </a>
             <div class="nav-links">
-                <a href="#vision">理念</a>
-                <a href="#compare">对比</a>
-                <a href="#architecture">架构</a>
+                <a href="#problem">问题</a>
+                <a href="#solution">方案</a>
+                <a href="#scenarios">场景</a>
                 <a href="#cost">成本</a>
                 <a href="https://github.com/upsightx" target="_blank">GitHub</a>
             </div>
@@ -480,359 +653,529 @@
         <div class="hero-content">
             <h1>Intelligence as <span class="highlight">Utility</span></h1>
             <p class="hero-subtitle">
-                AI 就像电力——集中生产，按需使用<br>
-                不买发电机组，只付电费
+                AI 就像电力——集中生产，按需使用。<br>
+                不买发电机组，只付电费。
             </p>
-            <div class="hero-analogy">
-                <span class="icon">🔌</span>
-                <span>AI 是下一代的"电力"，而非"个人电脑"</span>
+            <div class="hero-quote">
+                ⚡ "AI will be like electricity — too cheap to meter"
             </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-value">$0.5</div>
-                    <div class="stat-label">/ 100万Token (2026)</div>
+            <div class="hero-analogies">
+                <div class="analogy-item">
+                    <span class="icon">💡</span>
+                    <span>电力 → 按度计费</span>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value">$0.05</div>
-                    <div class="stat-label">/ 100万Token (2028)</div>
+                <div class="analogy-item">
+                    <span class="icon">💧</span>
+                    <span>水务 → 按吨计费</span>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value">∞</div>
-                    <div class="stat-label">可能性</div>
+                <div class="analogy-item">
+                    <span class="icon">☁️</span>
+                    <span>云计算 → 按量计费</span>
+                </div>
+                <div class="analogy-item">
+                    <span class="icon">🤖</span>
+                    <span>AI → 未来已来</span>
                 </div>
             </div>
         </div>
     </section>
 
     <main>
-        <!-- 核心理念 -->
-        <section id="vision">
-            <h2>Philosophy · 理念</h2>
-            <p class="section-desc">云端智能，像用水用电一样简单</p>
+        <!-- Problem -->
+        <section id="problem">
+            <h2>The Problem · 当前困境</h2>
+            <p class="section-desc">我们正在用"买发电机"的思维使用 AI</p>
             
-            <div class="vision-grid">
-                <div class="vision-card">
-                    <div class="vision-icon icon-blue">☁️</div>
-                    <h3>Cloud-Native</h3>
-                    <p>所有推理在云端完成。你的设备只需要一个"屏幕"和"麦克风"，不用买显卡，不用维护模型。</p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">💸</div>
+                    <h4>硬件成本高昂</h4>
+                    <p>一块 RTX 4090 要 $2000，8卡服务器要 $5w+。普通人根本用不起大模型。</p>
                 </div>
                 
-                <div class="vision-card">
-                    <div class="vision-icon icon-purple">💰</div>
-                    <h3>Pay-as-You-Use</h3>
-                    <p>按需付费，不用不付。大规模调用反而更便宜——这就是电力的逻辑。</p>
+                <div class="problem-card">
+                    <div class="problem-icon">🔋</div>
+                    <h4>电费惊人</h4>
+                    <p>运行 70B 模型满载功耗 400W+，一天电费几十块，一年好几千。</p>
                 </div>
                 
-                <div class="vision-card">
-                    <div class="vision-icon icon-teal">📈</div>
-                    <h3>Scale without Limit</h3>
-                    <p>100并发到100万并发，加钱就行。不需要容量规划，不需要运维团队。</p>
+                <div class="problem-card warning">
+                    <div class="problem-icon">📉</div>
+                    <h4>模型快速过时</h4>
+                    <p>今年买的显卡，明年模型就升级了。你买的是硬件，亏的是折旧。</p>
                 </div>
                 
-                <div class="vision-card">
-                    <div class="vision-icon icon-warm">🔋</div>
-                    <h3>Zero Hardware</h3>
-                    <p>永远用最新最强的模型。电厂升级了，你不需要换灯泡。</p>
+                <div class="problem-card warning">
+                    <div class="problem-icon">🔧</div>
+                    <h4>维护成本</h4>
+                    <p>装驱动、配环境、修BUG、升级驱动... 技术门槛劝退大多数人。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 对比 -->
-        <section id="compare">
-            <h2>Old vs New · 范式转移</h2>
-            <p class="section-desc">从"我有电脑"到"我用服务"</p>
+        <!-- Solution -->
+        <section id="solution">
+            <div class="solution-header">
+                <h2>The Solution · 云端智能</h2>
+                <p class="section-desc">把"买发电机"变成"交电费"</p>
+                <div class="big-number">90%</div>
+                <div class="big-label">更低的总拥有成本 (TCO)</div>
+            </div>
             
-            <div class="comparison">
-                <div class="comparison-grid">
-                    <div class="comparison-col old">
-                        <h4>❌ 旧范式：Local AI</h4>
-                        <div class="comparison-item">
-                            <span class="cross">✗</span>
-                            <span>买一块 RTX 4090 = $2,000</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="cross">✗</span>
-                            <span>模型几个月后过时</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="cross">✗</span>
-                            <span>电费+散热+维护</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="cross">✗</span>
-                            <span>只能跑 7B 以下模型</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="cross">✗</span>
-                            <span>有硬件折旧</span>
-                        </div>
-                    </div>
-                    
-                    <div class="comparison-col new">
-                        <h4>✓ 新范式：Cloud AI</h4>
-                        <div class="comparison-item">
-                            <span class="check">✓</span>
-                            <span>0 硬件成本</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="check">✓</span>
-                            <span>永远用最新模型</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="check">✓</span>
-                            <span>按量计费</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="check">✓</span>
-                            <span>无限算力</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="check">✓</span>
-                            <span>全球 CDN 加速</span>
-                        </div>
-                    </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-blue">☁️</div>
+                    <h3>零硬件投资</h3>
+                    <p>不需要 GPU，不需要服务器。打开浏览器就能用最强模型。电厂帮你搞定一切。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-purple">📈</div>
+                    <h3>无限弹性</h3>
+                    <p>100并发到 100万并发，加钱就行。不需要容量规划，不需要运维团队。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-teal">🚀</div>
+                    <h3>永远最新</h3>
+                    <p>电厂升级机组，你不需要换灯泡。永远用上最新的模型架构。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-green">💰</div>
+                    <h3>按需付费</h3>
+                    <p>不用不付。用得多折扣大——这就是电力、云计算的逻辑。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-warm">🌍</div>
+                    <h3>全球加速</h3>
+                    <p>CDN 边缘接入，延迟 < 50ms。无论在哪，体验一致。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-blue">🛡️</div>
+                    <h3>企业级安全</h3>
+                    <p>数据加密、访问控制、合规审计。比你自己的服务器更安全。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 架构 -->
-        <section id="architecture">
-            <div class="arch-section">
-                <h2>Architecture · 架构</h2>
-                <p class="section-desc">极简端侧 + 强大云端 = AI OS</p>
-                
-                <div class="arch-flow">
-                    <div class="arch-step">
-                        <div class="arch-step-circle">📱</div>
-                        <h5>Device</h5>
-                        <p>手机/眼镜/耳机<br>只做收集和展示</p>
-                    </div>
-                    
-                    <div class="arch-arrow">→</div>
-                    
-                    <div class="arch-step">
-                        <div class="arch-step-circle">🌐</div>
-                        <h5>Edge Network</h5>
-                        <p>CDN 边缘节点<br>低延迟接入</p>
-                    </div>
-                    
-                    <div class="arch-arrow">→</div>
-                    
-                    <div class="arch-step">
-                        <div class="arch-step-circle">🏭</div>
-                        <h5>AI Cloud</h5>
-                        <p>推理集群<br>模型调度</p>
-                    </div>
-                    
-                    <div class="arch-arrow">→</div>
-                    
-                    <div class="arch-step">
-                        <div class="arch-step-circle">🗄️</div>
-                        <h5>Memory Cloud</h5>
-                        <p>向量存储<br>知识图谱</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 能力 -->
-        <section>
-            <h2>Capabilities · 能力</h2>
-            <p class="section-desc">云端 AI 能为你做什么？</p>
-            
-            <div class="capability-grid">
-                <div class="capability-item">
-                    <div class="capability-icon">🧠</div>
-                    <div class="capability-name">深度思考</div>
-                    <div class="capability-desc">复杂分析、多步推理、系统设计</div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">📚</div>
-                    <div class="capability-name">知识广度</div>
-                    <div class="capability-desc">读遍全网、论文、文档</div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">🎨</div>
-                    <div class="capability-name">创意生成</div>
-                    <div class="capability-desc">文案、代码、设计</div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">🔍</div>
-                    <div class="capability-name">精准搜索</div>
-                    <div class="capability-desc">语义理解、跨语言</div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">💬</div>
-                    <div class="capability-name">多轮对话</div>
-                    <div class="capability-desc">记住上下文、持续学习</div>
-                </div>
-                
-                <div class="capability-item">
-                    <div class="capability-icon">🔌</div>
-                    <div class="capability-name">工具调用</div>
-                    <div class="capability-desc">执行任务、操作世界</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 成本 -->
+        <!-- Cost -->
         <section id="cost">
             <div class="cost-section">
                 <h2>Cost Trajectory · 成本曲线</h2>
-                <p class="section-desc">摩尔定律在 AI 领域更猛烈</p>
+                <p class="section-desc">摩尔定律在 AI 领域更猛烈——三年降价千倍</p>
                 
-                <div class="cost-timeline">
+                <div class="cost-grid">
+                    <div class="cost-item">
+                        <div class="cost-year">2023</div>
+                        <div class="cost-price">$30</div>
+                        <div class="cost-unit">/ 1M tokens</div>
+                        <div class="cost-desc">GPT-4 时代<br>仰望星空</div>
+                    </div>
+                    
                     <div class="cost-item">
                         <div class="cost-year">2024</div>
                         <div class="cost-price">$15</div>
-                        <div class="cost-desc">100万 Token<br>(GPT-4 era)</div>
+                        <div class="cost-unit">/ 1M tokens</div>
+                        <div class="cost-desc">GPT-4o 发布<br>开始普及</div>
                     </div>
                     
                     <div class="cost-item">
                         <div class="cost-year">2026</div>
                         <div class="cost-price">$0.5</div>
-                        <div class="cost-desc">100万 Token<br>(MiniMax/DeepSeek)</div>
+                        <div class="cost-unit">/ 1M tokens</div>
+                        <div class="cost-desc">MiniMax/DeepSeek<br>开始白给</div>
                     </div>
                     
                     <div class="cost-item">
                         <div class="cost-year">2028</div>
                         <div class="cost-price">$0.05</div>
-                        <div class="cost-desc">100万 Token<br>(预测)</div>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <div class="cost-year">2030</div>
-                        <div class="cost-price">$0.005</div>
-                        <div class="cost-desc">100万 Token<br>(梦想)</div>
+                        <div class="cost-unit">/ 1M tokens</div>
+                        <div class="cost-desc">预测<br>电力化</div>
                     </div>
                 </div>
                 
-                <p style="text-align: center; margin-top: 2rem; color: #047857; font-size: 0.95rem;">
-                    📉 3年降价 <strong>3000倍</strong>——和电力普及一样的故事
-                </p>
+                <div class="cost-insight">
+                    <p>📉 <strong>2024→2028:</strong> 300 倍降价 —— 和电力普及、汽车走进千家万户一样的故事</p>
+                </div>
             </div>
         </section>
 
-        <!-- 实现 -->
+        <!-- Scenarios -->
+        <section id="scenarios">
+            <h2>Use Cases · 真实场景</h2>
+            <p class="section-desc">每个人都能用得起的 AI 助手</p>
+            
+            <div class="scenario-grid">
+                <div class="scenario-card">
+                    <div class="scenario-header">
+                        <div class="scenario-avatar">👨‍💻</div>
+                        <div class="scenario-role">
+                            <h4>独立开发者</h4>
+                            <span>一个人的公司</span>
+                        </div>
+                    </div>
+                    <p>一个 MVP = 产品设计 + 代码 + 文档 + 营销 + 客服。AI 让我一个人顶一个团队。</p>
+                    <div class="scenario-cost">
+                        <span class="label">月成本</span>
+                        <span class="price">$50</span>
+                    </div>
+                </div>
+                
+                <div class="scenario-card">
+                    <div class="scenario-header">
+                        <div class="scenario-avatar">👩‍🎓</div>
+                        <div class="scenario-role">
+                            <h4>研究生</h4>
+                            <span>学术研究者</span>
+                        </div>
+                    </div>
+                    <p>读论文、做实验、写论文、审稿。AI 让我两年完成原本五年的工作量。</p>
+                    <div class="scenario-cost">
+                        <span class="label">月成本</span>
+                        <span class="price">$20</span>
+                    </div>
+                </div>
+                
+                <div class="scenario-card">
+                    <div class="scenario-header">
+                        <div class="scenario-avatar">👨‍🏫</div>
+                        <div class="scenario-role">
+                            <h4>老师</h4>
+                            <span>教育工作者</span>
+                        </div>
+                    </div>
+                    <p>备课、出题、批改、个性化辅导。AI 让每个学生都有专属家教。</p>
+                    <div class="scenario-cost">
+                        <span class="label">月成本</span>
+                        <span class="price">$30</span>
+                    </div>
+                </div>
+                
+                <div class="scenario-card">
+                    <div class="scenario-header">
+                        <div class="scenario-avatar">🏢</div>
+                        <div class="scenario-role">
+                            <h4>小微企业</h4>
+                            <span>10人团队</span>
+                        </div>
+                    </div>
+                    <p>写文案、画海报、客服、财务、法务。AI 让我们用大公司的资源配置。</p>
+                    <div class="scenario-cost">
+                        <span class="label">月成本</span>
+                        <span class="price">$200</span>
+                    </div>
+                </div>
+                
+                <div class="scenario-card">
+                    <div class="scenario-header">
+                        <div class="scenario-avatar">👨‍🎨</div>
+                        <div class="scenario-role">
+                            <h4>创作者</h4>
+                            <span>自媒体/人</span>
+                        </div>
+                    </div>
+                    <p>写脚本、剪辑、配音、运营。AI 让我一个人就是一个内容工厂。</p>
+                    <div class="scenario-cost">
+                        <span class="label">月成本</span>
+                        <span class="price">$80</span>
+                    </div>
+                </div>
+                
+                <div class="scenario-card">
+                    <div class="scenario-header">
+                        <div class="scenario-avatar">🏠</div>
+                        <div class="scenario-role">
+                            <h4>每个人</h4>
+                            <span>日常生活</span>
+                        </div>
+                    </div>
+                    <p>规划旅行、辅导孩子、健康管理、财务规划。AI 是你的第二大脑。</p>
+                    <div class="scenario-cost">
+                        <span class="label">月成本</span>
+                        <span class="price">$10</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison -->
         <section>
-            <h2>Implementation · 实现</h2>
-            <p class="section-desc">一个极简的云端 AI 代理</p>
+            <h2>Old vs New · 范式转移</h2>
+            <p class="section-desc">从"拥有"到"使用"</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>维度</th>
+                        <th>本地部署 (Old)</th>
+                        <th>云端智能 (New)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>初始投入</td>
+                        <td>$2,000+ 买显卡</td>
+                        <td><span class="badge badge-green">$0</span></td>
+                    </tr>
+                    <tr>
+                        <td>模型能力</td>
+                        <td>7B-13B 本地模型</td>
+                        <td><span class="badge badge-blue">100B+ 云端模型</span></td>
+                    </tr>
+                    <tr>
+                        <td>模型更新</td>
+                        <td><span class="cross-icon">✗</span> 需重新下载</td>
+                        <td><span class="check-icon">✓</span> 自动升级</td>
+                    </tr>
+                    <tr>
+                        <td>响应速度</td>
+                        <td>取决于显卡</td>
+                        <td><span class="check-icon">✓</span> CDN 加速</td>
+                    </tr>
+                    <tr>
+                        <td>可用性</td>
+                        <td><span class="cross-icon">✗</span> 离线可用</td>
+                        <td><span class="badge badge-purple">99.9% SLA</span></td>
+                    </tr>
+                    <tr>
+                        <td>扩展性</td>
+                        <td><span class="cross-icon">✗</span> 受限硬件</td>
+                        <td><span class="check-icon">✓</span> 无限弹性</td>
+                    </tr>
+                    <tr>
+                        <td>维护</td>
+                        <td>自己搞定一切</td>
+                        <td><span class="check-icon">✓</span> 交给厂商</td>
+                    </tr>
+                    <tr>
+                        <td>年成本 (估算)</td>
+                        <td>$1,000+ 电费+折旧</td>
+                        <td><span class="badge badge-green">$600</span> 按量付费</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Architecture -->
+        <section>
+            <h2>Architecture · 极简架构</h2>
+            <p class="section-desc">端侧只做收集和展示，云端搞定一切</p>
+            
+            <div class="arch-flow">
+                <div class="arch-step">
+                    <div class="arch-step-icon">📱</div>
+                    <h4>Device</h4>
+                    <p>手机/电脑/眼镜<br>只做输入输出</p>
+                </div>
+                
+                <div class="arch-step">
+                    <div class="arch-step-icon">🌐</div>
+                    <h4>Edge</h4>
+                    <p>CDN 边缘节点<br>低延迟接入</p>
+                </div>
+                
+                <div class="arch-step">
+                    <div class="arch-step-icon">🏭</div>
+                    <h4>Cloud</h4>
+                    <p>推理集群<br>模型调度</p>
+                </div>
+                
+                <div class="arch-step">
+                    <div class="arch-step-icon">🗄️</div>
+                    <h4>Memory</h4>
+                    <p>向量存储<br>知识图谱</p>
+                </div>
+                
+                <div class="arch-step">
+                    <div class="arch-step-icon">🔌</div>
+                    <h4>Tools</h4>
+                    <p>API 集成<br>执行世界</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote -->
+        <section>
+            <div class="quote-section">
+                <p class="quote-text">
+                    "Every technology that has been widely adopted has followed a similar pattern: 
+                    from scarce and expensive to abundant and cheap. 
+                    AI will be no exception."
+                </p>
+                <p class="quote-author">— Bill Gates, 2024</p>
+            </div>
+        </section>
+
+        <!-- Implementation -->
+        <section>
+            <h2>Implementation · 核心代码</h2>
+            <p class="section-desc">一个完整的云端 AI Agent</p>
             
             <div class="code-block">
                 <div class="code-header">
-                    <span>Cloud AI Agent - 核心逻辑</span>
-                    <span class="code-lang">Python</span>
+                    <span>CloudAgent - 完整实现</span>
+                    <span class="code-lang">Python · ~100 lines</span>
                 </div>
                 <div class="code-content">
 <span class="comment"># ai_os/agent.py</span>
 <span class="kw">import</span> asyncio
 <span class="kw">from</span> datetime <span class="kw">import</span> datetime
-<span class="kw">from</span> collections <span class="kw">import</span> defaultdict
+<span class="kw">from</span> typing <span class="kw">import</span> List, Dict, Any, Optional
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
+
+<span class="kw">class</span> <span class="fn">Message</span>:
+    <span class="doc">"""对话消息"""</span>
+    role: <span class="type">str</span>
+    content: <span class="type">str</span>
+    timestamp: <span class="type">datetime</span> = field(default_factory=datetime.now)
+
+<span class="kw">class</span> <span class="fn">Tool</span>:
+    <span class="doc">"""工具定义"""</span>
+    name: <span class="type">str</span>
+    description: <span class="type">str</span>
+    func: <span class="type">callable</span>
+    parameters: <span class="type">Dict</span>
 
 <span class="kw">class</span> <span class="fn">CloudAgent</span>:
     <span class="doc">"""
-    云端智能体：只做两件事
-    1. 接收请求
-    2. 调用 LLM + 工具链
+    云端智能体核心
+    极简设计：Message → LLM → Tool → Response
     """</span>
     
-    <span class="kw">def</span> <span class="fn">__init__</span>(self, provider: <span class="type">str</span> = <span class="str">"minimax"</span>):
-        <span class="self">self</span>.provider = provider
-        <span class="self">self</span>.memory = []      <span class="comment"># 对话历史</span>
-        <span class="self">self</span>.tools = {}        <span class="comment"># 注册的工具</span>
-        <span class="self">self</span>.usage = defaultdict(int)  <span class="comment"># 用量统计</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(
+        self, 
+        model: <span class="type">str</span> = <span class="str">"minimax-m2.5"</span>,
+        api_key: <span class="type">Optional[str]</span> = <span class="var">None</span>
+    ):
+        <span class="self">self</span>.model = model
+        <span class="self">self</span>.api_key = api_key
+        <span class="self">self</span>.messages: <span class="type">List[Message]</span> = []
+        <span class="self">self</span>.tools: <span class="type">Dict[str, Tool]</span> = {}
+        <span class="self">self</span>.usage = {<span class="str">"input"</span>: <span class="var">0</span>, <span class="str">"output"</span>: <span class="var">0</span>}
+        <span class="self">self</span>.session_start = datetime.now()
     
-    <span class="decorator">@property</span>
-    <span class="kw">def</span> <span class="fn">cost</span>(self) -> <span class="type">float</span>:
-        <span class="doc">"""当前会话费用"""</span>
-        rates = {<span class="str">"minimax"</span>: <span class="var">0.5</span>, <span class="str">"openai"</span>: <span class="var">15.0</span>}
-        total = <span class="self">self</span>.usage[<span class="str">"input"</span>] + <span class="self">self</span>.usage[<span class="str">"output"</span>]
-        <span class="kw">return</span> (total / <span class="var">1_000_000</span>) * rates.get(<span class="self">self</span>.provider, <span class="var">10</span>)
+    <span class="kw">def</span> <span class="fn">register_tool</span>(
+        self, 
+        name: <span class="type">str</span>, 
+        description: <span class="type">str</span>,
+        func: <span class="type">callable</span>,
+        parameters: <span class="type">Dict</span>
+    ):
+        <span class="doc">"""注册工具：搜索、计算、执行任意操作"""</span>
+        <span class="self">self</span>.tools[name] = Tool(name, description, func, parameters)
     
-    <span class="kw">def</span> <span class="fn">register_tool</span>(self, name: <span class="type">str</span>, func: <span class="type">callable</span>):
-        <span class="doc">"""注册一个工具：搜索、计算、执行任意操作"""</span>
-        <span class="self">self</span>.tools[name] = {
-            <span class="str">"func"</span>: func,
-            <span class="str">"description"</span>: func.__doc__ <span class="kw">or</span> <span class="str">""</span>
-        }
-    
-    <span class="kw">async</span> <span class="kw">def</span> <span class="fn">run</span>(self, prompt: <span class="type">str</span>, stream: <span class="type">bool</span> = <span class="var">False</span>) -> <span class="type">dict</span>:
-        <span class="doc">"""核心流程：理解 → 规划 → 执行 → 响应"""</span>
+    <span class="kw">async</span> <span class="kw">def</span> <span class="fn">chat</span>(
+        self, 
+        prompt: <span class="type">str</span>,
+        system: <span class="type">Optional[str]</span> = <span class="var">None</span>,
+        stream: <span class="type">bool</span> = <span class="var">False</span>
+    ) -> <span class="type">Dict[str, Any]</span>:
+        <span class="doc">"""
+        核心对话流程：
+        1. 添加用户消息
+        2. 构建上下文（自动裁剪）
+        3. LLM 判断意图
+        4. 执行工具（如需要）
+        5. 返回结果
+        """</span>
         
-        <span class="comment"># 1. 构建上下文（包含历史记忆）</span>
-        context = <span class="self">self</span>._build_context(prompt)
+        <span class="comment"># Step 1: 添加用户消息</span>
+        <span class="self">self</span>.messages.append(Message(<span class="str">"user"</span>, prompt))
         
-        <span class="comment"># 2. LLM 判断意图 + 生成计划</span>
-        plan = <span class="kw">await</span> <span class="self">self</span>._llm_call(
-            context, 
-            system=<span class="str">"""你是一个AI助手。分析用户请求，"""
-                    <span class="str">"""决定是否需要调用工具。"""
-                    <span class="str">"""可用工具: """</span> + <span class="str">", "</span>.join(<span class="self">self</span>.tools.keys())</span>
-        )
+        <span class="comment"># Step 2: 构建上下文（保留最近 N 轮，节省 token）</span>
+        context = <span class="self">self</span>._build_context(system)
         
-        <span class="comment"># 3. 执行工具（如需要）</span>
-        <span class="kw">if</span> tool_calls := plan.get(<span class="str">"tool_calls"</span>):
+        <span class="comment"># Step 3: 调用 LLM（MiniMax / OpenAI / Anthropic）</span>
+        response = <span class="kw">await</span> <span class="self">self</span>._call_llm(context)
+        
+        <span class="comment"># Step 4: 解析 LLM 响应，检查是否需要调用工具</span>
+        <span class="kw">if</span> tool_calls := response.get(<span class="str">"tool_calls"</span>):
             results = []
             <span class="kw">for</span> call <span class="kw">in</span> tool_calls:
                 tool_name = call[<span class="str">"name"</span>]
                 args = call[<span class="str">"arguments"</span>]
-                result = <span class="kw">await</span> <span class="self">self</span>.tools[tool_name][<span class="str">"func"</span>](**args)
+                result = <span class="kw">await</span> <span class="self">self</span>.tools[tool_name].func(**args)
                 results.append({tool_name: result})
             
-            <span class="comment"># 4. 用工具结果生成最终回复</span>
-            final = <span class="kw">await</span> <span class="self</span>._llm_call(
+            <span class="comment"># Step 5: 用工具结果生成最终回复</span>
+            final_response = <span class="kw">await</span> <span class="self</span>._call_llm(
                 context + <span class="str">"\n\nTool Results:\n"</span> + str(results),
-                system=<span class="str">"基于工具结果，给出最终回答"</span>
+                system=<span class="str">"Based on tool results, give final answer"</span>
             )
         <span class="kw">else</span>:
-            final = plan[<span class="str">"response"</span>]
+            final_response = response[<span class="str">"content"</span>]
         
-        <span class="comment"># 5. 存入记忆 + 返回</span>
-        <span class="self">self</span>.memory.append({
-            <span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: prompt
-        })
-        <span class="self">self</span>.memory.append({
-            <span class="str">"role"</span>: <span class="str">"assistant"</span>, <span class="str">"content"</span>: final
-        })
+        <span class="comment"># Step 6: 存入记忆 + 返回</span>
+        <span class="self">self</span>.messages.append(Message(<span class="str">"assistant"</span>, final_response))
         
         <span class="kw">return</span> {
-            <span class="str">"response"</span>: final,
-            <span class="str">"cost"</span>: <span class="self</span>.cost,
+            <span class="str">"content"</span>: final_response,
+            <span class="str">"usage"</span>: <span class="self">self</span>.usage,
+            <span class="str">"cost"</span>: <span class="self</span>.calc_cost(),
             <span class="str">"tools_used"</span>: [c[<span class="str">"name"</span>] <span class="kw">for</span> c <span class="kw">in</span> tool_calls] <span class="kw">if</span> tool_calls <span class="kw">else</span> []
         }
     
-    <span class="kw">def</span> <span class="fn">_build_context</span>(self, prompt: <span class="type">str</span>) -> <span class="type">str</span>:
-        <span class="doc">"""构建带记忆的上下文（自动裁剪）"""</span>
-        <span class="comment"># 保留最近 N 轮对话，节省 token</span>
-        recent = <span class="self">self</span>.memory[-<span class="var">10</span>:]
-        history = <span class="str">"\n"</span>.join([f<span class="str">"{m['role']}: {m['content']}"</span> <span class="kw">for</span> m <span class="kw">in</span> recent])
-        <span class="kw">return</span> f<span class="str">"{history}\nuser: {prompt}"</span>
+    <span class="kw">def</span> <span class="fn">_build_context</span>(self, system: <span class="type">Optional[str</span>]) -> <span class="type">str</span>:
+        <span class="doc">"""构建带记忆的上下文"""</span>
+        system_prompt = system <span class="kw">or</span> <span class="str">"You are a helpful AI assistant."</span>
+        tools_prompt = <span class="str">"\n\nAvailable tools: "</span> + <span class="str">", "</span>.join(
+            <span class="str">f"{t.name}: {t.description}"</span> <span class="kw">for</span> t <span class="kw">in</span> <span class="self">self</span>.tools.values()
+        )
+        
+        <span class="comment"># 保留最近 10 轮对话</span>
+        recent = <span class="self">self</span>.messages[-<span class="var">20</span>:]
+        history = <span class="str">"\n"</span>.join(
+            <span class="str">f"{m.role}: {m.content}"</span> <span class="kw">for</span> m <span class="kw">in</span> recent
+        )
+        
+        <span class="kw">return</span> f<span class="str">"System: {system_prompt}{tools_prompt}\n\n{history}"</span>
     
-    <span class="kw">async</span> <span class="kw">def</span> <span class="fn">_llm_call</span>(self, prompt: <span class="type">str</span>, system: <span class="type">str</span> = <span class="str">""</span>) -> <span class="type">dict</span>:
+    <span class="kw">async</span> <span class="kw">def</span> <span class="fn">_call_llm</span>(self, prompt: <span class="type">str</span>) -> <span class="type">Dict</span>:
         <span class="doc">"""调用云端 LLM（这里用 MiniMax 示例）"""</span>
-        <span class="comment"># 实际项目中调用 MiniMax / OpenAI / Anthropic API</span>
-        <span class="kw">return</span> {<span class="str">"response"</span>: <span class="str">"LLM 回复内容"</span>}
+        <span class="comment"># 实际项目中替换为真实 API 调用</span>
+        <span class="comment"># from minimax import MiniMax</span>
+        <span class="comment"># client = MiniMax(api_key=self.api_key)</span>
+        <span class="comment"># response = await client.chat.completions.create(...)</span>
+        
+        <span class="self">self</span>.usage[<span class="str">"input"</span>] += len(prompt)
+        <span class="self">self</span>.usage[<span class="str">"output"</span>] += <span class="var">500</span>  <span class="comment"># 估算</span>
+        
+        <span class="kw">return</span> {<span class="str">"content"</span>: <span class="str">"AI response..."</span>}
+    
+    <span class="kw">def</span> <span class="fn">calc_cost</span>(self) -> <span class="type">float</span>:
+        <span class="doc">"""计算当前会话费用"""</span>
+        rates = {<span class="str">"minimax"</span>: <span class="var">0.0000005</span>}  <span class="comment"># $0.5 / 1M</span>
+        rate = rates.get(<span class="self">self</span>.model, <span class="var">0.000015</span>)
+        <span class="kw">return</span> (<span class="self">self</span>.usage[<span class="str">"input"</span>] + <span class="self">self</span>.usage[<span class="str">"output"</span>]) * rate
+    
+    <span class="kw">def</span> <span class="fn">reset</span>(self):
+        <span class="doc">"""重置会话（不清除使用量）"""</span>
+        <span class="self">self</span>.messages = []
 
 
-<span class="comment"># 使用示例</span>
-agent = CloudAgent(provider=<span class="str">"minimax"</span>)
+<span class="comment"># ===== 使用示例 =====</span>
+agent = CloudAgent(model=<span class="str">"minimax-m2.5"</span>)
 
 <span class="comment"># 注册工具</span>
 <span class="kw">import</span> httpx
 <span class="decorator">@agent.register_tool</span>
-<span class="kw">async</span> <span class="kw">def</span> <span class="fn">search_web</span>(query: <span class="type">str</span>) -> <span class="type">str</span>:
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">search</span>(query: <span class="type">str</span>) -> <span class="type">str</span>:
     <span class="doc">"""搜索互联网"""</span>
     <span class="kw">async</span> <span class="kw">with</span> httpx.AsyncClient() <span class="kw">as</span> client:
-        <span class="comment"># 调用搜索 API...</span>
-        <span class="kw">return</span> <span class="str">"搜索结果..."</span>
+        <span class="kw">return</span> <span class="str">"Search results for: "</span> + query
+
+<span class="decorator">@agent.register_tool</span>
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">calculator</span>(expr: <span class="type">str</span>) -> <span class="type">str</span>:
+    <span class="doc">"""计算数学表达式"""</span>
+    <span class="kw">return</span> str(eval(expr))
 
 <span class="comment"># 运行</span>
-result = <span class="kw">await</span> agent.run(<span class="str">"帮我查一下最近的AI新闻"</span>)
-<span class="fn">print</span>(result)
+result = <span class="kw">await</span> agent.chat(<span class="str">"搜索最新的AI新闻，然后算一下 123 * 456"</span>)
+<span class="fn">print</span>(result[<span class="str">"content"</span>])
+<span class="fn">print</span>(f<span class="str">"Cost: ${result['cost']:.4f}"</span>)
                 </div>
             </div>
         </section>
