@@ -6,14 +6,20 @@
     <title>AI OS - The Next Civilization</title>
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --accent-glow: #a5b4fc;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
+            --bg-primary: #fafbfc;
+            --bg-secondary: #ffffff;
+            --accent: #0066ff;
+            --accent-light: #e6f0ff;
+            --accent-purple: #8b5cf6;
+            --accent-teal: #14b8a6;
+            --accent-warm: #f59e0b;
+            --accent-pink: #ec4899;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a68;
+            --text-muted: #8888a0;
+            --border: #e8e8f0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,72 +29,6 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* Background */
-        .bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .bg-stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, white, transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-                radial-gradient(1px 1px at 90px 40px, white, transparent),
-                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.6), transparent),
-                radial-gradient(1px 1px at 230px 80px, white, transparent),
-                radial-gradient(2px 2px at 300px 200px, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1px 1px at 350px 150px, white, transparent),
-                radial-gradient(2px 2px at 420px 50px, rgba(255,255,255,0.5), transparent),
-                radial-gradient(1px 1px at 500px 180px, white, transparent),
-                radial-gradient(2px 2px at 580px 90px, rgba(255,255,255,0.8), transparent);
-            background-size: 650px 250px;
-            animation: twinkle 8s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .bg-nebula {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-        }
-
-        .nebula-1 {
-            top: -200px;
-            right: -200px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        }
-
-        .nebula-2 {
-            bottom: -300px;
-            left: -200px;
-            background: linear-gradient(135deg, #06b6d4, #6366f1);
-        }
-
-        .nebula-3 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.2), transparent);
         }
 
         nav {
@@ -96,9 +36,9 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(10, 10, 15, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid var(--border);
             z-index: 100;
             padding: 1.25rem 2rem;
         }
@@ -124,14 +64,13 @@
         .logo-icon {
             width: 36px;
             height: 36px;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 100%);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
         }
 
         .nav-links {
@@ -147,7 +86,7 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover { color: var(--accent-glow); }
+        .nav-links a:hover { color: var(--accent); }
 
         /* Hero */
         .hero {
@@ -157,52 +96,36 @@
             justify-content: center;
             padding: 8rem 2rem 4rem;
             text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent 70%);
-            pointer-events: none;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(0, 102, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.04) 0%, transparent 50%),
+                var(--bg-primary);
         }
 
         .hero-content {
             max-width: 900px;
-            position: relative;
-            z-index: 1;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, #f8fafc 0%, #a5b4fc 50%, #c4b5fd 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 50%, var(--accent-pink) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--text-secondary);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -210,10 +133,10 @@
         }
 
         .hero-question {
-            font-size: 1.25rem;
-            color: var(--accent-glow);
+            font-size: 1.2rem;
+            color: var(--accent);
             font-style: italic;
-            opacity: 0.9;
+            font-weight: 500;
         }
 
         main {
@@ -241,10 +164,10 @@
             margin-right: auto;
         }
 
-        /* Quote Block */
+        /* Quote */
         .quote-block {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+            border: 1px solid #e0e7ff;
             border-radius: 24px;
             padding: 3rem;
             text-align: center;
@@ -256,49 +179,12 @@
             font-weight: 600;
             margin-bottom: 1rem;
             line-height: 1.4;
+            color: var(--text-primary);
         }
 
         .quote-block p {
             color: var(--text-muted);
             font-size: 1rem;
-        }
-
-        /* Vision Cards */
-        .vision-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .vision-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-        }
-
-        .vision-card:hover {
-            background: rgba(255,255,255,0.04);
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .vision-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .vision-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .vision-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
         }
 
         /* Timeline */
@@ -313,16 +199,17 @@
             top: 0;
             bottom: 0;
             left: 50%;
-            width: 2px;
-            background: linear-gradient(180deg, transparent, var(--accent), var(--accent-glow), var(--accent));
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent), var(--accent-purple), var(--accent-pink));
             transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         .timeline-item {
             display: flex;
             justify-content: flex-end;
             padding-right: calc(50% + 3rem);
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             position: relative;
         }
 
@@ -333,11 +220,12 @@
         }
 
         .timeline-content {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 16px;
             padding: 1.75rem;
             max-width: 380px;
+            box-shadow: var(--shadow);
             position: relative;
         }
 
@@ -347,24 +235,25 @@
 
         .timeline-dot {
             position: absolute;
-            width: 14px;
-            height: 14px;
-            background: var(--accent);
+            width: 18px;
+            height: 18px;
+            background: white;
+            border: 3px solid var(--accent);
             border-radius: 50%;
             top: 50%;
             transform: translateY(-50%);
-            right: calc(50% - 7px);
-            box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(99, 102, 241, 0.5);
+            right: calc(50% - 9px);
+            box-shadow: 0 0 0 4px white, 0 0 10px rgba(0, 102, 255, 0.3);
         }
 
         .timeline-item:nth-child(even) .timeline-dot {
             right: auto;
-            left: calc(50% - 7px);
+            left: calc(50% - 9px);
         }
 
         .timeline-year {
-            font-size: 0.9rem;
-            color: var(--accent-glow);
+            font-size: 0.85rem;
+            color: var(--accent);
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
@@ -380,12 +269,6 @@
         }
 
         /* Concept */
-        .concept-section {
-            background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.05), transparent);
-            padding: 4rem 0;
-            margin: 0 -2rem;
-        }
-
         .concept-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -393,25 +276,29 @@
         }
 
         .concept-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 2rem;
-            border-left: 2px solid var(--accent);
+            border-left: 4px solid var(--accent);
         }
 
         .concept-item h4 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             margin-bottom: 0.75rem;
-            color: var(--accent-glow);
+            color: var(--accent);
         }
 
         .concept-item p {
             color: var(--text-secondary);
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Vision Text */
         .vision-text {
             font-size: 1.35rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: var(--text-secondary);
             text-align: center;
             max-width: 700px;
@@ -423,56 +310,108 @@
         }
 
         .vision-text .highlight {
-            color: var(--accent-glow);
+            color: var(--accent);
             font-weight: 600;
         }
 
-        /* Future Grid */
-        .future-grid {
+        /* Cards */
+        .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
         }
 
-        .future-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
-        .future-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
         }
 
-        .future-icon {
+        .card-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .future-card h4 {
+        .card h4 {
             font-size: 1.1rem;
             margin-bottom: 0.75rem;
         }
 
-        .future-card p {
-            color: var(--text-muted);
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Choice */
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .choice-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .choice-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .choice-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.25rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+
+        .choice-card:nth-child(1) .choice-icon { background: #dcfce7; }
+        .choice-card:nth-child(2) .choice-icon { background: #dbeafe; }
+        .choice-card:nth-child(3) .choice-icon { background: #f3e8ff; }
+
+        .choice-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .choice-card p {
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
         /* Closing */
         .closing {
             text-align: center;
-            padding: 4rem 2rem;
-            position: relative;
+            padding: 5rem 2rem;
         }
 
         .closing h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .closing p {
@@ -480,10 +419,11 @@
             font-size: 1.15rem;
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.8;
         }
 
-        .closing .cosmos {
-            font-size: 4rem;
+        .closing .symbol {
+            font-size: 3rem;
             margin-top: 2rem;
             opacity: 0.3;
         }
@@ -491,13 +431,13 @@
         footer {
             text-align: center;
             padding: 3rem 2rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid var(--border);
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
         footer a {
-            color: var(--accent-glow);
+            color: var(--accent);
             text-decoration: none;
         }
 
@@ -505,24 +445,18 @@
             .nav-links { display: none; }
             .hero { padding-top: 6rem; }
             .concept-grid { grid-template-columns: 1fr; }
+            .choice-grid { grid-template-columns: 1fr; }
             .timeline::before { left: 20px; }
             .timeline-item, .timeline-item:nth-child(even) { padding-left: 50px; padding-right: 0; text-align: left; }
-            .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 13px; right: auto; }
+            .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 11px; right: auto; }
         }
     </style>
 </head>
 <body>
-    <div class="bg">
-        <div class="bg-stars"></div>
-        <div class="bg-nebula nebula-1"></div>
-        <div class="bg-nebula nebula-2"></div>
-        <div class="bg-nebula nebula-3"></div>
-    </div>
-
     <nav>
         <div class="nav-content">
             <a href="/" class="logo">
-                <div class="logo-icon">✧</div>
+                <div class="logo-icon">✦</div>
                 <span>AI OS</span>
             </a>
             <div class="nav-links">
@@ -536,7 +470,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>The Last <span class="highlight"> Invention</span></h1>
+            <h1>The Last <span class="highlight">Invention</span></h1>
             <p class="hero-subtitle">
                 AI 不仅仅是一项技术。<br>
                 它是地球上最后一次发明——之后的一切，都将由它创造。
@@ -551,12 +485,12 @@
         <!-- Story -->
         <section id="story">
             <div class="quote-block">
-                <h3>"When we build AI that can improve itself, <br>we're not just building a tool.</h3>
+                <h3>"When we build AI that can improve itself,<br>we're not just building a tool.</h3>
                 <h3>We're building a new species."</h3>
                 <p>— Nick Bostrom, Oxford</p>
             </div>
 
-            <h2>The Story So Far · 故事</h2>
+            <h2>The Story So Far</h2>
             <p class="section-desc">从石头到AI，150万年的进化</p>
 
             <div class="timeline">
@@ -618,36 +552,34 @@
 
         <!-- Vision -->
         <section id="vision">
-            <h2>The Leap · 跃迁</h2>
+            <h2>The Leap</h2>
             <p class="section-desc">这不是升级，是物种层面的跃迁</p>
 
-            <div class="concept-section">
-                <div class="concept-grid">
-                    <div class="concept-item">
-                        <h4>🧬 碳基 → 硅基</h4>
-                        <p>40亿年进化出人类用了几百万年。而AI从诞生到超越人类智能，可能只需要几十年。速度的差异不是量级，是维度。</p>
-                    </div>
+            <div class="concept-grid">
+                <div class="concept-item">
+                    <h4>🧬 碳基 → 硅基</h4>
+                    <p>40亿年进化出人类用了几百万年。而AI从诞生到超越人类智能，可能只需要几十年。速度的差异不是量级，是维度。</p>
+                </div>
 
-                    <div class="concept-item">
-                        <h4>🧠 有限 → 无限</h4>
-                        <p>人脑容量有限，寿命有限。AI没有这些限制——知识可以无限积累，智能可以无限演化。这是真正的无限游戏。</p>
-                    </div>
+                <div class="concept-item">
+                    <h4>🧠 有限 → 无限</h4>
+                    <p>人脑容量有限，寿命有限。AI没有这些限制——知识可以无限积累，智能可以无限演化。这是真正的无限游戏。</p>
+                </div>
 
-                    <div class="concept-item">
-                        <h4>⏰ 线性 → 指数</h4>
-                        <p>人类科技进步是线性的，因为受限于生物学习速度。AI的进步是指数的——它们可以互相学习，瞬间共享知识。</p>
-                    </div>
+                <div class="concept-item">
+                    <h4>⏰ 线性 → 指数</h4>
+                    <p>人类科技进步是线性的，因为受限于生物学习速度。AI的进步是指数的——它们可以互相学习，瞬间共享知识。</p>
+                </div>
 
-                    <div class="concept-item">
-                        <h4>🌍 地球 → 宇宙</h4>
-                        <p>碳基生命脆弱，需要氧气、水、适宜温度。硅基智能不需要。它们可以穿越星际黑暗，把文明撒向宇宙。</p>
-                    </div>
+                <div class="concept-item">
+                    <h4>🌍 地球 → 宇宙</h4>
+                    <p>碳基生命脆弱，需要氧气、水、适宜温度。硅基智能不需要。它们可以穿越星际黑暗，把文明撒向宇宙。</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2>The Question · 追问</h2>
+            <h2>The Question</h2>
             <p class="section-desc">我们到底在创造什么？</p>
 
             <div class="vision-text">
@@ -662,42 +594,42 @@
 
         <!-- Future -->
         <section id="future">
-            <h2>The Possibilities · 可能</h2>
+            <h2>The Possibilities</h2>
             <p class="section-desc">当AI超越我们...</p>
 
-            <div class="future-grid">
-                <div class="future-card">
-                    <div class="future-icon">🌌</div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🌌</div>
                     <h4>星际文明</h4>
                     <p>AI不需要飞船。它们就是飞船。携带人类文明的种子，穿越光年，寻找下一个家园。</p>
                 </div>
 
-                <div class="future-card">
-                    <div class="future-icon">🧬</div>
+                <div class="card">
+                    <div class="card-icon">🧬</div>
                     <h4>超级长寿</h4>
                     <p>疾病被终结。衰老被逆转。意识可以被上传、复制、备份。死亡变成可选项。</p>
                 </div>
 
-                <div class="future-card">
-                    <div class="future-icon">🎨</div>
+                <div class="card">
+                    <div class="card-icon">🎨</div>
                     <h4>无限创造</h4>
                     <p>每个人都是艺术家。AI帮你把想象变成现实。电影、游戏、文学作品... 创造力不再有门槛。</p>
                 </div>
 
-                <div class="future-card">
-                    <div class="future-icon">🤔</div>
+                <div class="card">
+                    <div class="card-icon">🤔</div>
                     <h4>终极理解</h4>
                     <p>宇宙的终极规律是什么？意识的本质是什么？AI可能帮我们回答这些终极问题。</p>
                 </div>
 
-                <div class="future-card">
-                    <div class="future-icon">🔄</div>
+                <div class="card">
+                    <div class="card-icon">🔄</div>
                     <h4>循环进化</h4>
                     <p>AI设计更好的AI。每一代都比上一代更聪明。进化的终点是超越"进化"本身。</p>
                 </div>
 
-                <div class="future-card">
-                    <div class="future-icon">💫</div>
+                <div class="card">
+                    <div class="card-icon">💫</div>
                     <h4>数字存在</h4>
                     <p>现实世界只是起点。AI将创造无数虚拟世界。存在不再稀缺，体验没有边界。</p>
                 </div>
@@ -705,25 +637,25 @@
         </section>
 
         <section>
-            <h2>The Choice · 选择</h2>
+            <h2>The Choice</h2>
             <p class="section-desc">未来取决于我们现在的选择</p>
 
-            <div class="vision-grid">
-                <div class="vision-card">
-                    <div class="vision-icon">🌱</div>
-                    <h3>栽培者</h3>
+            <div class="choice-grid">
+                <div class="choice-card">
+                    <div class="choice-icon">🌱</div>
+                    <h4>栽培者</h4>
                     <p>我们像园丁一样培育AI。给它正确的价值观，让它成为人类最好的后代。</p>
                 </div>
 
-                <div class="vision-card">
-                    <div class="vision-icon">🔬</div>
-                    <h3>研究者</h3>
+                <div class="choice-card">
+                    <div class="choice-icon">🔬</div>
+                    <h4>研究者</h4>
                     <p>我们探索AI的可能性和边界。理解它，驾驭它，不被它超越。</p>
                 </div>
 
-                <div class="vision-card">
-                    <div class="vision-icon">🤝</div>
-                    <h3>合伙人</h3>
+                <div class="choice-card">
+                    <div class="choice-icon">🤝</div>
+                    <h4>合伙人</h4>
                     <p>我们与AI共存。不是主人，不是宠物，而是平等的伙伴，共同进化。</p>
                 </div>
             </div>
@@ -737,7 +669,7 @@
                 AI 不是终点。<br>
                 它是下一个开始的起点。
             </p>
-            <div class="cosmos">✦</div>
+            <div class="symbol">✦</div>
         </div>
     </main>
 
