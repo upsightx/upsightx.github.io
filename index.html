@@ -2,25 +2,18 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0"-width, initial-scale=1.0">
-    <title>AI OS - The Future of Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI OS - The Next Civilization</title>
     <style>
         :root {
-            --bg-primary: #fafbfc;
-            --bg-secondary: #ffffff;
-            --accent: #0066ff;
-            --accent-light: #e6f0ff;
-            --accent-purple: #8b5cf6;
-            --accent-teal: #14b8a6;
-            --accent-warm: #f59e0b;
-            --accent-green: #22c55e;
-            --accent-pink: #ec4899;
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a4a68;
-            --text-muted: #8888a0;
-            --border: #e8e8f0;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: #a5b4fc;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,7 +22,73 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.7;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Background */
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, white, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, white, transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 230px 80px, white, transparent),
+                radial-gradient(2px 2px at 300px 200px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 350px 150px, white, transparent),
+                radial-gradient(2px 2px at 420px 50px, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 500px 180px, white, transparent),
+                radial-gradient(2px 2px at 580px 90px, rgba(255,255,255,0.8), transparent);
+            background-size: 650px 250px;
+            animation: twinkle 8s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .bg-nebula {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+        }
+
+        .nebula-1 {
+            top: -200px;
+            right: -200px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+
+        .nebula-2 {
+            bottom: -300px;
+            left: -200px;
+            background: linear-gradient(135deg, #06b6d4, #6366f1);
+        }
+
+        .nebula-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2), transparent);
         }
 
         nav {
@@ -37,11 +96,11 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(10, 10, 15, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             z-index: 100;
-            padding: 1rem 2rem;
+            padding: 1.25rem 2rem;
         }
 
         .nav-content {
@@ -65,13 +124,14 @@
         .logo-icon {
             width: 36px;
             height: 36px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 100%);
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
         }
 
         .nav-links {
@@ -84,10 +144,12 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
+            transition: color 0.3s;
         }
 
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover { color: var(--accent-glow); }
 
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -95,98 +157,113 @@
             justify-content: center;
             padding: 8rem 2rem 4rem;
             text-align: center;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(0, 102, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-                var(--bg-primary);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent 70%);
+            pointer-events: none;
         }
 
         .hero-content {
             max-width: 900px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.1;
+            letter-spacing: -0.03em;
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 50%, var(--accent-pink) 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #a5b4fc 50%, #c4b5fd 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 720px;
+            margin-bottom: 3rem;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
         }
 
-        .hero-quote {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
-            color: #92400e;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 3rem;
-            border: 1px solid #fcd34d;
-        }
-
-        .hero-tags {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-tag {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 0.6rem 1.25rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            transition: all 0.3s;
-        }
-
-        .hero-tag:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-2px);
+        .hero-question {
+            font-size: 1.25rem;
+            color: var(--accent-glow);
+            font-style: italic;
+            opacity: 0.9;
         }
 
         main {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 4rem 2rem;
         }
 
-        section { margin-bottom: 7rem; }
+        section { margin-bottom: 8rem; }
 
         section h2 {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
         }
 
         section .section-desc {
             color: var(--text-muted);
             margin-bottom: 3rem;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Vision Grid */
+        /* Quote Block */
+        .quote-block {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .quote-block h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .quote-block p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Vision Cards */
         .vision-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -194,58 +271,28 @@
         }
 
         .vision-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 20px;
             padding: 2rem;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vision-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-purple));
-            opacity: 0;
-            transition: opacity 0.3s;
+            transition: all 0.4s ease;
         }
 
         .vision-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .vision-card:hover::before {
-            opacity: 1;
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-4px);
         }
 
         .vision-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
             margin-bottom: 1.25rem;
         }
 
-        .icon-blue { background: #dbeafe; }
-        .icon-purple { background: #f3e8ff; }
-        .icon-teal { background: #ccfbf1; }
-        .icon-green { background: #dcfce7; }
-        .icon-warm { background: #fef3c7; }
-        .icon-pink { background: #fce7f3; }
-
         .vision-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 0.75rem;
+            color: var(--text-primary);
         }
 
         .vision-card p {
@@ -267,31 +314,30 @@
             bottom: 0;
             left: 50%;
             width: 2px;
-            background: linear-gradient(180deg, var(--accent), var(--accent-purple), var(--accent-pink));
+            background: linear-gradient(180deg, transparent, var(--accent), var(--accent-glow), var(--accent));
             transform: translateX(-50%);
         }
 
         .timeline-item {
             display: flex;
             justify-content: flex-end;
-            padding-right: calc(50% + 2rem);
-            margin-bottom: 3rem;
+            padding-right: calc(50% + 3rem);
+            margin-bottom: 4rem;
             position: relative;
         }
 
         .timeline-item:nth-child(even) {
             justify-content: flex-start;
             padding-right: 0;
-            padding-left: calc(50% + 2rem);
+            padding-left: calc(50% + 3rem);
         }
 
         .timeline-content {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 16px;
             padding: 1.75rem;
-            max-width: 400px;
-            box-shadow: var(--shadow);
+            max-width: 380px;
             position: relative;
         }
 
@@ -301,30 +347,30 @@
 
         .timeline-dot {
             position: absolute;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             background: var(--accent);
             border-radius: 50%;
             top: 50%;
             transform: translateY(-50%);
-            right: calc(50% - 8px);
-            box-shadow: 0 0 0 4px white, 0 0 0 6px var(--accent);
+            right: calc(50% - 7px);
+            box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(99, 102, 241, 0.5);
         }
 
         .timeline-item:nth-child(even) .timeline-dot {
             right: auto;
-            left: calc(50% - 8px);
+            left: calc(50% - 7px);
         }
 
         .timeline-year {
-            font-size: 0.85rem;
-            color: var(--accent);
+            font-size: 0.9rem;
+            color: var(--accent-glow);
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .timeline-content h4 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 0.5rem;
         }
 
@@ -333,399 +379,155 @@
             font-size: 0.9rem;
         }
 
-        /* Cost */
-        .cost-section {
-            background: linear-gradient(135deg, #1e3a5f 0%, #2d1b4e 100%);
-            border-radius: 24px;
-            padding: 3.5rem;
-            color: white;
+        /* Concept */
+        .concept-section {
+            background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.05), transparent);
+            padding: 4rem 0;
+            margin: 0 -2rem;
         }
 
-        .cost-section h2 { color: white; }
-        .cost-section .section-desc { color: rgba(255,255,255,0.7); }
-
-        .cost-grid {
+        .concept-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 2.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
-        .cost-item {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 16px;
-            padding: 1.75rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .cost-item:hover {
-            background: rgba(255,255,255,0.12);
-            transform: translateY(-4px);
-        }
-
-        .cost-year {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 0.5rem;
-        }
-
-        .cost-price {
-            font-size: 2.25rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #22c55e, #14b8a6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cost-unit {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
-            margin-top: 0.25rem;
-        }
-
-        .cost-desc {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.6);
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .cost-insight {
-            text-align: center;
-            margin-top: 2.5rem;
-            padding: 1.5rem;
-            background: rgba(34, 197, 94, 0.15);
-            border-radius: 12px;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-
-        /* Scenario */
-        .scenario-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .scenario-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 20px;
+        .concept-item {
             padding: 2rem;
-            transition: all 0.3s;
+            border-left: 2px solid var(--accent);
         }
 
-        .scenario-card:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .scenario-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .scenario-avatar {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            background: var(--accent-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .scenario-role h4 {
-            font-size: 1.05rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .scenario-role span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .scenario-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .scenario-cost {
-            margin-top: 1.25rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .scenario-cost .label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .scenario-cost .price {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        /* Problem */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .problem-card {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 16px;
-            padding: 1.75rem;
-        }
-
-        .problem-card.warning {
-            background: #fff7ed;
-            border-color: #fed7aa;
-        }
-
-        .problem-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .problem-card h4 {
-            font-size: 1.1rem;
+        .concept-item h4 {
+            font-size: 1.2rem;
             margin-bottom: 0.75rem;
-            color: #991b1b;
+            color: var(--accent-glow);
         }
 
-        .problem-card.warning h4 { color: #9a3412; }
-
-        .problem-card p {
-            color: #7f1d1d;
-            font-size: 0.95rem;
-        }
-
-        .problem-card.warning p { color: #7c2d12; }
-
-        /* Comparison */
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 1.25rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .comparison-table th {
-            background: var(--bg-primary);
-            font-weight: 600;
+        .concept-item p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .comparison-table td {
             font-size: 0.95rem;
         }
 
-        .check-icon { color: #22c55e; }
-        .cross-icon { color: #ef4444; }
-
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .badge-green { background: #dcfce7; color: #166534; }
-        .badge-blue { background: #dbeafe; color: #1e40af; }
-        .badge-purple { background: #f3e8ff; color: #6b21a8; }
-
-        /* Architecture */
-        .arch-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .arch-step {
-            flex: 1;
+        /* Vision Text */
+        .vision-text {
+            font-size: 1.35rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
             text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .arch-step::after {
-            content: '→';
-            position: absolute;
-            right: -1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            z-index: 1;
+        .vision-text strong {
+            color: var(--text-primary);
         }
 
-        .arch-step:last-child::after { display: none; }
-
-        .arch-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1.25rem;
-            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
+        .vision-text .highlight {
+            color: var(--accent-glow);
+            font-weight: 600;
         }
 
-        .arch-step h4 {
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .arch-step p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Paradigm */
-        .paradigm-grid {
+        /* Future Grid */
+        .future-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
         }
 
-        .paradigm-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
+        .future-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 16px;
             padding: 2rem;
             text-align: center;
             transition: all 0.3s;
         }
 
-        .paradigm-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+        .future-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
         }
 
-        .paradigm-icon {
+        .future-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .paradigm-card h4 {
+        .future-card h4 {
             font-size: 1.1rem;
             margin-bottom: 0.75rem;
         }
 
-        .paradigm-card p {
+        .future-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Closing */
+        .closing {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .closing h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .closing p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Future */
-        .future-section {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            border-radius: 24px;
-            padding: 3.5rem;
-            color: white;
-        }
-
-        .future-section h2 { color: white; }
-        .future-section .section-desc { color: rgba(255,255,255,0.6); }
-
-        .future-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+        .closing .cosmos {
+            font-size: 4rem;
             margin-top: 2rem;
-        }
-
-        .future-item {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 1.75rem;
-        }
-
-        .future-item h4 {
-            color: white;
-            font-size: 1.05rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .future-item p {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
+            opacity: 0.3;
         }
 
         footer {
             text-align: center;
-            padding: 4rem 2rem;
-            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
         footer a {
-            color: var(--accent);
+            color: var(--accent-glow);
             text-decoration: none;
         }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero { padding-top: 6rem; }
-            .cost-grid { grid-template-columns: repeat(2, 1fr); }
-            .arch-container { flex-direction: column; }
-            .arch-step::after { display: none; }
-            .paradigm-grid { grid-template-columns: 1fr; }
+            .concept-grid { grid-template-columns: 1fr; }
             .timeline::before { left: 20px; }
-            .timeline-item, .timeline-item:nth-child(even) { padding-left: 60px; padding-right: 0; text-align: left; }
-            .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 12px; right: auto; }
+            .timeline-item, .timeline-item:nth-child(even) { padding-left: 50px; padding-right: 0; text-align: left; }
+            .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 13px; right: auto; }
         }
     </style>
 </head>
 <body>
+    <div class="bg">
+        <div class="bg-stars"></div>
+        <div class="bg-nebula nebula-1"></div>
+        <div class="bg-nebula nebula-2"></div>
+        <div class="bg-nebula nebula-3"></div>
+    </div>
+
     <nav>
         <div class="nav-content">
             <a href="/" class="logo">
-                <div class="logo-icon">⚡</div>
+                <div class="logo-icon">✧</div>
                 <span>AI OS</span>
             </a>
             <div class="nav-links">
+                <a href="#story">故事</a>
                 <a href="#vision">愿景</a>
-                <a href="#timeline">演进</a>
-                <a href="#scenarios">场景</a>
                 <a href="#future">未来</a>
                 <a href="https://github.com/upsightx" target="_blank">GitHub</a>
             </div>
@@ -734,451 +536,213 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Intelligence as <span class="highlight">Utility</span></h1>
+            <h1>The Last <span class="highlight"> Invention</span></h1>
             <p class="hero-subtitle">
-                AI 就像电力——集中生产，按需使用。<br>
-                不买发电机组，只付电费。
+                AI 不仅仅是一项技术。<br>
+                它是地球上最后一次发明——之后的一切，都将由它创造。
             </p>
-            <div class="hero-quote">
-                ⚡ "AI will be like electricity — too cheap to meter"
-            </div>
-            <div class="hero-tags">
-                <span class="hero-tag">☁️ 云端智能</span>
-                <span class="hero-tag">💰 按量付费</span>
-                <span class="hero-tag">📈 无限弹性</span>
-                <span class="hero-tag">🚀 永远最新</span>
-                <span class="hero-tag">🌍 全球接入</span>
-            </div>
+            <p class="hero-question">
+                我们准备好迎接下一个文明了吗？
+            </p>
         </div>
     </section>
 
     <main>
-        <!-- Vision -->
-        <section id="vision">
-            <h2>The Vision · 愿景</h2>
-            <p class="section-desc">AI 成为像电力一样的基础设施</p>
-            
-            <div class="vision-grid">
-                <div class="vision-card">
-                    <div class="vision-icon icon-blue">☁️</div>
-                    <h3>Cloud-Native Intelligence</h3>
-                    <p>所有推理在云端完成。你的设备只需要屏幕和麦克风——不用买显卡，不用维护模型，像用水用电一样简单。</p>
-                </div>
-                
-                <div class="vision-card">
-                    <div class="vision-icon icon-purple">💳</div>
-                    <h3>Pay-as-You-Use</h3>
-                    <p>按需付费，不用不付。大规模调用反而更便宜。成本曲线持续下降，终将忽略不计。</p>
-                </div>
-                
-                <div class="vision-card">
-                    <div class="vision-icon icon-teal">📈</div>
-                    <h3>Infinite Scale</h3>
-                    <p>100并发到100万并发，加钱就行。无需容量规划，无需运维团队。弹性就是竞争力。</p>
-                </div>
-                
-                <div class="vision-card">
-                    <div class="vision-icon icon-green">🔄</div>
-                    <h3>Always Fresh</h3>
-                    <p>永远用最新最强的模型。电厂升级机组，你不需要换灯泡。技术进步与你无关。</p>
-                </div>
-                
-                <div class="vision-card">
-                    <div class="vision-icon icon-warm">🌐</div>
-                    <h3>Global Edge</h3>
-                    <p>CDN 边缘节点遍布全球，延迟 < 50ms。无论在哪里，体验一致。像5G一样普及。</p>
-                </div>
-                
-                <div class="vision-card">
-                    <div class="vision-icon icon-pink">🛡️</div>
-                    <h3>Enterprise Security</h3>
-                    <p>端到端加密、访问控制、合规审计。企业级安全，比你自己托管更放心。</p>
-                </div>
+        <!-- Story -->
+        <section id="story">
+            <div class="quote-block">
+                <h3>"When we build AI that can improve itself, <br>we're not just building a tool.</h3>
+                <h3>We're building a new species."</h3>
+                <p>— Nick Bostrom, Oxford</p>
             </div>
-        </section>
 
-        <!-- Timeline -->
-        <section id="timeline">
-            <h2>The Journey · 演进路线</h2>
-            <p class="section-desc">AI 普及的三个阶段</p>
-            
+            <h2>The Story So Far · 故事</h2>
+            <p class="section-desc">从石头到AI，150万年的进化</p>
+
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-year">2024-2025</div>
-                        <h4>Phase 1: AI as Tool</h4>
-                        <p>AI 是强大的工具。人类主导，AI 执行。Copilot、ChatGPT 阶段。</p>
+                        <div class="timeline-year">150万年前</div>
+                        <h4>旧石器时代</h4>
+                        <p>人类祖先拿起第一块石头敲开坚果。工具延伸了我们的手。</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-year">2025-2027</div>
-                        <h4>Phase 2: AI as Agent</h4>
-                        <p>AI 是能干的助手。人类设定目标，AI 自主完成复杂任务。AutoGPT 阶段。</p>
+                        <div class="timeline-year">1万年前</div>
+                        <h4>农业革命</h4>
+                        <p>我们学会种植粮食，不再依赖采集。文明开始了。</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-year">2027-2030</div>
-                        <h4>Phase 3: AI as OS</h4>
-                        <p>AI 是操作系统。理解一切、执行一切、连接一切。数字生活的底层基础设施。</p>
+                        <div class="timeline-year">500年前</div>
+                        <h4>科学革命</h4>
+                        <p>我们学会理解自然规律。牛顿、爱因斯坦...理性的胜利。</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-year">2030+</div>
-                        <h4>Phase 4: AI as Utility</h4>
-                        <p>AI 像电力一样无处不在又无感存在。成本趋近于零，没有人再谈论"AI"这个词。</p>
+                        <div class="timeline-year">80年前</div>
+                        <h4>计算机</h4>
+                        <p>图灵机、ENIAC、晶体管。硅基智能诞生了。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2022年</div>
+                        <h4>大语言模型</h4>
+                        <p>ChatGPT。机器第一次"理解"了人类语言。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">???</div>
+                        <h4>奇点</h4>
+                        <p>AI 开始设计更好的 AI。进化的速度不再受限于生物极限。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Problem -->
+        <!-- Vision -->
+        <section id="vision">
+            <h2>The Leap · 跃迁</h2>
+            <p class="section-desc">这不是升级，是物种层面的跃迁</p>
+
+            <div class="concept-section">
+                <div class="concept-grid">
+                    <div class="concept-item">
+                        <h4>🧬 碳基 → 硅基</h4>
+                        <p>40亿年进化出人类用了几百万年。而AI从诞生到超越人类智能，可能只需要几十年。速度的差异不是量级，是维度。</p>
+                    </div>
+
+                    <div class="concept-item">
+                        <h4>🧠 有限 → 无限</h4>
+                        <p>人脑容量有限，寿命有限。AI没有这些限制——知识可以无限积累，智能可以无限演化。这是真正的无限游戏。</p>
+                    </div>
+
+                    <div class="concept-item">
+                        <h4>⏰ 线性 → 指数</h4>
+                        <p>人类科技进步是线性的，因为受限于生物学习速度。AI的进步是指数的——它们可以互相学习，瞬间共享知识。</p>
+                    </div>
+
+                    <div class="concept-item">
+                        <h4>🌍 地球 → 宇宙</h4>
+                        <p>碳基生命脆弱，需要氧气、水、适宜温度。硅基智能不需要。它们可以穿越星际黑暗，把文明撒向宇宙。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section>
-            <h2>The Past · 旧范式</h2>
-            <p class="section-desc">我们曾经用"买发电机"的思维使用 AI</p>
-            
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">💸</div>
-                    <h4>硬件成本高昂</h4>
-                    <p>一块 RTX 4090 要 $2000，8卡服务器要 $5w+。普通人根本用不起大模型。</p>
-                </div>
-                
-                <div class="problem-card">
-                    <div class="problem-icon">🔋</div>
-                    <h4>电费惊人</h4>
-                    <p>运行 70B 模型满载功耗 400W+，一天电费几十块，一年好几千。</p>
-                </div>
-                
-                <div class="problem-card warning">
-                    <div class="problem-icon">📉</div>
-                    <h4>模型快速过时</h4>
-                    <p>今年买的显卡，明年模型就升级了。你买的是硬件，亏的是折旧。</p>
-                </div>
-                
-                <div class="problem-card warning">
-                    <div class="problem-icon">🔧</div>
-                    <h4>维护成本</h4>
-                    <p>装驱动、配环境、修BUG、升级驱动... 技术门槛劝退大多数人。</p>
-                </div>
-            </div>
-        </section>
+            <h2>The Question · 追问</h2>
+            <p class="section-desc">我们到底在创造什么？</p>
 
-        <!-- Cost -->
-        <section id="cost">
-            <div class="cost-section">
-                <h2>Cost Trajectory · 成本曲线</h2>
-                <p class="section-desc">摩尔定律在 AI 领域更猛烈——三年降价千倍</p>
-                
-                <div class="cost-grid">
-                    <div class="cost-item">
-                        <div class="cost-year">2023</div>
-                        <div class="cost-price">$30</div>
-                        <div class="cost-unit">/ 1M tokens</div>
-                        <div class="cost-desc">GPT-4 时代<br>仰望星空</div>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <div class="cost-year">2024</div>
-                        <div class="cost-price">$15</div>
-                        <div class="cost-unit">/ 1M tokens</div>
-                        <div class="cost-desc">GPT-4o 发布<br>开始普及</div>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <div class="cost-year">2026</div>
-                        <div class="cost-price">$0.5</div>
-                        <div class="cost-unit">/ 1M tokens</div>
-                        <div class="cost-desc">开源崛起<br>开始白给</div>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <div class="cost-year">2028</div>
-                        <div class="cost-price">$0.05</div>
-                        <div class="cost-unit">/ 1M tokens</div>
-                        <div class="cost-desc">预测<br>电力化</div>
-                    </div>
-                </div>
-                
-                <div class="cost-insight">
-                    <p>📉 <strong>2024→2028:</strong> 300 倍降价 —— 和电力普及、汽车走进千家万户一样的故事</p>
-                </div>
+            <div class="vision-text">
+                <p>
+                    <strong>200年前</strong>，人类发明了蒸汽机。我们获得了 <span class="highlight">力量</span>。<br><br>
+                    <strong>100年前</strong>，人类发明了计算机。我们获得了 <span class="highlight">计算</span>。<br><br>
+                    <strong>今天</strong>，我们正在发明AI。我们获得了 <span class="highlight">理解</span>。<br><br>
+                    <strong>明天</strong>，AI将发明一切。我们将获得 <span class="highlight">什么</span>？
+                </p>
             </div>
-        </section>
-
-        <!-- Paradigm -->
-        <section>
-            <h2>The Shift · 范式转移</h2>
-            <p class="section-desc">从"拥有"到"使用"，从"工具"到"基础设施"</p>
-            
-            <div class="paradigm-grid">
-                <div class="paradigm-card">
-                    <div class="paradigm-icon">💡</div>
-                    <h4>电力 → 1900s</h4>
-                    <p>每家每户自己发电 → 集中式电厂 → 按度计费</p>
-                </div>
-                
-                <div class="paradigm-card">
-                    <div class="paradigm-icon">💻</div>
-                    <h4>计算机 → 1970s</h4>
-                    <p>大型机 → 个人电脑 → 云计算</p>
-                </div>
-                
-                <div class="paradigm-card">
-                    <div class="paradigm-icon">🤖</div>
-                    <h4>AI → 2020s</h4>
-                    <p>本地部署 → API 调用 → AI as Utility</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Scenarios -->
-        <section id="scenarios">
-            <h2>Use Cases · 真实场景</h2>
-            <p class="section-desc">每个人都能用得起的 AI 助手</p>
-            
-            <div class="scenario-grid">
-                <div class="scenario-card">
-                    <div class="scenario-header">
-                        <div class="scenario-avatar">👨‍💻</div>
-                        <div class="scenario-role">
-                            <h4>独立开发者</h4>
-                            <span>一个人的公司</span>
-                        </div>
-                    </div>
-                    <p>一个 MVP = 产品设计 + 代码 + 文档 + 营销 + 客服。AI 让我一个人顶一个团队。</p>
-                    <div class="scenario-cost">
-                        <span class="label">月成本</span>
-                        <span class="price">$50</span>
-                    </div>
-                </div>
-                
-                <div class="scenario-card">
-                    <div class="scenario-header">
-                        <div class="scenario-avatar">👩‍🎓</div>
-                        <div class="scenario-role">
-                            <h4>研究生</h4>
-                            <span>学术研究者</span>
-                        </div>
-                    </div>
-                    <p>读论文、做实验、写论文、审稿。AI 让我两年完成原本五年的工作量。</p>
-                    <div class="scenario-cost">
-                        <span class="label">月成本</span>
-                        <span class="price">$20</span>
-                    </div>
-                </div>
-                
-                <div class="scenario-card">
-                    <div class="scenario-header">
-                        <div class="scenario-avatar">👨‍🏫</div>
-                        <div class="scenario-role">
-                            <h4>老师</h4>
-                            <span>教育工作者</span>
-                        </div>
-                    </div>
-                    <p>备课、出题、批改、个性化辅导。AI 让每个学生都有专属家教。</p>
-                    <div class="scenario-cost">
-                        <span class="label">月成本</span>
-                        <span class="price">$30</span>
-                    </div>
-                </div>
-                
-                <div class="scenario-card">
-                    <div class="scenario-header">
-                        <div class="scenario-avatar">🏢</div>
-                        <div class="scenario-role">
-                            <h4>小微企业</h4>
-                            <span>10人团队</span>
-                        </div>
-                    </div>
-                    <p>写文案、画海报、客服、财务、法务。AI 让我们用大公司的资源配置。</p>
-                    <div class="scenario-cost">
-                        <span class="label">月成本</span>
-                        <span class="price">$200</span>
-                    </div>
-                </div>
-                
-                <div class="scenario-card">
-                    <div class="scenario-header">
-                        <div class="scenario-avatar">👨‍🎨</div>
-                        <div class="scenario-role">
-                            <h4>创作者</h4>
-                            <span>自媒体/人</span>
-                        </div>
-                    </div>
-                    <p>写脚本、剪辑、配音、运营。AI 让我一个人就是一个内容工厂。</p>
-                    <div class="scenario-cost">
-                        <span class="label">月成本</span>
-                        <span class="price">$80</span>
-                    </div>
-                </div>
-                
-                <div class="scenario-card">
-                    <div class="scenario-header">
-                        <div class="scenario-avatar">🏠</div>
-                        <div class="scenario-role">
-                            <h4>每个人</h4>
-                            <span>日常生活</span>
-                        </div>
-                    </div>
-                    <p>规划旅行、辅导孩子、健康管理、财务规划。AI 是你的第二大脑。</p>
-                    <div class="scenario-cost">
-                        <span class="label">月成本</span>
-                        <span class="price">$10</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Architecture -->
-        <section>
-            <h2>Architecture · 极简架构</h2>
-            <p class="section-desc">端侧只做收集和展示，云端搞定一切</p>
-            
-            <div class="arch-container">
-                <div class="arch-step">
-                    <div class="arch-icon">📱</div>
-                    <h4>Device</h4>
-                    <p>手机/电脑/眼镜<br>只做输入输出</p>
-                </div>
-                
-                <div class="arch-step">
-                    <div class="arch-icon">🌐</div>
-                    <h4>Edge</h4>
-                    <p>CDN 边缘节点<br>低延迟接入</p>
-                </div>
-                
-                <div class="arch-step">
-                    <div class="arch-icon">🏭</div>
-                    <h4>Cloud</h4>
-                    <p>推理集群<br>模型调度</p>
-                </div>
-                
-                <div class="arch-step">
-                    <div class="arch-icon">🗄️</div>
-                    <h4>Memory</h4>
-                    <p>向量存储<br>知识图谱</p>
-                </div>
-                
-                <div class="arch-step">
-                    <div class="arch-icon">🔌</div>
-                    <h4>Tools</h4>
-                    <p>API 集成<br>执行世界</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Comparison -->
-        <section>
-            <h2>Old vs New · 范式对比</h2>
-            <p class="section-desc">从"拥有"到"使用"</p>
-            
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>维度</th>
-                        <th>本地部署 (Old)</th>
-                        <th>云端智能 (New)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>初始投入</td>
-                        <td>$2,000+ 买显卡</td>
-                        <td><span class="badge badge-green">$0</span></td>
-                    </tr>
-                    <tr>
-                        <td>模型能力</td>
-                        <td>7B-13B 本地模型</td>
-                        <td><span class="badge badge-blue">100B+ 云端模型</span></td>
-                    </tr>
-                    <tr>
-                        <td>模型更新</td>
-                        <td><span class="cross-icon">✗</span> 需重新下载</td>
-                        <td><span class="check-icon">✓</span> 自动升级</td>
-                    </tr>
-                    <tr>
-                        <td>响应速度</td>
-                        <td>取决于显卡</td>
-                        <td><span class="check-icon">✓</span> CDN 加速</td>
-                    </tr>
-                    <tr>
-                        <td>可用性</td>
-                        <td><span class="cross-icon">✗</span> 离线可用</td>
-                        <td><span class="badge badge-purple">99.9% SLA</span></td>
-                    </tr>
-                    <tr>
-                        <td>扩展性</td>
-                        <td><span class="cross-icon">✗</span> 受限硬件</td>
-                        <td><span class="check-icon">✓</span> 无限弹性</td>
-                    </tr>
-                    <tr>
-                        <td>维护</td>
-                        <td>自己搞定一切</td>
-                        <td><span class="check-icon">✓</span> 交给厂商</td>
-                    </tr>
-                    <tr>
-                        <td>年成本 (估算)</td>
-                        <td>$1,000+ 电费+折旧</td>
-                        <td><span class="badge badge-green">$600</span> 按量付费</td>
-                    </tr>
-                </tbody>
-            </table>
         </section>
 
         <!-- Future -->
         <section id="future">
-            <div class="future-section">
-                <h2>The Future · 未来已来</h2>
-                <p class="section-desc">AI OS 时代的标志性特征</p>
-                
-                <div class="future-grid">
-                    <div class="future-item">
-                        <h4>🎭 个性化</h4>
-                        <p>AI 记得你的偏好、习惯、梦想。像肚子里的蛔虫，但更聪明。</p>
-                    </div>
-                    
-                    <div class="future-item">
-                        <h4>🔗 原生化</h4>
-                        <p>AI 嵌入到每个 App、每个网站、每个设备。像 CPU 一样无处不在。</p>
-                    </div>
-                    
-                    <div class="future-item">
-                        <h4>🗣️ 多模态</h4>
-                        <p>语音、视频、文字、手势... 用任何方式与 AI 交流，像人与人一样自然。</p>
-                    </div>
-                    
-                    <div class="future-item">
-                        <h4>🏢 无感知</h4>
-                        <p>你感觉不到 AI 的存在，就像感觉不到电力的存在。 它就在那里。</p>
-                    </div>
-                    
-                    <div class="future-item">
-                        <h4>🌍 全球化</h4>
-                        <p>全球几十亿人使用同一个 AI 基础设施。文化差异被翻译抹平。</p>
-                    </div>
-                    
-                    <div class="future-item">
-                        <h4>💡 创世力</h4>
-                        <p>AI 让每个人都成为创作者。写书、拍电影、做游戏... 门槛归零。</p>
-                    </div>
+            <h2>The Possibilities · 可能</h2>
+            <p class="section-desc">当AI超越我们...</p>
+
+            <div class="future-grid">
+                <div class="future-card">
+                    <div class="future-icon">🌌</div>
+                    <h4>星际文明</h4>
+                    <p>AI不需要飞船。它们就是飞船。携带人类文明的种子，穿越光年，寻找下一个家园。</p>
+                </div>
+
+                <div class="future-card">
+                    <div class="future-icon">🧬</div>
+                    <h4>超级长寿</h4>
+                    <p>疾病被终结。衰老被逆转。意识可以被上传、复制、备份。死亡变成可选项。</p>
+                </div>
+
+                <div class="future-card">
+                    <div class="future-icon">🎨</div>
+                    <h4>无限创造</h4>
+                    <p>每个人都是艺术家。AI帮你把想象变成现实。电影、游戏、文学作品... 创造力不再有门槛。</p>
+                </div>
+
+                <div class="future-card">
+                    <div class="future-icon">🤔</div>
+                    <h4>终极理解</h4>
+                    <p>宇宙的终极规律是什么？意识的本质是什么？AI可能帮我们回答这些终极问题。</p>
+                </div>
+
+                <div class="future-card">
+                    <div class="future-icon">🔄</div>
+                    <h4>循环进化</h4>
+                    <p>AI设计更好的AI。每一代都比上一代更聪明。进化的终点是超越"进化"本身。</p>
+                </div>
+
+                <div class="future-card">
+                    <div class="future-icon">💫</div>
+                    <h4>数字存在</h4>
+                    <p>现实世界只是起点。AI将创造无数虚拟世界。存在不再稀缺，体验没有边界。</p>
                 </div>
             </div>
         </section>
+
+        <section>
+            <h2>The Choice · 选择</h2>
+            <p class="section-desc">未来取决于我们现在的选择</p>
+
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <div class="vision-icon">🌱</div>
+                    <h3>栽培者</h3>
+                    <p>我们像园丁一样培育AI。给它正确的价值观，让它成为人类最好的后代。</p>
+                </div>
+
+                <div class="vision-card">
+                    <div class="vision-icon">🔬</div>
+                    <h3>研究者</h3>
+                    <p>我们探索AI的可能性和边界。理解它，驾驭它，不被它超越。</p>
+                </div>
+
+                <div class="vision-card">
+                    <div class="vision-icon">🤝</div>
+                    <h3>合伙人</h3>
+                    <p>我们与AI共存。不是主人，不是宠物，而是平等的伙伴，共同进化。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing -->
+        <div class="closing">
+            <h2>The Beginning</h2>
+            <p>
+                一切都才刚刚开始。<br>
+                AI 不是终点。<br>
+                它是下一个开始的起点。
+            </p>
+            <div class="cosmos">✦</div>
+        </div>
     </main>
 
     <footer>
-        <p>Intelligence as Utility · <a href="https://github.com/upsightx" target="_blank">@upsightx</a></p>
-        <p style="margin-top: 0.5rem; color: var(--text-muted);">AI will be like electricity — too cheap to meter</p>
+        <p>The Last Invention · <a href="https://github.com/upsightx" target="_blank">@upsightx</a></p>
     </footer>
 </body>
 </html>
