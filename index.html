@@ -3,952 +3,590 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JARVIS Framework - 可自主学习进化的AI智能体框架</title>
+    <title>AI Architecture - Engineering the Future</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #059669;
-            --accent: #f59e0b;
-            --danger: #dc2626;
-            --bg-light: #f8fafc;
-            --bg-card: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --accent: #00d4aa;
+            --accent-dim: #00d4aa33;
+            --accent-secondary: #7c5cff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, #00d4aa 0%, #7c5cff 100%);
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
-            background: var(--bg-light);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
         }
-        
-        /* 导航栏 */
-        .navbar {
-            background: white;
-            box-shadow: var(--shadow);
-            position: sticky;
+
+        /* 背景效果 */
+        .bg-grid {
+            position: fixed;
             top: 0;
-            z-index: 1000;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: -1;
         }
-        
-        .nav-container {
+
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glow-1 { top: -200px; right: -200px; background: var(--accent); }
+        .glow-2 { bottom: -300px; left: -200px; background: var(--accent-secondary); }
+
+        /* 导航 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 1rem 2rem;
+        }
+
+        .nav-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
             text-decoration: none;
         }
-        
+
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            background: var(--gradient);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-weight: bold;
+            font-size: 1rem;
         }
-        
+
         .nav-links {
             display: flex;
             gap: 2rem;
         }
-        
+
         .nav-links a {
-            color: var(--text);
+            color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
+            font-size: 0.9rem;
             transition: color 0.2s;
         }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .github-btn {
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-        
-        .github-btn:hover {
-            background: var(--primary-dark);
-        }
-        
-        /* 英雄区域 */
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* 英雄区 */
         .hero {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 6rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
             text-align: center;
         }
-        
-        .hero-container {
+
+        .hero-content {
             max-width: 800px;
-            margin: 0 auto;
         }
-        
+
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
             margin-bottom: 1.5rem;
             line-height: 1.2;
         }
-        
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .hero-subtitle {
             font-size: 1.25rem;
-            opacity: 0.9;
+            color: var(--text-secondary);
             margin-bottom: 2.5rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
-        
-        .hero-badges {
+
+        .hero-tags {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
-        
-        .badge {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.5rem 1.25rem;
+
+        .tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
         }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
+
+        .tag.highlight {
+            border-color: var(--accent);
+            color: var(--accent);
         }
-        
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        
-        .btn-primary {
-            background: white;
-            color: var(--primary);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
-        }
-        
-        /* 主要内容 */
-        .container {
-            max-width: 1200px;
+
+        /* 主内容 */
+        main {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 4rem 2rem;
         }
-        
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--text);
+
+        section { margin-bottom: 6rem; }
+
+        section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
         }
-        
-        .section-subtitle {
-            text-align: center;
+
+        section .section-desc {
             color: var(--text-muted);
-            max-width: 600px;
-            margin: -2rem auto 4rem;
-            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
         }
-        
-        /* 特性网格 */
-        .features-grid {
+
+        /* 架构卡片 */
+        .arch-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
-        
-        .feature-card {
+
+        .arch-card {
             background: var(--bg-card);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
             border: 1px solid var(--border);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .arch-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .arch-card-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-dim);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        .feature-title {
-            font-size: 1.25rem;
-            font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--text);
-        }
-        
-        /* 架构图 */
-        .architecture {
-            background: white;
-            border-radius: 16px;
-            padding: 3rem;
-            margin: 4rem 0;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        
-        .layer {
-            background: var(--bg-light);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .layer:hover {
-            border-color: var(--primary);
-            background: white;
-        }
-        
-        .layer-label {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: white;
-            padding: 0 1rem;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.875rem;
-        }
-        
-        .layer-components {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .component {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .component-icon {
-            color: var(--secondary);
-        }
-        
-        /* 代码示例 */
-        .code-example {
-            background: #1e293b;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 3rem 0;
-        }
-        
-        .code-header {
-            background: #0f172a;
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .code-title {
-            color: #cbd5e1;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-        
-        .code-content {
-            padding: 2rem;
-            overflow-x: auto;
-        }
-        
-        .code-content pre {
-            margin: 0;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 0.875rem;
-            line-height: 1.6;
-        }
-        
-        .code-comment { color: #94a3b8; }
-        .code-keyword { color: #f87171; }
-        .code-string { color: #7dd3fc; }
-        .code-function { color: #a78bfa; }
-        .code-number { color: #fbbf24; }
-        
-        /* 技术栈 */
-        .tech-stack {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .tech-category {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-        }
-        
-        .tech-category h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
             font-size: 1.25rem;
         }
-        
-        .tech-list {
-            list-style: none;
-            padding: 0;
+
+        .arch-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
         }
-        
-        .tech-list li {
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+
+        .arch-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
-        
-        .tech-list li::before {
-            content: '✓';
-            color: var(--secondary);
-            font-weight: bold;
-        }
-        
-        /* 快速开始 */
-        .quick-start {
-            background: linear-gradient(135deg, var(--bg-light), #e2e8f0);
+
+        /* 核心流程 */
+        .flow-section {
+            background: var(--bg-secondary);
             border-radius: 16px;
-            padding: 3rem;
-            margin: 4rem 0;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
         }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
-        
-        .step {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+
+        .flow-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
         }
-        
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            color: white;
+
+        .flow-number {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
             font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .nav-links { display: none; }
-            .cta-buttons { flex-direction: column; }
-            .architecture { padding: 1.5rem; }
-            .container { padding: 2rem 1rem; }
+
+        .flow-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
         }
-        
-        /* 页脚 */
-        .footer {
-            background: #0f172a;
-            color: white;
-            padding: 4rem 2rem;
-            margin-top: 4rem;
+
+        .flow-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        /* 代码块 */
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: var(--bg-card);
+            padding: 0.75rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-lang {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .code-content {
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .kw { color: #ff7b72; }
+        .fn { color: #d2a8ff; }
+        .str { color: #a5d6ff; }
+        .cm { color: #8b949e; }
+        .var { color: #79c0ff; }
+        .type { color: #7ee787; }
+
+        /* 技术栈 */
+        .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
         }
-        
-        .footer-section h3 {
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-            font-size: 1.125rem;
+
+        .tech-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
         }
-        
-        .footer-links {
-            list-style: none;
-            padding: 0;
+
+        .tech-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
         }
-        
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .copyright {
+
+        /* 页脚 */
+        footer {
             text-align: center;
-            padding-top: 3rem;
-            margin-top: 3rem;
-            border-top: 1px solid #334155;
-            color: #64748b;
-            font-size: 0.875rem;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding-top: 6rem; }
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">J</div>
-                JARVIS Framework
+    <div class="bg-grid"></div>
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <nav>
+        <div class="nav-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">⬡</div>
+                <span>AI Architecture</span>
             </a>
             <div class="nav-links">
-                <a href="#features">特性</a>
+                <a href="#concept">核心理念</a>
                 <a href="#architecture">架构</a>
-                <a href="#tech">技术栈</a>
-                <a href="#start">开始使用</a>
-                <a href="#docs">文档</a>
+                <a href="#implementation">实现</a>
+                <a href="https://github.com/upsightx" target="_blank">GitHub</a>
             </div>
-            <a href="https://github.com/upsightx/jarvis-framework" class="github-btn" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
         </div>
     </nav>
 
-    <!-- 英雄区域 -->
     <section class="hero">
-        <div class="hero-container">
-            <h1>JARVIS Framework</h1>
+        <div class="hero-content">
+            <h1>Building the <span>Future</span> of AI</h1>
             <p class="hero-subtitle">
-                一个开源、可自主学习进化的AI智能体框架。基于现代架构设计，支持多模型、多模态、持续学习的智能体系统。
+                探索工程可实现的下一代AI架构——多智能体协同、自适应学习、端到端自动化
             </p>
-            <div class="hero-badges">
-                <div class="badge">🧠 自主学习</div>
-                <div class="badge">⚡ 实时进化</div>
-                <div class="badge">🔧 生产就绪</div>
-                <div class="badge">🌐 多模型支持</div>
-            </div>
-            <div class="cta-buttons">
-                <a href="#start" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i> 快速开始
-                </a>
-                <a href="#docs" class="btn btn-secondary">
-                    <i class="fas fa-book"></i> 查看文档
-                </a>
+            <div class="hero-tags">
+                <span class="tag highlight">Multi-Agent</span>
+                <span class="tag">MCP Protocol</span>
+                <span class="tag">Vector Memory</span>
+                <span class="tag">Tool Calling</span>
             </div>
         </div>
     </section>
 
-    <!-- 核心特性 -->
-    <div class="container" id="features">
-        <h2 class="section-title">✨ 核心特性</h2>
-        <p class="section-subtitle">专为构建可自主学习进化的AI智能体而设计</p>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <h3 class="feature-title">自主学习系统</h3>
-                <p>智能体从交互中持续学习，自动优化响应策略，构建个性化知识图谱。</p>
-                <ul style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-                    <li>基于反馈的强化学习</li>
-                    <li>经验回放与反思</li>
-                    <li>知识图谱自动构建</li>
-                </ul>
-            </div>
+    <main>
+        <!-- 核心理念 -->
+        <section id="concept">
+            <h2>Architecture Vision</h2>
+            <p class="section-desc">基于当前技术边界，构建下一代可进化的AI系统</p>
             
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-sync-alt"></i>
-                </div>
-                <h3 class="feature-title">实时进化机制</h3>
-                <p>支持A/B测试、版本迭代、性能监控，智能体随使用时间变得更聪明。</p>
-                <ul style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-                    <li>多版本并行测试</li>
-                    <li>自动性能评估</li>
-                    <li>优胜劣汰策略</li>
-                </ul>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-layer-group"></i>
-                </div>
-                <h3 class="feature-title">模块化架构</h3>
-                <p>插件化设计，每个组件都可独立扩展或替换，支持自定义工具和技能。</p>
-                <ul style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-                    <li>插件系统</li>
-                    <li>工具链集成</li>
-                    <li>热重载支持</li>
-                </ul>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-comments"></i>
-                </div>
-                <h3 class="feature-title">多模型智能路由</h3>
-                <p>智能分配任务到最适合的AI模型，平衡成本、速度和准确度。</p>
-                <ul style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-                    <li>模型性能分析</li>
-                    <li>成本优化路由</li>
-                    <li>故障自动转移</li>
-                </ul>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h3 class="feature-title">向量记忆系统</h3>
-                <p>基于向量的长期记忆，支持语义搜索、上下文关联和知识回溯。</p>
-                <ul style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-                    <li>向量数据库集成</li>
-                    <li>语义相似度搜索</li>
-                    <li>时间衰减权重</li>
-                </ul>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 class="feature-title">生产就绪</h3>
-                <p>完整的监控、日志、错误处理和部署工具，支持高可用性部署。</p>
-                <ul style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-                    <li>健康检查</li>
-                    <li>性能监控</li>
-                    <li>自动恢复</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- 系统架构 -->
-    <div class="container" id="architecture">
-        <h2 class="section-title">🏗️ 系统架构</h2>
-        <p class="section-subtitle">四层架构设计，确保系统的灵活性和可扩展性</p>
-        
-        <div class="architecture">
-            <div class="layer">
-                <div class="layer-label">接口层 Interface Layer</div>
-                <p>处理各种输入输出，支持多模态、多渠道接入。</p>
-                <div class="layer-components">
-                    <div class="component">
-                        <i class="fas fa-comment-alt component-icon"></i>
-                        <span>REST API</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-robot component-icon"></i>
-                        <span>聊天机器人</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-microphone component-icon"></i>
-                        <span>语音接口</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-camera component-icon"></i>
-                        <span>视觉识别</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="layer">
-                <div class="layer-label">协调层 Orchestration Layer</div>
-                <p>智能路由、任务分解、上下文管理和会话协调。</p>
-                <div class="layer-components">
-                    <div class="component">
-                        <i class="fas fa-route component-icon"></i>
-                        <span>智能路由器</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-project-diagram component-icon"></i>
-                        <span>任务分解器</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-comments component-icon"></i>
-                        <span>会话管理器</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-tachometer-alt component-icon"></i>
-                        <span>性能监控</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="layer">
-                <div class="layer-label">执行层 Execution Layer</div>
-                <p>模型调用、工具执行、记忆检索和知识处理。</p>
-                <div class="layer-components">
-                    <div class="component">
-                        <i class="fas fa-brain component-icon"></i>
-                        <span>LLM 引擎</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-tools component-icon"></i>
-                        <span>工具执行器</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-search component-icon"></i>
-                        <span>记忆检索</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-cog component-icon"></i>
-                        <span>知识处理器</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="layer">
-                <div class="layer-label">存储层 Storage Layer</div>
-                <p>数据持久化、向量存储、知识图谱和版本管理。</p>
-                <div class="layer-components">
-                    <div class="component">
-                        <i class="fas fa-database component-icon"></i>
-                        <span>向量数据库</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-network-wired component-icon"></i>
-                        <span>知识图谱</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-history component-icon"></i>
-                        <span>版本仓库</span>
-                    </div>
-                    <div class="component">
-                        <i class="fas fa-chart-line component-icon"></i>
-                        <span>分析数据</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 代码示例 -->
-    <div class="container">
-        <h2 class="section-title">💻 简单示例</h2>
-        <p class="section-subtitle">几行代码即可创建一个自主学习进化的智能体</p>
-        
-        <div class="code-example">
-            <div class="code-header">
-                <div class="code-title">创建JARVIS智能体示例</div>
-                <div style="color: #94a3b8; font-size: 0.875rem;">Python SDK</div>
-            </div>
-            <div class="code-content">
-                <pre><span class="code-keyword">from</span> jarvis <span class="code-keyword">import</span> Agent, MemorySystem, LearningEngine
-
-<span class="code-comment"># 1. 创建智能体实例</span>
-agent = Agent(
-    name=<span class="code-string">"my_assistant"</span>,
-    model=<span class="code-string">"gpt-4"</span>,
-    memory=MemorySystem(vector_db=<span class="code-string">"qdrant"</span>),
-    learning=LearningEngine()
-)
-
-<span class="code-comment"># 2. 添加自定义工具</span>
-<span class="code-keyword">@agent</span>.tool
-<span class="code-keyword">def</span> <span class="code-function">get_weather</span>(location: str):
-    <span class="code-comment">"""获取指定位置的天气信息"""</span>
-    <span class="code-comment"># 工具实现...</span>
-    <span class="code-keyword">return</span> weather_data
-
-<span class="code-comment"># 3. 运行智能体（支持持续学习）</span>
-response = agent.run(
-    <span class="code-string">"今天北京的天气怎么样？帮我规划一下出行。"</span>,
-    learn=<span class="code-keyword">True</span>  <span class="code-comment"># 开启学习模式</span>
-)
-
-<span class="code-comment"># 4. 查看学习成果</span>
-print(<span class="code-string">"智能体已学习："</span>, agent.get_learned_patterns())</pre>
-            </div>
-        </div>
-    </div>
-
-    <!-- 技术栈 -->
-    <div class="container" id="tech">
-        <h2 class="section-title">🛠️ 技术栈</h2>
-        <p class="section-subtitle">基于现代、成熟的技术栈构建</p>
-        
-        <div class="tech-stack">
-            <div class="tech-category">
-                <h3>核心框架</h3>
-                <ul class="tech-list">
-                    <li>Python 3.10+</li>
-                    <li>FastAPI (Web框架)</li>
-                    <li>Pydantic (数据验证)</li>
-                    <li>LangChain (可选集成)</li>
-                    <li>OpenAI / Anthropic API</li>
-                </ul>
-            </div>
-            
-            <div class="tech-category">
-                <h3>数据存储</h3>
-                <ul class="tech-list">
-                    <li>Qdrant / Pinecone (向量数据库)</li>
-                    <li>PostgreSQL (关系数据)</li>
-                    <li>Redis (缓存)</li>
-                    <li>SQLite (轻量部署)</li>
-                </ul>
-            </div>
-            
-            <div class="tech-category">
-                <h3>部署运维</h3>
-                <ul class="tech-list">
-                    <li>Docker & Docker Compose</li>
-                    <li>Kubernetes (生产环境)</li>
-                    <li>Prometheus + Grafana (监控)</li>
-                    <li>GitHub Actions (CI/CD)</li>
-                </ul>
-            </div>
-            
-            <div class="tech-category">
-                <h3>机器学习</h3>
-                <ul class="tech-list">
-                    <li>Transformers (本地模型)</li>
-                    <li>Sentence Transformers (向量化)</li>
-                    <li>Scikit-learn (传统ML)</li>
-                    <li>TensorFlow/PyTorch (可选)</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- 快速开始 -->
-    <div class="container" id="start">
-        <div class="quick-start">
-            <h2 class="section-title">🚀 快速开始</h2>
-            <p class="section-subtitle">5分钟内启动你的第一个JARVIS智能体</p>
-            
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>安装</h3>
-                    <p>使用pip安装核心包</p>
-                    <div style="background: #1e293b; color: white; padding: 0.75rem; border-radius: 6px; margin-top: 1rem; font-family: monospace;">
-                        pip install jarvis-framework
-                    </div>
+            <div class="arch-grid">
+                <div class="arch-card">
+                    <div class="arch-card-icon">🔗</div>
+                    <h3>Multi-Agent Orchestration</h3>
+                    <p>多个专业智能体协同工作，通过标准协议(MCP/A2A)进行通信和任务分发，实现复杂任务的分布式处理。</p>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>配置</h3>
-                    <p>设置API密钥和存储</p>
-                    <div style="background: #1e293b; color: white; padding: 0.75rem; border-radius: 6px; margin-top: 1rem; font-family: monospace;">
-                        export OPENAI_API_KEY="sk-..."
-                    </div>
+                <div class="arch-card">
+                    <div class="arch-card-icon">🧠</div>
+                    <h3>Persistent Memory</h3>
+                    <p>向量化的长期记忆系统，支持语义检索和上下文关联，让AI具备持续学习和知识积累能力。</p>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>创建</h3>
-                    <p>编写你的第一个智能体</p>
-                    <div style="background: #1e293b; color: white; padding: 0.75rem; border-radius: 6px; margin-top: 1rem; font-family: monospace;">
-                        jarvis init my-agent
-                    </div>
+                <div class="arch-card">
+                    <div class="arch-card-icon">🔧</div>
+                    <h3>Tool Ecosystem</h3>
+                    <p>统一的工具注册与调用机制，动态扩展AI能力边界，支持函数调用、API集成和自定义技能。</p>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>运行</h3>
-                    <p>启动服务并开始交互</p>
-                    <div style="background: #1e293b; color: white; padding: 0.75rem; border-radius: 6px; margin-top: 1rem; font-family: monospace;">
-                        jarvis serve
-                    </div>
+                <div class="arch-card">
+                    <div class="arch-card-icon">📊</div>
+                    <h3>Adaptive Learning</h3>
+                    <p>基于交互反馈的自我优化机制，模型可根据用户偏好和场景自动调整策略。</p>
+                </div>
+                
+                <div class="arch-card">
+                    <div class="arch-card-icon">🛡️</div>
+                    <h3>Safety & Governance</h3>
+                    <p>内置的安全护栏和权限控制，确保AI行为符合预期，支持审计和回滚。</p>
+                </div>
+                
+                <div class="arch-card">
+                    <div class="arch-card-icon">⚡</div>
+                    <h3>Real-time Pipeline</h3>
+                    <p>流式处理架构，支持实时推理和持续更新，低延迟响应复杂任务。</p>
                 </div>
             </div>
-            
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#" class="btn btn-primary" style="font-size: 1.125rem; padding: 1rem 3rem;">
-                    <i class="fas fa-book-open"></i> 查看完整文档
-                </a>
-            </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>JARVIS Framework</h3>
-                <p style="color: #94a3b8; line-height: 1.6;">
-                    一个开源、可自主学习进化的AI智能体框架，致力于让每个人都能构建自己的智能助手。
-                </p>
-            </div>
+        <!-- 架构详解 -->
+        <section id="architecture">
+            <h2>System Architecture</h2>
+            <p class="section-desc">四层架构设计，每层可独立演进</p>
             
-            <div class="footer-section">
-                <h3>资源</h3>
-                <ul class="footer-links">
-                    <li><a href="#docs">文档</a></li>
-                    <li><a href="#tutorials">教程</a></li>
-                    <li><a href="#api">API参考</a></li>
-                    <li><a href="#examples">示例</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>社区</h3>
-                <ul class="footer-links">
-                    <li><a href="https://github.com/upsightx/jarvis-framework">GitHub</a></li>
-                    <li><a href="#">Discord</a></li>
-                    <li><a href="#">论坛</a></li>
-                    <li><a href="#">博客</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>项目</h3>
-                <ul class="footer-links">
-                    <li><a href="#changelog">更新日志</a></li>
-                    <li><a href="#roadmap">路线图</a></li>
-                    <li><a href="#contribute">贡献指南</a></li>
-                    <li><a href="#license">许可证</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>© 2024 JARVIS Framework. 开源协议 MIT License.</p>
-            <p style="margin-top: 0.5rem;">由AI爱好者和开发者社区共同维护。</p>
-        </div>
-    </footer>
-
-    <script>
-        // 简单的交互效果
-        document.addEventListener('DOMContentLoaded', function() {
-            // 平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
+            <div class="flow-section">
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="flow-number">1</div>
+                        <div class="flow-content">
+                            <h4>Interface Layer · 接口层</h4>
+                            <p>统一入口：REST API、WebSocket、CLI。支持多模态输入(文本/语音/图像)，自动路由到合适的处理管道。</p>
+                        </div>
+                    </div>
                     
-                    const target = document.querySelector(targetId);
-                    if(target) {
-                        window.scrollTo({
-                            top: target.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+                    <div class="flow-step">
+                        <div class="flow-number">2</div>
+                        <div class="flow-content">
+                            <h4>Orchestration Layer · 编排层</h4>
+                            <p>任务分发与协调：意图识别 → 任务分解 → Agent路由 → 结果聚合。支持复杂任务的多阶段处理和状态管理。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="flow-number">3</div>
+                        <div class="flow-content">
+                            <h4>Execution Layer · 执行层</h4>
+                            <p>核心推理引擎：LLM调用、Tool执行、Memory检索、RAG增强。支持多模型组合和可配置推理策略。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="flow-number">4</div>
+                        <div class="flow-content">
+                            <h4>Storage Layer · 存储层</h4>
+                            <p>数据持久化：Vector DB(语义记忆) + Graph DB(知识图谱) + KV Store(配置/状态)。支持PB级向量检索。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实现示例 -->
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <p class="section-desc">最小可运行示例，基于工程实践</p>
             
-            // 特性卡片动画
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Agent定义 · Python</span>
+                    <span class="code-lang">Python 3.10+</span>
+                </div>
+                <div class="code-content">
+<span class="cm"># 定义一个具备记忆和工具调用能力的Agent</span>
+<span class="kw">from</span> agent_core <span class="kw">import</span> Agent, Memory, Tool
+<span class="kw">from</span> vector_store <span class="kw">import</span> Qdrant
+
+<span class="cm"># 1. 初始化向量存储（长期记忆）</span>
+memory = Memory(
+    vector_store=Qdrant(<span class="str">"localhost:6333"</span>),
+    embed_model=<span class="str">"bge-m3"</span>
+)
+
+<span class="cm"># 2. 注册工具（能力扩展）</span>
+<span class="kw">@Tool</span>
+<span class="kw">def</span> <span class="fn">search_docs</span>(query: <span class="type">str</span>) -> <span class="type">str</span>:
+    <span class="cm">"""检索知识库"""</span>
+    results = memory.similarity_search(query, top_k=<span class="var">3</span>)
+    <span class="kw">return</span> <span class="str">"\n"</span>.join(results)
+
+<span class="cm"># 3. 创建Agent实例</span>
+agent = Agent(
+    model=<span class="str">"gpt-4"</span>,
+    memory=memory,
+    tools=[search_docs],
+    <span class="cm"># 安全护栏</span>
+    guardrails={<span class="str">"max_tokens"</span>: <span class="var">4000</span>, <span class="str">"timeout"</span>: <span class="var">30</span>}
+)
+
+<span class="cm"># 4. 运行（自动记忆学习）</span>
+response = agent.run(<span class="str">"帮我分析这个项目的架构"</span>)
+<span class="fn">print</span>(response)
+                </div>
+            </div>
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
+            <div style="margin-top: 2rem;">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>多Agent协同 · MCP协议</span>
+                        <span class="code-lang">JSON-RPC</span>
+                    </div>
+                    <div class="code-content">
+<span class="cm"># Agent间通过MCP协议通信</span>
+{
+  <span class="str">"jsonrpc"</span>: <span class="str">"2.0"</span>,
+  <span class="str">"method"</span>: <span class="str">"agent/invoke"</span>,
+  <span class="str">"params"</span>: {
+    <span class="str">"target"</span>: <span class="str">"research-agent"</span>,
+    <span class="str">"task"</span>: {
+      <span class="str">"intent"</span>: <span class="str">"analyze_architecture"</span>,
+      <span class="str">"context"</span>: {<span class="str">"project"</span>: <span class="str">"demo-repo"</span>},
+      <span class="str">"deadline"</span>: <span class="str">"2024-01-01T00:05:00Z"</span>
+    }
+  },
+  <span class="str">"id"</span>: <span class="str">"req-001"</span>
+}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技术栈 -->
+        <section>
+            <h2>Tech Stack</h2>
+            <p class="section-desc">当前架构采用的技术选型</p>
             
-            // 观察特性卡片
-            document.querySelectorAll('.feature-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
-            });
-            
-            // 层动画
-            document.querySelectorAll('.layer').forEach((layer, index) => {
-                layer.style.opacity = '0';
-                layer.style.transform = 'translateX(-20px)';
-                layer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                layer.style.transitionDelay = (index * 0.1) + 's';
-                observer.observe(layer);
-            });
-        });
-    </script>
+            <div class="tech-grid">
+                <div class="tech-item"><span class="tech-dot"></span>Python 3.11</div>
+                <div class="tech-item"><span class="tech-dot"></span>FastAPI</div>
+                <div class="tech-item"><span class="tech-dot"></span>LangChain</div>
+                <div class="tech-item"><span class="tech-dot"></span>Qdrant</div>
+                <div class="tech-item"><span class="tech-dot"></span>PostgreSQL</div>
+                <div class="tech-item"><span class="tech-dot"></span>Redis</div>
+                <div class="tech-item"><span class="tech-dot"></span>Docker</div>
+                <div class="tech-item"><span class="tech-dot"></span>OpenAI API</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Building the future of AI · <a href="https://github.com/upsightx" target="_blank">@upsightx</a></p>
+        <p style="margin-top: 0.5rem; color: var(--text-muted);">This is a vision. Engineering starts now.</p>
+    </footer>
 </body>
 </html>
