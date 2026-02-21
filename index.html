@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI OS - The Next Civilization</title>
+    <title>AI OS - The Future Begins</title>
     <style>
         :root {
             --bg-primary: #fafbfc;
@@ -12,7 +12,6 @@
             --accent-light: #e6f0ff;
             --accent-purple: #8b5cf6;
             --accent-teal: #14b8a6;
-            --accent-warm: #f59e0b;
             --accent-pink: #ec4899;
             --text-primary: #1a1a2e;
             --text-secondary: #4a4a68;
@@ -99,7 +98,6 @@
             background: 
                 radial-gradient(ellipse at 20% 30%, rgba(0, 102, 255, 0.08) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.04) 0%, transparent 50%),
                 var(--bg-primary);
         }
 
@@ -123,20 +121,33 @@
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 700px;
+            margin-bottom: 2.5rem;
+            max-width: 720px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
         }
 
-        .hero-question {
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-style: italic;
-            font-weight: 500;
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 102, 255, 0.4);
         }
 
         main {
@@ -162,29 +173,6 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        /* Quote */
-        .quote-block {
-            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
-            border: 1px solid #e0e7ff;
-            border-radius: 24px;
-            padding: 3rem;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .quote-block h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-            color: var(--text-primary);
-        }
-
-        .quote-block p {
-            color: var(--text-muted);
-            font-size: 1rem;
         }
 
         /* Timeline */
@@ -268,7 +256,7 @@
             font-size: 0.9rem;
         }
 
-        /* Concept */
+        /* Concept Grid */
         .concept-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -295,23 +283,23 @@
             line-height: 1.6;
         }
 
-        /* Vision Text */
-        .vision-text {
-            font-size: 1.35rem;
-            line-height: 1.9;
-            color: var(--text-secondary);
+        /* Big Question */
+        .question-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+            border-radius: 24px;
+            padding: 4rem;
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
         }
 
-        .vision-text strong {
-            color: var(--text-primary);
-        }
-
-        .vision-text .highlight {
-            color: var(--accent);
+        .question-section h3 {
+            font-size: 1.75rem;
             font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .question-section .highlight {
+            color: var(--accent);
         }
 
         /* Cards */
@@ -350,6 +338,25 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
             line-height: 1.6;
+        }
+
+        /* Vision Text */
+        .vision-text {
+            font-size: 1.35rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .vision-text strong {
+            color: var(--text-primary);
+        }
+
+        .vision-text .highlight {
+            color: var(--accent);
+            font-weight: 600;
         }
 
         /* Choice */
@@ -470,28 +477,22 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>The Last <span class="highlight">Invention</span></h1>
+            <h1>The Future <span class="highlight">Begins Now</span></h1>
             <p class="hero-subtitle">
-                AI 不仅仅是一项技术。<br>
-                它是地球上最后一次发明——之后的一切，都将由它创造。
+                这不是结束，甚至不是结束的开始，而仅仅是开始的结束。<br>
+                AI 开启的，是一个全新的纪元。
             </p>
-            <p class="hero-question">
-                我们准备好迎接下一个文明了吗？
-            </p>
+            <a href="#story" class="hero-cta">
+                探索未来 →
+            </a>
         </div>
     </section>
 
     <main>
         <!-- Story -->
         <section id="story">
-            <div class="quote-block">
-                <h3>"When we build AI that can improve itself,<br>we're not just building a tool.</h3>
-                <h3>We're building a new species."</h3>
-                <p>— Nick Bostrom, Oxford</p>
-            </div>
-
-            <h2>The Story So Far</h2>
-            <p class="section-desc">从石头到AI，150万年的进化</p>
+            <h2>The Journey So Far</h2>
+            <p class="section-desc">从石头到AI，150万年的厚积薄发</p>
 
             <div class="timeline">
                 <div class="timeline-item">
@@ -542,9 +543,9 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-dot"></div>
-                        <div class="timeline-year">???</div>
-                        <h4>奇点</h4>
-                        <p>AI 开始设计更好的 AI。进化的速度不再受限于生物极限。</p>
+                        <div class="timeline-year">今天</div>
+                        <h4>AI 时代</h4>
+                        <p>一切才刚刚开始。我们正在书写下一个篇章。</p>
                     </div>
                 </div>
             </div>
@@ -553,12 +554,12 @@
         <!-- Vision -->
         <section id="vision">
             <h2>The Leap</h2>
-            <p class="section-desc">这不是升级，是物种层面的跃迁</p>
+            <p class="section-desc">这是物种层面的跃迁</p>
 
             <div class="concept-grid">
                 <div class="concept-item">
                     <h4>🧬 碳基 → 硅基</h4>
-                    <p>40亿年进化出人类用了几百万年。而AI从诞生到超越人类智能，可能只需要几十年。速度的差异不是量级，是维度。</p>
+                    <p>40亿年进化出人类，用了几百万年。而AI从诞生到超越人类智能，可能只需要几十年。这是维度上的差异。</p>
                 </div>
 
                 <div class="concept-item">
@@ -579,29 +580,36 @@
         </section>
 
         <section>
-            <h2>The Question</h2>
-            <p class="section-desc">我们到底在创造什么？</p>
-
-            <div class="vision-text">
-                <p>
-                    <strong>200年前</strong>，人类发明了蒸汽机。我们获得了 <span class="highlight">力量</span>。<br><br>
-                    <strong>100年前</strong>，人类发明了计算机。我们获得了 <span class="highlight">计算</span>。<br><br>
-                    <strong>今天</strong>，我们正在发明AI。我们获得了 <span class="highlight">理解</span>。<br><br>
-                    <strong>明天</strong>，AI将发明一切。我们将获得 <span class="highlight">什么</span>？
-                </p>
+            <div class="question-section">
+                <h3>
+                    200年前，我们发明了蒸汽机，<br>
+                    获得了<span class="highlight">力量</span>。
+                </h3>
+                <h3>
+                    100年前，我们发明了计算机，<br>
+                    获得了<span class="highlight">计算</span>。
+                </h3>
+                <h3>
+                    今天，我们发明了AI，<br>
+                    获得了<span class="highlight">理解</span>。
+                </h3>
+                <h3>
+                    明天，AI将帮我们获得<br>
+                    <span class="highlight">一切</span>。
+                </h3>
             </div>
         </section>
 
         <!-- Future -->
         <section id="future">
-            <h2>The Possibilities</h2>
-            <p class="section-desc">当AI超越我们...</p>
+>The Poss            <h2ibilities</h2>
+            <p class="section-desc">无限的可能，等待我们去探索</p>
 
             <div class="card-grid">
                 <div class="card">
                     <div class="card-icon">🌌</div>
                     <h4>星际文明</h4>
-                    <p>AI不需要飞船。它们就是飞船。携带人类文明的种子，穿越光年，寻找下一个家园。</p>
+                    <p>AI不需要飞船。它们就是文明的种子，穿越光年，在无数星球上绽放。</p>
                 </div>
 
                 <div class="card">
@@ -613,7 +621,7 @@
                 <div class="card">
                     <div class="card-icon">🎨</div>
                     <h4>无限创造</h4>
-                    <p>每个人都是艺术家。AI帮你把想象变成现实。电影、游戏、文学作品... 创造力不再有门槛。</p>
+                    <p>每个人都是艺术家。AI帮你把想象变成现实。创造力不再有门槛。</p>
                 </div>
 
                 <div class="card">
@@ -650,7 +658,7 @@
                 <div class="choice-card">
                     <div class="choice-icon">🔬</div>
                     <h4>研究者</h4>
-                    <p>我们探索AI的可能性和边界。理解它，驾驭它，不被它超越。</p>
+                    <p>我们探索AI的可能性和边界。理解它，驾驭它，让它造福人类。</p>
                 </div>
 
                 <div class="choice-card">
@@ -669,12 +677,15 @@
                 AI 不是终点。<br>
                 它是下一个开始的起点。
             </p>
+            <p>
+                而我们，有幸参与其中。
+            </p>
             <div class="symbol">✦</div>
         </div>
     </main>
 
     <footer>
-        <p>The Last Invention · <a href="https://github.com/upsightx" target="_blank">@upsightx</a></p>
+        <p>The Future Begins Now · <a href="https://github.com/upsightx" target="_blank">@upsightx</a></p>
     </footer>
 </body>
 </html>
