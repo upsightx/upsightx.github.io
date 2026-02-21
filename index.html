@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI OS - No Token Anxiety</title>
+    <title>AI OS - Intelligence as Utility</title>
     <style>
         :root {
             --bg-primary: #fafbfc;
             --bg-secondary: #ffffff;
-            --bg-card: #ffffff;
             --accent: #0066ff;
             --accent-light: #e6f0ff;
-            --accent-warm: #ff6b35;
             --accent-purple: #8b5cf6;
             --accent-teal: #14b8a6;
-            --accent-green: #22c55e;
+            --accent-warm: #f59e0b;
             --text-primary: #1a1a2e;
             --text-secondary: #4a4a68;
             --text-muted: #8888a0;
@@ -84,7 +82,6 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.2s;
         }
 
         .nav-links a:hover { color: var(--accent); }
@@ -111,7 +108,6 @@
             font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.15;
-            letter-spacing: -0.02em;
         }
 
         .hero h1 .highlight {
@@ -130,17 +126,21 @@
             margin-right: auto;
         }
 
-        .hero-badge {
+        .hero-analogy {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: #dcfce7;
-            color: #166534;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            gap: 0.75rem;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
             font-weight: 500;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-analogy .icon {
+            font-size: 1.5rem;
         }
 
         .hero-stats {
@@ -179,7 +179,6 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.01em;
         }
 
         section .section-desc {
@@ -188,14 +187,14 @@
             font-size: 1.05rem;
         }
 
-        .concept-grid {
+        .vision-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
 
-        .concept-card {
-            background: var(--bg-card);
+        .vision-card {
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
@@ -203,145 +202,207 @@
             box-shadow: var(--shadow);
         }
 
-        .concept-card:hover {
+        .vision-card:hover {
             transform: translateY(-6px);
             box-shadow: var(--shadow-lg);
         }
 
-        .concept-icon {
-            width: 52px;
-            height: 52px;
+        .vision-icon {
+            width: 48px;
+            height: 48px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
         }
 
-        .icon-blue { background: #e6f0ff; }
-        .icon-warm { background: #fff0e6; }
-        .icon-purple { background: #f0e6ff; }
-        .icon-teal { background: #e6fff7; }
-        .icon-green { background: #dcfce7; }
+        .icon-blue { background: #dbeafe; }
+        .icon-purple { background: #f3e8ff; }
+        .icon-teal { background: #ccfbf1; }
+        .icon-warm { background: #fef3c7; }
 
-        .concept-card h3 {
-            font-size: 1.2rem;
+        .vision-card h3 {
+            font-size: 1.15rem;
             margin-bottom: 0.75rem;
         }
 
-        .concept-card p {
+        .vision-card p {
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
 
-        .arch-container {
+        .comparison {
             background: var(--bg-secondary);
             border-radius: 20px;
             padding: 2.5rem;
             border: 1px solid var(--border);
-            box-shadow: var(--shadow);
         }
 
-        .arch-layer {
-            display: flex;
-            gap: 1.5rem;
-            align-items: stretch;
-            margin-bottom: 1rem;
-        }
-
-        .arch-layer:last-child { margin-bottom: 0; }
-
-        .layer-index {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .layer-content {
-            flex: 1;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-        }
-
-        .layer-content h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .layer-content p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .layer-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.75rem;
-        }
-
-        .layer-tag {
-            background: var(--accent-light);
-            color: var(--accent);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .feature-section {
-            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid #e0e7ff;
-        }
-
-        .feature-grid {
+        .comparison-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             margin-top: 2rem;
         }
 
-        .feature-item {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
+        .comparison-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
         }
 
-        .feature-item h4 {
+        .comparison-col.old h4 { border-color: #ef4444; }
+        .comparison-col.new h4 { border-color: #22c55e; }
+
+        .comparison-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .comparison-item .check { color: #22c55e; }
+        .comparison-item .cross { color: #ef4444; }
+
+        .arch-section {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d1b4e 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+        }
+
+        .arch-section h2 { color: white; }
+        .arch-section .section-desc { color: rgba(255,255,255,0.7); }
+
+        .arch-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .arch-step {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .arch-step-circle {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1rem;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .arch-step h5 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .arch-step p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .arch-arrow {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .capability-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .capability-icon {
+            font-size: 2rem;
             margin-bottom: 0.75rem;
         }
 
-        .feature-item p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+        .capability-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .capability-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .cost-section {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid #a7f3d0;
+        }
+
+        .cost-section h2 { color: #065f46; }
+        .cost-section .section-desc { color: #047857; }
+
+        .cost-timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .cost-item {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .cost-year {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .cost-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #059669;
+            margin: 0.5rem 0;
+        }
+
+        .cost-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
         .code-block {
             background: #1e293b;
             border-radius: 12px;
             overflow: hidden;
-            margin: 1.5rem 0;
         }
-
-        .code-block:first-child { margin-top: 0; }
 
         .code-header {
             background: #0f172a;
@@ -372,45 +433,7 @@
         .var { color: #79c0ff; }
         .type { color: #7ee787; }
         .decorator { color: #fbbf24; }
-        .comment { color: #6b7280; font-style: italic; }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .comparison-table th {
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .comparison-table td {
-            font-size: 0.95rem;
-        }
-
-        .check { color: var(--accent-green); }
-        .cross { color: #ef4444; }
-
-        .pill {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .pill-green { background: #dcfce7; color: #166534; }
-        .pill-blue { background: #dbeafe; color: #1e40af; }
-        .pill-purple { background: #f3e8ff; color: #6b21a8; }
+        .comment { color: #6b7280; }
 
         footer {
             text-align: center;
@@ -429,6 +452,10 @@
             .nav-links { display: none; }
             .hero { padding-top: 6rem; }
             .hero-stats { gap: 2rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .capability-grid { grid-template-columns: 1fr 1fr; }
+            .arch-flow { flex-direction: column; }
+            .arch-arrow { transform: rotate(90deg); }
         }
     </style>
 </head>
@@ -436,14 +463,14 @@
     <nav>
         <div class="nav-content">
             <a href="/" class="logo">
-                <div class="logo-icon">⬡</div>
+                <div class="logo-icon">⚡</div>
                 <span>AI OS</span>
             </a>
             <div class="nav-links">
                 <a href="#vision">理念</a>
+                <a href="#compare">对比</a>
                 <a href="#architecture">架构</a>
-                <a href="#features">核心设计</a>
-                <a href="#code">实现</a>
+                <a href="#cost">成本</a>
                 <a href="https://github.com/upsightx" target="_blank">GitHub</a>
             </div>
         </div>
@@ -451,26 +478,27 @@
 
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">
-                ⚡ No Token Anxiety
-            </div>
-            <h1>Build Your <span class="highlight">AI OS</span></h1>
+            <h1>Intelligence as <span class="highlight">Utility</span></h1>
             <p class="hero-subtitle">
-                一个不为 Token 焦虑的 AI 原生操作系统。<br>
-                本地优先 + 智能缓存 + 事件驱动 = 无限可能
+                AI 就像电力——集中生产，按需使用<br>
+                不买发电机组，只付电费
             </p>
+            <div class="hero-analogy">
+                <span class="icon">🔌</span>
+                <span>AI 是下一代的"电力"，而非"个人电脑"</span>
+            </div>
             <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-value">90%</div>
-                    <div class="stat-label">请求本地处理</div>
+                    <div class="stat-value">$0.5</div>
+                    <div class="stat-label">/ 100万Token (2026)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">$0.05</div>
+                    <div class="stat-label">/ 100万Token (2028)</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">∞</div>
-                    <div class="stat-label">记忆永不过期</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">24/7</div>
-                    <div class="stat-label">离线可用</div>
+                    <div class="stat-label">可能性</div>
                 </div>
             </div>
         </div>
@@ -479,439 +507,340 @@
     <main>
         <!-- 核心理念 -->
         <section id="vision">
-            <h2>Design Philosophy · 设计理念</h2>
-            <p class="section-desc">AI-native 架构的核心原则</p>
+            <h2>Philosophy · 理念</h2>
+            <p class="section-desc">云端智能，像用水用电一样简单</p>
             
-            <div class="concept-grid">
-                <div class="concept-card">
-                    <div class="concept-icon icon-green">🏠</div>
-                    <h3>Local-First</h3>
-                    <p>能本地处理的不上云。手机、电脑、边缘设备先干活，只在必要时才调用云端大模型。</p>
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <div class="vision-icon icon-blue">☁️</div>
+                    <h3>Cloud-Native</h3>
+                    <p>所有推理在云端完成。你的设备只需要一个"屏幕"和"麦克风"，不用买显卡，不用维护模型。</p>
                 </div>
                 
-                <div class="concept-card">
-                    <div class="concept-icon icon-blue">🧠</div>
-                    <h3>Smart Cache</h3>
-                    <p>一次学习，终身难忘。不重复消耗 token 做同样的事，把知识沉淀为本地资产。</p>
+                <div class="vision-card">
+                    <div class="vision-icon icon-purple">💰</div>
+                    <h3>Pay-as-You-Use</h3>
+                    <p>按需付费，不用不付。大规模调用反而更便宜——这就是电力的逻辑。</p>
                 </div>
                 
-                <div class="concept-card">
-                    <div class="concept-icon icon-purple">⚡</div>
-                    <h3>Event-Driven</h3>
-                    <p>只在你需要时唤醒 AI。被动响应 → 主动感知，按需调用而非持续消耗。</p>
+                <div class="vision-card">
+                    <div class="vision-icon icon-teal">📈</div>
+                    <h3>Scale without Limit</h3>
+                    <p>100并发到100万并发，加钱就行。不需要容量规划，不需要运维团队。</p>
                 </div>
                 
-                <div class="concept-card">
-                    <div class="concept-icon icon-teal">🔄</div>
-                    <h3>Hybrid Inference</h3>
-                    <p>小模型处理日常，大模型处理复杂。动态选择最优推理路径，物尽其用。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 架构设计 -->
-        <section id="architecture">
-            <h2>Architecture · 架构</h2>
-            <p class="section-desc">五层设计，每一层都为省 Token 而生</p>
-            
-            <div class="arch-container">
-                <div class="arch-layer">
-                    <div class="layer-index">5</div>
-                    <div class="layer-content">
-                        <h4>Edge Layer · 边缘层</h4>
-                        <p>最前端的智能入口：手机助手、AR眼镜、车载系统、智能音箱。实时响应，无需联网。</p>
-                        <div class="layer-tags">
-                            <span class="layer-tag">端侧小模型</span>
-                            <span class="layer-tag">离线语音</span>
-                            <span class="layer-tag">意图预判</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="arch-layer">
-                    <div class="layer-index">4</div>
-                    <div class="layer-content">
-                        <h4>Cache Layer · 缓存层</h4>
-                        <p>智能记忆系统：语义缓存 + 向量检索 + 模式识别。90% 的重复请求在这里直接返回。</p>
-                        <div class="layer-tags">
-                            <span class="layer-tag">L1 热点缓存</span>
-                            <span class="layer-tag">L2 向量记忆</span>
-                            <span class="layer-tag">L3 知识图谱</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="arch-layer">
-                    <div class="layer-index">3</div>
-                    <div class="layer-content">
-                        <h4>Router Layer · 路由层</h4>
-                        <p>智能分发中心：判断请求复杂度，选择合适的模型/处理路径。小事先办，大事上报。</p>
-                        <div class="layer-tags">
-                            <span class="layer-tag">意图分类</span>
-                            <span class="layer-tag">复杂度评估</span>
-                            <span class="layer-tag">模型选择</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="arch-layer">
-                    <div class="layer-index">2</div>
-                    <div class="layer-content">
-                        <h4>Execution Layer · 执行层</h4>
-                        <p>真正的推理引擎：LLM 调用、Tool 执行、RAG 增强、Agent 协同。这里才消耗 Token。</p>
-                        <div class="layer-tags">
-                            <span class="layer-tag">LLM</span>
-                            <span class="layer-tag">Tools</span>
-                            <span class="layer-tag">MCP</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="arch-layer">
-                    <div class="layer-index">1</div>
-                    <div class="layer-content">
-                        <h4>Storage Layer · 存储层</h4>
-                        <p>永久记忆底座：向量 DB + 图 DB + KV Cache。所有学习成果永不丢失。</p>
-                        <div class="layer-tags">
-                            <span class="layer-tag">Qdrant</span>
-                            <span class="layer-tag">PostgreSQL</span>
-                            <span class="layer-tag">Redis</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 核心设计 -->
-        <section id="features">
-            <div class="feature-section">
-                <h2>How It Works · 核心设计</h2>
-                <p class="section-desc">如何做到 90% 请求不消耗 Token？</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <h4>🔍 L1 精确缓存</h4>
-                        <p>相同的输入直接返回缓存结果。支持 Hash + TTL 淘汰，命中率 > 60%。</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>🧠 L2 语义记忆</h4>
-                        <p>用向量相似度匹配历史问题。"怎么写 Python" ≈ "Python 怎么写"，一次学习终身复用。</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>🎯 L3 意图路由</h4>
-                        <p>小模型(1B)判断意图：简单问题直接答，复杂问题才上大模型。分类准确率 95%+。</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>📦 L4 工具优先</h4>
-                        <p>能用工具的不调模型。查天气、搜文档、调API —— 模型只做它擅长的事。</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>💾 L5 增量学习</h4>
-                        <p>每次交互都沉淀为知识。下次同类问题，从记忆库检索而非重新推理。</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>🔄 L6 模型蒸馏</h4>
-                        <p>用大模型生成训练数据，微调小模型。小设备也能跑"大模型思维"。</p>
-                    </div>
+                <div class="vision-card">
+                    <div class="vision-icon icon-warm">🔋</div>
+                    <h3>Zero Hardware</h3>
+                    <p>永远用最新最强的模型。电厂升级了，你不需要换灯泡。</p>
                 </div>
             </div>
         </section>
 
         <!-- 对比 -->
-        <section>
-            <h2>Traditional vs AI-Native</h2>
-            <p class="section-desc">传统架构 vs AI-native 架构</p>
+        <section id="compare">
+            <h2>Old vs New · 范式转移</h2>
+            <p class="section-desc">从"我有电脑"到"我用服务"</p>
             
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>维度</th>
-                        <th>传统架构</th>
-                        <th>AI-Native</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>每次请求</td>
-                        <td>完整 LLM 调用</td>
-                        <td><span class="pill pill-green">智能分流</span></td>
-                    </tr>
-                    <tr>
-                        <td>重复问题</td>
-                        <td>重新计算 <span class="cross">✗</span></td>
-                        <td><span class="pill pill-green">缓存命中</span></td>
-                    </tr>
-                    <tr>
-                        <td>离线能力</td>
-                        <td>完全不可用</td>
-                        <td><span class="pill pill-blue">端侧推理</span></td>
-                    </tr>
-                    <tr>
-                        <td>长期记忆</td>
-                        <td>每次传入上下文</td>
-                        <td><span class="pill pill-purple">向量检索</span></td>
-                    </tr>
-                    <tr>
-                        <td>响应速度</td>
-                        <td>秒级延迟</td>
-                        <td><span class="pill pill-green">毫秒响应</span></td>
-                    </tr>
-                    <tr>
-                        <td>成本</td>
-                        <td>线性增长</td>
-                        <td><span class="pill pill-green">边际递减</span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="comparison">
+                <div class="comparison-grid">
+                    <div class="comparison-col old">
+                        <h4>❌ 旧范式：Local AI</h4>
+                        <div class="comparison-item">
+                            <span class="cross">✗</span>
+                            <span>买一块 RTX 4090 = $2,000</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="cross">✗</span>
+                            <span>模型几个月后过时</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="cross">✗</span>
+                            <span>电费+散热+维护</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="cross">✗</span>
+                            <span>只能跑 7B 以下模型</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="cross">✗</span>
+                            <span>有硬件折旧</span>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-col new">
+                        <h4>✓ 新范式：Cloud AI</h4>
+                        <div class="comparison-item">
+                            <span class="check">✓</span>
+                            <span>0 硬件成本</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="check">✓</span>
+                            <span>永远用最新模型</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="check">✓</span>
+                            <span>按量计费</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="check">✓</span>
+                            <span>无限算力</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="check">✓</span>
+                            <span>全球 CDN 加速</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- 真实代码 -->
-        <section id="code">
-            <h2>Implementation · 真实实现</h2>
-            <p class="section-desc">这不是伪代码 —— 是可运行的架构</p>
-            
-            <div class="code-block">
-                <div class="code-header">
-                    <span>智能缓存系统 - L1/L2 Cache</span>
-                    <span class="code-lang">Python</span>
-                </div>
-                <div class="code-content">
-<span class="comment"># ai_os/core/cache.py</span>
-<span class="kw">import</span> hashlib
-<span class="kw">import</span> json
-<span class="kw">from</span> datetime <span class="kw">import</span> datetime, timedelta
-<span class="kw">from</span> qdrant_client <span class="kw">import</span> QdrantClient
-<span class="kw">from</span> redis <span class="kw">import</span> Redis
-
-<span class="kw">class</span> <span class="fn">SmartCache</span>:
-    <span class="doc">"""L1 精确缓存 + L2 语义缓存 双层设计"""</span>
-    
-    <span class="kw">def</span> <span class="fn">__init__</span>(self):
-        <span class="self">self</span>.l1 = Redis(decode_responses=<span class="var">True</span>)  <span class="comment"># 精确匹配</span>
-        <span class="self">self</span>.l2 = QdrantClient(host=<span class="str">"localhost"</span>)     <span class="comment"># 语义匹配</span>
-        <span class="self">self</span>.embedding_model = <span class="str">"bge-m3"</span>
-    
-    <span class="kw">def</span> <span class="fn">_hash</span>(<span class="self">self</span>, prompt: <span class="type">str</span>) -> <span class="type">str</span>:
-        <span class="doc">"""SHA256 精确哈希"""</span>
-        <span class="kw">return</span> hashlib.sha256(prompt.encode()).hexdigest()
-    
-    <span class="kw">def</span> <span class="fn">get</span>(<span class="self">self</span>, prompt: <span class="type">str</span>, threshold: <span class="type">float</span> = <span class="var">0.85</span>) -> <span class="type">str</span> | <span class="type">None</span>:
-        <span class="doc">"""双层缓存查询：L1 精确 → L2 语义"""</span>
-        
-        <span class="comment"># L1: 精确匹配 (O(1))</span>
-        cache_key = <span class="self">self</span>._hash(prompt)
-        <span class="kw">if</span> result := <span class="self">self</span>.l1.get(f<span class="str">"cache:{cache_key}"</span>):
-            <span class="self">self</span>.l1.incr(<span class="str">"stats:l1_hit"</span>)  <span class="comment"># 统计</span>
-            <span class="kw">return</span> result
-        
-        <span class="comment"># L2: 语义匹配 (O(log n))</span>
-        vector = <span class="self">self</span>.embed(prompt)
-        results = <span class="self">self</span>.l2.search(
-            collection_name=<span class="str">"memory"</span>,
-            query_vector=vector,
-            limit=<span class="var">1</span>,
-            score_threshold=threshold
-        )
-        
-        <span class="kw">if</span> results and results[<span class="var">0</span>].score >= threshold:
-            <span class="self">self</span>.l1.incr(<span class="str">"stats:l2_hit"</span>)
-            <span class="kw">return</span> results[<span class="var">0</span>].payload[<span class="str">"response"</span>]
-        
-        <span class="kw">return</span> <span class="var">None</span>
-    
-    <span class="kw">def</span> <span class="fn">set</span>(<span class="self">self</span>, prompt: <span class="type">str</span>, response: <span class="type">str</span>, ttl: <span class="type">int</span> = <span class="var">86400</span>):
-        <span class="doc">"""写入双层缓存"""</span>
-        cache_key = <span class="self">self</span>._hash(prompt)
-        
-        <span class="comment"># L1: 精确缓存 (24小时)</span>
-        <span class="self">self</span>.l1.setex(f<span class="str">"cache:{cache_key}"</span>, ttl, response)
-        
-        <span class="comment"># L2: 语义向量 (永久)</span>
-        vector = <span class="self">self</span>.embed(prompt)
-        <span class="self">self</span>.l2.upsert(
-            collection_name=<span class="str">"memory"</span>,
-            points=[{
-                <span class="str">"id"</span>: cache_key,
-                <span class="str">"vector"</span>: vector,
-                <span class="str">"payload"</span>: {<span class="str">"prompt"</span>: prompt, <span class="str">"response"</span>: response}
-            }]
-        )
-    
-    <span class="kw">def</span> <span class="fn">embed</span>(<span class="self">self</span>, text: <span class="type">str</span>) -> <span class="type">list</span>:
-        <span class="doc">"""调用 embedding 模型"""</span>
-        <span class="comment"># 实际项目中调用本地 embedding 服务</span>
-        <span class="kw">return</span> [<span class="var">0.1</span>] * <span class="var">1024</span>  <span class="comment"># placeholder</span>
+        <!-- 架构 -->
+        <section id="architecture">
+            <div class="arch-section">
+                <h2>Architecture · 架构</h2>
+                <p class="section-desc">极简端侧 + 强大云端 = AI OS</p>
+                
+                <div class="arch-flow">
+                    <div class="arch-step">
+                        <div class="arch-step-circle">📱</div>
+                        <h5>Device</h5>
+                        <p>手机/眼镜/耳机<br>只做收集和展示</p>
+                    </div>
+                    
+                    <div class="arch-arrow">→</div>
+                    
+                    <div class="arch-step">
+                        <div class="arch-step-circle">🌐</div>
+                        <h5>Edge Network</h5>
+                        <p>CDN 边缘节点<br>低延迟接入</p>
+                    </div>
+                    
+                    <div class="arch-arrow">→</div>
+                    
+                    <div class="arch-step">
+                        <div class="arch-step-circle">🏭</div>
+                        <h5>AI Cloud</h5>
+                        <p>推理集群<br>模型调度</p>
+                    </div>
+                    
+                    <div class="arch-arrow">→</div>
+                    
+                    <div class="arch-step">
+                        <div class="arch-step-circle">🗄️</div>
+                        <h5>Memory Cloud</h5>
+                        <p>向量存储<br>知识图谱</p>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <!-- 能力 -->
+        <section>
+            <h2>Capabilities · 能力</h2>
+            <p class="section-desc">云端 AI 能为你做什么？</p>
+            
+            <div class="capability-grid">
+                <div class="capability-item">
+                    <div class="capability-icon">🧠</div>
+                    <div class="capability-name">深度思考</div>
+                    <div class="capability-desc">复杂分析、多步推理、系统设计</div>
+                </div>
+                
+                <div class="capability-item">
+                    <div class="capability-icon">📚</div>
+                    <div class="capability-name">知识广度</div>
+                    <div class="capability-desc">读遍全网、论文、文档</div>
+                </div>
+                
+                <div class="capability-item">
+                    <div class="capability-icon">🎨</div>
+                    <div class="capability-name">创意生成</div>
+                    <div class="capability-desc">文案、代码、设计</div>
+                </div>
+                
+                <div class="capability-item">
+                    <div class="capability-icon">🔍</div>
+                    <div class="capability-name">精准搜索</div>
+                    <div class="capability-desc">语义理解、跨语言</div>
+                </div>
+                
+                <div class="capability-item">
+                    <div class="capability-icon">💬</div>
+                    <div class="capability-name">多轮对话</div>
+                    <div class="capability-desc">记住上下文、持续学习</div>
+                </div>
+                
+                <div class="capability-item">
+                    <div class="capability-icon">🔌</div>
+                    <div class="capability-name">工具调用</div>
+                    <div class="capability-desc">执行任务、操作世界</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成本 -->
+        <section id="cost">
+            <div class="cost-section">
+                <h2>Cost Trajectory · 成本曲线</h2>
+                <p class="section-desc">摩尔定律在 AI 领域更猛烈</p>
+                
+                <div class="cost-timeline">
+                    <div class="cost-item">
+                        <div class="cost-year">2024</div>
+                        <div class="cost-price">$15</div>
+                        <div class="cost-desc">100万 Token<br>(GPT-4 era)</div>
+                    </div>
+                    
+                    <div class="cost-item">
+                        <div class="cost-year">2026</div>
+                        <div class="cost-price">$0.5</div>
+                        <div class="cost-desc">100万 Token<br>(MiniMax/DeepSeek)</div>
+                    </div>
+                    
+                    <div class="cost-item">
+                        <div class="cost-year">2028</div>
+                        <div class="cost-price">$0.05</div>
+                        <div class="cost-desc">100万 Token<br>(预测)</div>
+                    </div>
+                    
+                    <div class="cost-item">
+                        <div class="cost-year">2030</div>
+                        <div class="cost-price">$0.005</div>
+                        <div class="cost-desc">100万 Token<br>(梦想)</div>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; margin-top: 2rem; color: #047857; font-size: 0.95rem;">
+                    📉 3年降价 <strong>3000倍</strong>——和电力普及一样的故事
+                </p>
+            </div>
+        </section>
+
+        <!-- 实现 -->
+        <section>
+            <h2>Implementation · 实现</h2>
+            <p class="section-desc">一个极简的云端 AI 代理</p>
             
             <div class="code-block">
                 <div class="code-header">
-                    <span>智能路由 - Router</span>
+                    <span>Cloud AI Agent - 核心逻辑</span>
                     <span class="code-lang">Python</span>
                 </div>
                 <div class="code-content">
-<span class="comment"># ai_os/core/router.py</span>
-<span class="kw">from</span> enum <span class="kw">import</span> Enum
-<span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel
+<span class="comment"># ai_os/agent.py</span>
+<span class="kw">import</span> asyncio
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+<span class="kw">from</span> collections <span class="kw">import</span> defaultdict
 
-<span class="kw">class</span> <span class="fn">Complexity</span>(Enum):
-    SIMPLE   = <span class="str">"simple"</span>      <span class="comment"># 直接回答</span>
-    MEDIUM   = <span class="str">"medium"</span>      <span class="comment"># 需检索</span>
-    COMPLEX  = <span class="str">"complex"</span>     <span class="comment"># 需推理</span>
-    RESEARCH = <span class="str">"research"</span>    <span class="comment"># 需深度研究</span>
-
-<span class="kw">class</span> <span class="fn">Router</span>:
-    <span class="doc">"""意图分类 + 复杂度评估 + 模型路由"""</span>
+<span class="kw">class</span> <span class="fn">CloudAgent</span>:
+    <span class="doc">"""
+    云端智能体：只做两件事
+    1. 接收请求
+    2. 调用 LLM + 工具链
+    """</span>
     
-    <span class="kw">def</span> <span class="fn">__init__</span>(self):
-        <span class="self">self</span>.classifier = <span class="self">self</span>._load_classifier()
-        <span class="self">self</span>.models = {
-            <span class="str">"tiny"</span>:   {<span class="str">"name"</span>: <span class="str">"Qwen2-0.5B"</span>, <span class="str">"cost"</span>: <span class="var">0.001</span>},
-            <span class="str">"small"</span>:  {<span class="str">"name"</span>: <span class="str">"Qwen2-1.5B"</span>, <span class="str">"cost"</span>: <span class="var">0.01</span>},
-            <span class="str">"medium"</span>: {<span class="str">"name"</span>: <span class="str">"Qwen2-7B"</span>, <span class="str">"cost"</span>: <span class="var">0.1</span>},
-            <span class="str">"large"</span>:  {<span class="str">"name"</span>: <span class="str">"GPT-4"</span>, <span class="str">"cost"</span>: <span class="var">1.0</span>},
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, provider: <span class="type">str</span> = <span class="str">"minimax"</span>):
+        <span class="self">self</span>.provider = provider
+        <span class="self">self</span>.memory = []      <span class="comment"># 对话历史</span>
+        <span class="self">self</span>.tools = {}        <span class="comment"># 注册的工具</span>
+        <span class="self">self</span>.usage = defaultdict(int)  <span class="comment"># 用量统计</span>
+    
+    <span class="decorator">@property</span>
+    <span class="kw">def</span> <span class="fn">cost</span>(self) -> <span class="type">float</span>:
+        <span class="doc">"""当前会话费用"""</span>
+        rates = {<span class="str">"minimax"</span>: <span class="var">0.5</span>, <span class="str">"openai"</span>: <span class="var">15.0</span>}
+        total = <span class="self">self</span>.usage[<span class="str">"input"</span>] + <span class="self">self</span>.usage[<span class="str">"output"</span>]
+        <span class="kw">return</span> (total / <span class="var">1_000_000</span>) * rates.get(<span class="self">self</span>.provider, <span class="var">10</span>)
+    
+    <span class="kw">def</span> <span class="fn">register_tool</span>(self, name: <span class="type">str</span>, func: <span class="type">callable</span>):
+        <span class="doc">"""注册一个工具：搜索、计算、执行任意操作"""</span>
+        <span class="self">self</span>.tools[name] = {
+            <span class="str">"func"</span>: func,
+            <span class="str">"description"</span>: func.__doc__ <span class="kw">or</span> <span class="str">""</span>
         }
     
-    <span class="kw">def</span> <span class="fn">route</span>(<span class="self">self</span>, prompt: <span class="type">str</span>) -> <span class="type">dict</span>:
-        <span class="doc">"""智能路由：判断复杂度，选择模型"""</span>
+    <span class="kw">async</span> <span class="kw">def</span> <span class="fn">run</span>(self, prompt: <span class="type">str</span>, stream: <span class="type">bool</span> = <span class="var">False</span>) -> <span class="type">dict</span>:
+        <span class="doc">"""核心流程：理解 → 规划 → 执行 → 响应"""</span>
         
-        <span class="comment"># Step 1: 检查缓存</span>
-        <span class="kw">if</span> cached := <span class="self">self</span>.cache.get(prompt):
-            <span class="kw">return</span> {<span class="str">"type"</span>: <span class="str">"cache"</span>, <span class="str">"response"</span>: cached}
+        <span class="comment"># 1. 构建上下文（包含历史记忆）</span>
+        context = <span class="self">self</span>._build_context(prompt)
         
-        <span class="comment"># Step 2: 意图分类 (本地小模型)</span>
-        intent = <span class="self">self</span>.classifier.predict(prompt)
+        <span class="comment"># 2. LLM 判断意图 + 生成计划</span>
+        plan = <span class="kw">await</span> <span class="self">self</span>._llm_call(
+            context, 
+            system=<span class="str">"""你是一个AI助手。分析用户请求，"""
+                    <span class="str">"""决定是否需要调用工具。"""
+                    <span class="str">"""可用工具: """</span> + <span class="str">", "</span>.join(<span class="self">self</span>.tools.keys())</span>
+        )
         
-        <span class="comment"># Step 3: 复杂度评估</span>
-        complexity = <span class="self">self</span>._assess_complexity(prompt, intent)
+        <span class="comment"># 3. 执行工具（如需要）</span>
+        <span class="kw">if</span> tool_calls := plan.get(<span class="str">"tool_calls"</span>):
+            results = []
+            <span class="kw">for</span> call <span class="kw">in</span> tool_calls:
+                tool_name = call[<span class="str">"name"</span>]
+                args = call[<span class="str">"arguments"</span>]
+                result = <span class="kw">await</span> <span class="self">self</span>.tools[tool_name][<span class="str">"func"</span>](**args)
+                results.append({tool_name: result})
+            
+            <span class="comment"># 4. 用工具结果生成最终回复</span>
+            final = <span class="kw">await</span> <span class="self</span>._llm_call(
+                context + <span class="str">"\n\nTool Results:\n"</span> + str(results),
+                system=<span class="str">"基于工具结果，给出最终回答"</span>
+            )
+        <span class="kw">else</span>:
+            final = plan[<span class="str">"response"</span>]
         
-        <span class="comment"># Step 4: 模型选择</span>
-        model = <span class="self">self</span>._select_model(complexity)
+        <span class="comment"># 5. 存入记忆 + 返回</span>
+        <span class="self">self</span>.memory.append({
+            <span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: prompt
+        })
+        <span class="self">self</span>.memory.append({
+            <span class="str">"role"</span>: <span class="str">"assistant"</span>, <span class="str">"content"</span>: final
+        })
         
         <span class="kw">return</span> {
-            <span class="str">"type"</span>: <span class="str">"llm"</span>,
-            <span class="str">"intent"</span>: intent,
-            <span class="str">"complexity"</span>: complexity.value,
-            <span class="str">"model"</span>: model,
-            <span class="str">"prompt"</span>: prompt
+            <span class="str">"response"</span>: final,
+            <span class="str">"cost"</span>: <span class="self</span>.cost,
+            <span class="str">"tools_used"</span>: [c[<span class="str">"name"</span>] <span class="kw">for</span> c <span class="kw">in</span> tool_calls] <span class="kw">if</span> tool_calls <span class="kw">else</span> []
         }
     
-    <span class="kw">def</span> <span class="fn">_assess_complexity</span>(<span class="self">self</span>, prompt: <span class="type">str</span>, intent: <span class="type">str</span>) -> <span class="type">Complexity</span>:
-        <span class="doc">"""基于规则 + 小模型判断复杂度"""</span>
-        
-        <span class="comment"># 规则1: 关键词匹配</span>
-        simple_kw = [<span class="str">"什么是"</span>, <span class="str">"怎么"</span>, <span class="str">"帮我"</span>, <span class="str">"告诉"</span>]
-        <span class="kw">if</span> any(kw <span class="kw">in</span> prompt <span class="kw">for</span> kw <span class="kw">in</span> simple_kw):
-            <span class="kw">return</span> Complexity.SIMPLE
-        
-        <span class="comment"># 规则2: 多轮对话标记</span>
-        <span class="kw">if</span> <span class="str">"上下文"</span> <span class="kw">in</span> prompt <span class="kw">or</span> <span class="str">"之前"</span> <span class="kw">in</span> prompt:
-            <span class="kw">return</span> Complexity.MEDIUM
-        
-        <span class="comment"># 规则3: 深度思考标记</span>
-        complex_kw = [<span class="str">"分析"</span>, <span class="str">"比较"</span>, <span class="str">"设计"</span>, <span class="str">"为什么"</span>]
-        <span class="kw">if</span> any(kw <span class="kw">in</span> prompt <span class="kw">for</span> kw <span class="kw">in</span> complex_kw):
-            <span class="kw">return</span> Complexity.COMPLEX
-        
-        <span class="kw">return</span> Complexity.MEDIUM
+    <span class="kw">def</span> <span class="fn">_build_context</span>(self, prompt: <span class="type">str</span>) -> <span class="type">str</span>:
+        <span class="doc">"""构建带记忆的上下文（自动裁剪）"""</span>
+        <span class="comment"># 保留最近 N 轮对话，节省 token</span>
+        recent = <span class="self">self</span>.memory[-<span class="var">10</span>:]
+        history = <span class="str">"\n"</span>.join([f<span class="str">"{m['role']}: {m['content']}"</span> <span class="kw">for</span> m <span class="kw">in</span> recent])
+        <span class="kw">return</span> f<span class="str">"{history}\nuser: {prompt}"</span>
     
-    <span class="kw">def</span> <span class="fn">_select_model</span>(<span class="self">self</span>, complexity: <span class="type">Complexity</span>) -> <span class="type">str</span>:
-        <span class="doc">"""根据复杂度选择模型"""</span>
-        mapping = {
-            Complexity.SIMPLE:   <span class="str">"tiny"</span>,
-            Complexity.MEDIUM:   <span class="str">"small"</span>,
-            Complexity.COMPLEX:  <span class="str">"medium"</span>,
-            Complexity.RESEARCH: <span class="str">"large"</span>,
-        }
-        <span class="kw">return</span> mapping[complexity]
-                </div>
-            </div>
-            
-            <div class="code-block">
-                <div class="code-header">
-                    <span>主入口 - AI OS Core</span>
-                    <span class="code-lang">Python</span>
-                </div>
-                <div class="code-content">
-<span class="comment"># ai_os/main.py</span>
-<span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI, Request
-<span class="kw">from</span> fastapi.responses <span class="kw">import</span> StreamingResponse
-<span class="kw">import</span> asyncio
+    <span class="kw">async</span> <span class="kw">def</span> <span class="fn">_llm_call</span>(self, prompt: <span class="type">str</span>, system: <span class="type">str</span> = <span class="str">""</span>) -> <span class="type">dict</span>:
+        <span class="doc">"""调用云端 LLM（这里用 MiniMax 示例）"""</span>
+        <span class="comment"># 实际项目中调用 MiniMax / OpenAI / Anthropic API</span>
+        <span class="kw">return</span> {<span class="str">"response"</span>: <span class="str">"LLM 回复内容"</span>}
 
-<span class="kw">from</span> .core.cache <span class="kw">import</span> SmartCache
-<span class="kw">from</span> .core.router <span class="kw">import</span> Router
-<span class="kw">from</span> .core.executor <span class="kw">import</span> Executor
 
-app = FastAPI(title=<span class="str">"AI OS"</span>)
+<span class="comment"># 使用示例</span>
+agent = CloudAgent(provider=<span class="str">"minimax"</span>)
 
-<span class="comment"># 核心组件</span>
-cache = SmartCache()
-router = Router()
-executor = Executor()
+<span class="comment"># 注册工具</span>
+<span class="kw">import</span> httpx
+<span class="decorator">@agent.register_tool</span>
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">search_web</span>(query: <span class="type">str</span>) -> <span class="type">str</span>:
+    <span class="doc">"""搜索互联网"""</span>
+    <span class="kw">async</span> <span class="kw">with</span> httpx.AsyncClient() <span class="kw">as</span> client:
+        <span class="comment"># 调用搜索 API...</span>
+        <span class="kw">return</span> <span class="str">"搜索结果..."</span>
 
-<span class="decorator">@app.post("/chat")</span>
-<span class="kw">async</span> <span class="fn">chat</span>(request: Request):
-    <span class="doc">"""主入口：智能分流 + 缓存 + 执行"""</span>
-    body = <span class="kw">await</span> request.json()
-    prompt = body[<span class="str">"prompt"</span>]
-    
-    <span class="comment"># Step 1: 缓存查询</span>
-    <span class="kw">if</span> cached := cache.get(prompt):
-        <span class="kw">return</span> {<span class="str">"response"</span>: cached, <span class="str">"source"</span>: <span class="str">"cache"</span>}
-    
-    <span class="comment"># Step 2: 路由决策</span>
-    decision = router.route(prompt)
-    
-    <span class="comment"># Step 3: 执行</span>
-    response = <span class="kw">await</span> executor.run(decision)
-    
-    <span class="comment"># Step 4: 存入缓存</span>
-    cache.set(prompt, response)
-    
-    <span class="kw">return</span> {<span class="str">"response"</span>: response, <span class="str">"source"</span>: <span class="str">"llm"</span>}
-
-<span class="decorator">@app.post("/chat/stream")</span>
-<span class="kw">async</span> <span class="fn">chat_stream</span>(request: Request):
-    <span class="doc">"""流式响应版本"""</span>
-    body = <span class="kw">await</span> request.json()
-    prompt = body[<span class="str">"prompt"</span>]
-    
-    decision = router.route(prompt)
-    
-    <span class="kw">async def</span> <span class="fn">generate</span>():
-        <span class="kw">async for</span> chunk <span class="kw">in</span> executor.run_stream(decision):
-            <span class="kw">yield</span> f<span class="str">"data: {chunk}\n\n"</span>
-    
-    <span class="kw">return</span> StreamingResponse(
-        generate(),
-        media_type=<span class="str">"text/event-stream"</span>
-    )
-
-<span class="decorator">@app.get("/stats")</span>
-<span class="kw">def</span> <span class="fn">stats</span>():
-    <span class="doc">"""缓存命中率统计"""</span>
-    <span class="kw">return</span> {
-        <span class="str">"l1_hit"</span>: cache.l1.get(<span class="str">"stats:l1_hit"</span>) <span class="kw">or</span> <span class="var">0</span>,
-        <span class="str">"l2_hit"</span>: cache.l1.get(<span class="str">"stats:l2_hit"</span>) <span class="kw">or</span> <span class="var">0</span>,
-        <span class="str">"cache_rate"</span>: <span class="str">"~85%"</span>,  <span class="comment"># 简化计算</span>
-    }
-
-<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
-    <span class="kw">import</span> uvicorn
-    uvicorn.run(app, host=<span class="str">"0.0.0.0"</span>, port=<span class="var">8000</span>)
+<span class="comment"># 运行</span>
+result = <span class="kw">await</span> agent.run(<span class="str">"帮我查一下最近的AI新闻"</span>)
+<span class="fn">print</span>(result)
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Building the future of AI · <a href="https://github.com/upsightx" target="_blank">@upsightx</a></p>
-        <p style="margin-top: 0.5rem; color: var(--text-muted);">No Token Anxiety · Local-First · AI-Native</p>
+        <p>Intelligence as Utility · <a href="https://github.com/upsightx" target="_blank">@upsightx</a></p>
+        <p style="margin-top: 0.5rem; color: var(--text-muted);">AI will be like electricity — too cheap to meter</p>
     </footer>
 </body>
 </html>
